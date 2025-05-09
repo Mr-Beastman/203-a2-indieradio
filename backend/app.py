@@ -1,23 +1,24 @@
-from flask import Flask, render_template, jsonify
-import requests
+# app.py
+from flask import Flask, jsonify
+from flask_cors import CORS
+
 
 app = Flask(__name__)
+CORS(app)
 
-@app.route("/")
-def home():
-    return render_template("index.html")
+# Hard coded radio station to test 
+@app.route('/nowPlaying')
+def get_stations():
+    return jsonify([
+        {
+            "name": "Classic Vinyl HD",
+            "stream_url": "https://icecast.walmradio.com:8443/classic",
+            "genre": "Classic Hits, Jazz, Easy Listening",
+            "logo": "https://icecast.walmradio.com:8443/classic.jpg",
+            "homepage": "https://walmradio.com/classic",
+            "language": "English"
+        }
+    ])
 
-@app.route("/now-playing")
-def now_playing():
-    try:
-        # Fetch now playing info from Icecast
-        res = requests.get("http://localhost:8000/status-json.xsl")
-        data = res.json()
-        title = data["icestats"]["source"]["title"]
-        return jsonify({"title": title})
-    except Exception as e:
-        print("Error getting track title:", e)
-        return jsonify({"title": "Live Stream"})
-
-if __name__ == "__main__":
+if __name__ == '__main__':
     app.run(debug=True)

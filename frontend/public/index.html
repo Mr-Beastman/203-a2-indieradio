@@ -1,86 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Indie Radio</title>
-  <link rel="stylesheet" href="/style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
-</head>
-<body>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
 
-  <header>
-    <h1>Indie Radio</h1>
-    <nav>
-      <a href="#stream">Live</a>
-      <a href="#schedule">Schedule</a>
-      <a href="#archive">On Demand</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <title>React App</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
 
-  <section class="hero" id="stream">
-    <h2>Live from the Underground</h2>
-    <p>Streaming the freshest independent music, 24/7. Powered by real artists, not algorithms.</p>
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
 
-    <div class="audio-player">
-      <h4>Now Playing:</h4>
-      <p id="track-title">Loading...</p>
-      <audio controls autoplay>
-        <source src="http://localhost:8000/stream" type="audio/mpeg">
-        <audio controls autoplay>
-          <source src="http://localhost:8000/stream" type="audio/mpeg">
-        </audio>
-        
-        Your browser does not support the audio element.
-      </audio>
-    </div>
-    
-  </section>
-
-  <section class="section" id="schedule">
-    <h3>Weekly Schedule</h3>
-    <div class="card-grid">
-      <div class="card">
-        <h4>Monday: Indie Vibes</h4>
-        <p>DJ Kora - 4PM to 6PM</p>
-      </div>
-      <div class="card">
-        <h4>Wednesday: Lo-Fi Break</h4>
-        <p>DJ Chill - 6PM to 8PM</p>
-      </div>
-      <div class="card">
-        <h4>Friday: Live Sets</h4>
-        <p>DJ Aura - 9PM to Midnight</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="archive">
-    <h3>On Demand</h3>
-    <div class="card-grid">
-      <div class="card">
-        <h4>Replay: Indie Vibes</h4>
-        <p><a href="#">Listen Now</a></p>
-      </div>
-      <div class="card">
-        <h4>Replay: Chill Sessions</h4>
-        <p><a href="#">Listen Now</a></p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="contact">
-    <h3>Get in Touch</h3>
-    <p>Text your requests to: 022-123-4567<br>
-       Follow us on <a href="https://facebook.com">Facebook</a>
-    </p>
-  </section>
-
-  <footer>
-    &copy; 2025 Indie Radio — Built by Shav Narayan & Benjamin Eastman
-  </footer>
-  <script src="{{ url_for('static', filename='script.js') }}"></script>
-
-</body>
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+  </body>
 </html>

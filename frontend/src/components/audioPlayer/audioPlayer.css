@@ -1,0 +1,21 @@
+/* AudioPlayer.css */
+.audio-player {
+  margin-top: 30px;
+  background-color: #1f1f1f;
+  border: 1px solid #333;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 30px rgba(0,0,0,0.2);
+}
+
+.audio-player img {
+  width: 250px;  
+  height: 250px; 
+  object-fit: cover; 
+  border-radius: 50%;  
+}
+
+.audio-player audio {
+  width: 100%;
+  outline: none;
+}
