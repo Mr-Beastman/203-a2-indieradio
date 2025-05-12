@@ -1,0 +1,47 @@
+/* Styling for navigation bar component */
+
+/* bar container */
+.navBar{
+    background-color: #111;
+    padding: 2rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1rem solid #333;
+}
+
+/* text logo */
+.logo{
+    font-size: 2rem;
+    color: #fff;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+/* navigational text buttons */
+
+.navMenu{
+    display: flex;
+}
+
+.navMenu a{
+    font-size: 1.5rem;
+    padding: 0 1rem;
+    color: #f0f0f0;
+    transition: color 0.3s;
+}
+
+.navMenu:hover{
+    color: #ff007f;
+}
+
+/* navigational icons buttons */
+
+.navIcons{
+    font-size: 2rem;
+    color: #f0f0f0;
+    transition: color 0.3s;
+}
+
+.navIcons:hover{
+    color: #ff007f;
+}

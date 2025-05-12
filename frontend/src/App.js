@@ -1,6 +1,9 @@
 import React from 'react';
 import AudioPlayer from './components/audioPlayer/audioPlayer'; // Correct import path
 
+// importing components
+import NavigationBar from './components/navigationBar/NavigationBar';
+
 // Importing CSS files
 import './style.css';
 import './globalStyle.css';
@@ -8,15 +11,7 @@ import './globalStyle.css';
 function App() {
   return (
     <>
-      <header>
-        <h1>Indie Radio</h1>
-        <nav>
-          <a href="#stream">Live</a>
-          <a href="#schedule">Schedule</a>
-          <a href="#archive">On Demand</a>
-          <a href="#contact">Contact</a>
-        </nav>
-      </header>
+      <NavigationBar />
 
       <section className="hero" id="stream">
         <h2>Live from the Underground</h2>
