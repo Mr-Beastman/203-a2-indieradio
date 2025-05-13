@@ -9,6 +9,7 @@ export default function AudioPlayer() {
     <div className="audioPlayer">
       {station ? (
         <>
+          <img src={station.logo} alt={`${station.name} logo`} />
           <h2>{station.name}</h2>
           <p><strong>Now Playing:</strong> {station.current_song}</p>
           <audio controls>
@@ -20,7 +21,6 @@ export default function AudioPlayer() {
               Visit Station Homepage
             </a>
           </p>
-          <img src={station.logo} alt={`${station.name} logo`} />
           <p><em>{station.genre} — {station.language}</em></p>
         </>
       ) : (

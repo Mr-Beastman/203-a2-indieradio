@@ -1,6 +1,8 @@
-import React from 'react'
+import React from 'react';
 
-import AudioPlayer from '../../components/audioPlayer/AudioPlayer.jsx'
+import './ArtistPage.css';
+
+import AudioPlayer from '../../components/audioPlayer/AudioPlayer.jsx';
 
 export default function ArtistPage() {
   return (

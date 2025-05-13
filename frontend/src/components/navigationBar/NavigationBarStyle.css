@@ -6,6 +6,7 @@
     padding: 2rem 4rem;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     border-bottom: 1rem solid #333;
 }
 
@@ -15,6 +16,11 @@
     color: #fff;
     letter-spacing: 2px;
     text-transform: uppercase;
+}
+
+.logo a{
+    color: #fff;
+    text-decoration: none;
 }
 
 /* navigational text buttons */
@@ -28,9 +34,10 @@
     padding: 0 1rem;
     color: #f0f0f0;
     transition: color 0.3s;
+    outline: none;
 }
 
-.navMenu:hover{
+.navMenu a:hover{
     color: #ff007f;
 }
 
