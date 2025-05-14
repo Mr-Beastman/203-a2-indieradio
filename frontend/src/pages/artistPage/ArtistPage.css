@@ -1,44 +1,59 @@
-import React from 'react';
-import useStationData from '../../hooks/useStationData';
-import './AudioPlayer.css';
-
-export default function AudioPlayer() {
-  const station = useStationData();
-
-  return (
-    <div className="audioPlayer">
-      {station ? (
-        <>
-          <img src={station.logo} alt={`${station.name} logo`} className="station-logo" />
-          <h2>{station.name}</h2>
-          <p><strong>Now Playing:</strong> {station.current_song}</p>
-
-          <audio controls>
-            <source src={station.stream_url} type="audio/mpeg" />
-            Your browser does not support the audio element.
-          </audio>
-
-          <p>
-            <a href={station.homepage} target="_blank" rel="noopener noreferrer">
-              Visit Station Homepage
-            </a>
-          </p>
-
-          <p><em>{station.genre} — {station.language}</em></p>
-
-          {/* Embedded YouTube Video */}
-          <div className="card video-container">
-            <iframe
-              src="https://www.youtube.com/embed/36YnV9STBqc?autoplay=1"
-              title="The Good Life Radio"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            ></iframe>
-          </div>
-        </>
-      ) : (
-        <p>Loading station data...</p>
-      )}
-    </div>
-  );
-}
+.artistPage {
+    padding: 40px 20px;
+    background-color: #111;
+    color: #fff;
+  }
+  
+  .section {
+    padding: 60px 20px;
+    text-align: center;
+  }
+  
+  .section h3 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: #ff007f;
+  }
+  
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 20px;
+  }
+  
+  .card {
+    background: #1b1b1b;
+    padding: 20px;
+    border-radius: 12px;
+    transition: transform 0.3s;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .card h4 {
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+  }
+  
+  .card p {
+    font-size: 1rem;
+    color: #aaa;
+  }
+  
+  .link-button {
+    background: none;
+    border: none;
+    color: #4db8ff;
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 0;
+  }
+  
+  .link-button:hover {
+    color: #80d4ff;
+  }
+  
