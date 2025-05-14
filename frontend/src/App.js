@@ -1,22 +1,26 @@
-import React from 'react';
-import { Routes, Route } from 'react-router-dom';
-import './style.css';
-import './globalStyle.css';
+import React from 'react'
+import { Routes, Route } from 'react-router-dom'
 
-import NavigationBar from './components/navigationBar/NavigationBar';
-import Footer from './components/footer/Footer';
-import AudioPlayer from './components/audioPlayer/AudioPlayer';
-import Home from './pages/home/Home';
-import ArtistPage from './pages/artistPage/ArtistPage';
-import LocalSpotlight from './pages/localspotlight/LocalSpotlight';
-import Registration from './pages/registration/Registration';
+// importing gloabalStyle
+import './globalStyle.css'
 
+// importing components
+import NavigationBar from './components/navigationBar/NavigationBar'
+import Footer from './components/footer/Footer'
+// import AudioPlayer from './components/audioPlayer/AudioPlayer';
+
+// importing pages
+import Home from './pages/home/Home'
+import ArtistPage from './pages/artistPage/ArtistPage'
+import LocalSpotlight from './pages/localSpotlight/LocalSpotlight'
+import Registration from './pages/registration/Registration'
+
+// main app
 function App() {
   return (
     <div className="app">
       <NavigationBar />
 
-      
       {/* removed as sits outside pages creating issues
       <AudioPlayer />  
       */}
@@ -25,11 +29,12 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/artist" element={<ArtistPage />} />
-          <Route path="/localspotlight" element={<LocalSpotlight />} />
+          <Route path="/localSpotlight" element={<LocalSpotlight />} />
           <Route path="/register" element={<Registration />} />
         </Routes>
       </main>
-         <Footer />
+      
+      <Footer />
     </div>
   );
 }

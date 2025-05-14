@@ -1,8 +1,8 @@
-/* YouTube Video Embed Style */
 .video-container {
     position: relative;
-    padding-bottom: 56.25%; /* 16:9 aspect ratio */
-    height: 0;
+    width: 100%;          
+    max-height: 100%;      
+    aspect-ratio: 16 / 9;   
     overflow: hidden;
     margin-top: 30px;
     border-radius: 12px;

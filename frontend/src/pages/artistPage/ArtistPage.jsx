@@ -1,9 +1,9 @@
 import React from 'react'
 
-// css files
+// importing style sheet
 import './ArtistPageStyle.css'
 
-// components
+// importing components
 import AudioPlayer from '../../components/audioPlayer/AudioPlayer'
 import YoutubePlayer from '../../components/youtubePlayer/YoutubePlayer';
 

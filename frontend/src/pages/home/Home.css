@@ -1,125 +1,29 @@
-.homePage h1{
-    font-size: 8rem;
+/* media section */
+
+.homePage{
+  margin: 0;
+  height: 100vh;
+  background-image: url('./Hero.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
-/* Base Reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+
+.media {
+  display: flex;
+  height: 75vh;
+  width: 100%;
+  background-color: transparent;
+  align-items: center;
+}
+.media .leftContent, .media .rightContent {
+  flex: 1;
+  padding: 1rem;
+  box-sizing: border-box;
+  overflow: hidden;
+  background-color: transparent;
+}
+
   
-  /* Body Styling */
-  body {
-    background-color: #100E0E; /* Dark background */
-    color: #FBFDF7; /* Light text */
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    line-height: 1.6;
-  }
-  
-  /* Header */
-  header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    background-color: #100E0E;
-  }
-  
-  header .logo {
-    font-size: 2rem;
-    font-weight: bold;
-    letter-spacing: 2px;
-  }
-  
-  /* Navigation */
-  nav ul {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-  }
-  
-  nav ul li a {
-    color: #FBFDF7;
-    text-decoration: none;
-    font-weight: bold;
-    transition: color 0.3s ease;
-  }
-  
-  nav ul li a:hover {
-    color: #d60132; /* Accent color on hover */
-  }
-  
-/* Hero Section */
-.hero {
-    background: url('../home/Hero.png') center/cover no-repeat;
-    height: 80vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-  }
-  
-  .hero h1 {
-    font-size: 4rem;
-    color: #FBFDF7;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    background-color: rgba(16, 14, 14, 0.7);
-    padding: 20px;
-  }
-  
-  /* Artist Grid */
-  .artist-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 30px;
-    padding: 40px;
-  }
-  
-  .artist-card {
-    background-color: #1a1a1a;
-    padding: 20px;
-    text-align: center;
-    transition: transform 0.3s ease;
-  }
-  
-  .artist-card:hover {
-    transform: scale(1.05);
-  }
-  
-  .artist-card img {
-    width: 100%;
-    height: auto;
-    margin-bottom: 15px;
-  }
-  
-  .artist-card h2 {
-    font-size: 1.5rem;
-    color: #FBFDF7;
-  }
-  
-  /* Footer */
-  footer {
-    background-color: #100E0E;
-    color: #FBFDF7;
-    text-align: center;
-    padding: 20px;
-    font-size: 0.9rem;
-  }
-  @media (max-width: 768px) {
-    .navBar {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-  
-    .navMenu {
-      flex-direction: column;
-      gap: 10px;
-      margin-top: 10px;
-    }
-  
-    .hero h1 {
-      font-size: 2.5rem;
-    }
-  }
   

@@ -3,23 +3,23 @@
     color: #FBFDF7;
     padding: 60px 40px;
     text-align: center;
-  }
+}
   
-  .localSpotlight h1 {
+.localSpotlight h1 {
     font-size: 3rem;
     margin-bottom: 10px;
-  }
+}
   
-  .localSpotlight p {
+.localSpotlight p {
     font-size: 1.2rem;
     margin-bottom: 40px;
-  }
+}
   
-  .spotlightBanner img {
+.spotlightBanner img {
     width: 100%;
     max-width: 1200px;
     height: auto;
     border-radius: 12px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-  }
+}
   
