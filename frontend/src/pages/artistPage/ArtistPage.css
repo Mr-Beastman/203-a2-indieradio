@@ -1,64 +1,44 @@
-/* Hero section */
-.hero {
-    height: 100vh;
-    background: linear-gradient(to bottom right, #111, #1a1a1a);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 40px;
-}
+import React from 'react';
+import useStationData from '../../hooks/useStationData';
+import './AudioPlayer.css';
 
-.hero h2 {
-    font-size: 3rem;
-    margin-bottom: 20px;
-    color: #fff;
-}
+export default function AudioPlayer() {
+  const station = useStationData();
 
-.hero p {
-    max-width: 600px;
-    font-size: 1.2rem;
-    line-height: 1.6;
-    color: #bbb;
-}
+  return (
+    <div className="audioPlayer">
+      {station ? (
+        <>
+          <img src={station.logo} alt={`${station.name} logo`} className="station-logo" />
+          <h2>{station.name}</h2>
+          <p><strong>Now Playing:</strong> {station.current_song}</p>
 
-/* Featured Artists or Schedule */
-.section {
-    padding: 60px 20px;
-    background-color: #111;
-    text-align: center;
-}
+          <audio controls>
+            <source src={station.stream_url} type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
 
-.section h3 {
-    font-size: 2rem;
-    margin-bottom: 30px;
-    color: #ff007f;
-}
+          <p>
+            <a href={station.homepage} target="_blank" rel="noopener noreferrer">
+              Visit Station Homepage
+            </a>
+          </p>
 
-.card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-    padding: 20px;
-}
+          <p><em>{station.genre} — {station.language}</em></p>
 
-.card {
-background: #1b1b1b;
-padding: 20px;
-border-radius: 12px;
-transition: transform 0.3s;
-}
-.card:hover {
-transform: translateY(-5px);
-}
-
-.card h4 {
-font-size: 1.4rem;
-margin-bottom: 10px;
-}
-
-.card p {
-font-size: 1rem;
-color: #aaa;
+          {/* Embedded YouTube Video */}
+          <div className="card video-container">
+            <iframe
+              src="https://www.youtube.com/embed/36YnV9STBqc?autoplay=1"
+              title="The Good Life Radio"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
+          </div>
+        </>
+      ) : (
+        <p>Loading station data...</p>
+      )}
+    </div>
+  );
 }

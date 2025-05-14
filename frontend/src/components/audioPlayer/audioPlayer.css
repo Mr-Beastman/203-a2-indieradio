@@ -1,45 +1,57 @@
-/* AudioPlayer style */
-
 .audioPlayer {
-  margin: 40px auto;
-  max-width: 600px;
-  background-color: #1e1e1e;
-  border: 1px solid #2c2c2c;
-  padding: 24px;
-  border-radius: 16px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
-  color: #ffffff;
+  background-color: #111;
+  color: #fff;
   text-align: center;
+  padding: 40px 20px;
 }
 
 .audioPlayer h2 {
-  margin-bottom: 16px;
-  font-size: 1.6rem;
-  color: #f2f2f2;
+  font-size: 2rem;
+  margin-bottom: 10px;
 }
 
-.audioPlayer img {
-  width: 120px;
-  height: 120px;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 3px solid #444;
-  margin-bottom: 16px;
+.audioPlayer p {
+  font-size: 1rem;
+  margin-bottom: 10px;
 }
 
 .audioPlayer audio {
+  margin-top: 15px;
+}
+
+.station-logo {
+  max-width: 120px;
+  height: auto;
+  margin-bottom: 15px;
+}
+
+/* YouTube Video Embed */
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  height: 0;
+  overflow: hidden;
+  margin-top: 30px;
+  border-radius: 12px;
+  background-color: #000;
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  margin: 16px 0;
-  border-radius: 6px;
-  background-color: #2b2b2b;
+  height: 100%;
+  border: 0;
 }
 
-.audioPlayer a {
-  color: #4db8ff;
-  text-decoration: none;
-  font-weight: bold;
+/* Optional: Match card look */
+.card {
+  background: #1b1b1b;
+  padding: 20px;
+  border-radius: 12px;
+  transition: transform 0.3s;
 }
-
-.audioPlayer a:hover {
-  text-decoration: underline;
+.card:hover {
+  transform: translateY(-5px);
 }

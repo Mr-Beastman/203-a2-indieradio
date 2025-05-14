@@ -1,13 +1,10 @@
 import React from 'react';
-
-import './ArtistPage.css';
-
-import AudioPlayer from '../../components/audioPlayer/AudioPlayer.jsx';
+import './ArtistPage.css'; 
+import AudioPlayer from '../../components/audioPlayer/AudioPlayer';
 
 export default function ArtistPage() {
   return (
-    <div>
-
+    <div className="artistPage">
       <AudioPlayer />
 
       <section className="section" id="schedule">
@@ -33,11 +30,19 @@ export default function ArtistPage() {
         <div className="card-grid">
           <div className="card">
             <h4>Replay: Indie Vibes</h4>
-            <p><a href="#">Listen Now</a></p>
+            <p>
+              <button className="link-button" onClick={() => alert('Coming soon')}>
+                Listen Now
+              </button>
+            </p>
           </div>
           <div className="card">
             <h4>Replay: Chill Sessions</h4>
-            <p><a href="#">Listen Now</a></p>
+            <p>
+              <button className="link-button" onClick={() => alert('Coming soon')}>
+                Listen Now
+              </button>
+            </p>
           </div>
         </div>
       </section>
@@ -50,5 +55,5 @@ export default function ArtistPage() {
         </p>
       </section>
     </div>
-  )
+  );
 }
