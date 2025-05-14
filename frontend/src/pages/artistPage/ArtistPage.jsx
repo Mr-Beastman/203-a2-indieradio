@@ -1,11 +1,17 @@
-import React from 'react';
-import './ArtistPage.css'; 
-import AudioPlayer from '../../components/audioPlayer/AudioPlayer';
+import React from 'react'
+
+// css files
+import './ArtistPageStyle.css'
+
+// components
+import AudioPlayer from '../../components/audioPlayer/AudioPlayer'
+import YoutubePlayer from '../../components/youtubePlayer/YoutubePlayer';
 
 export default function ArtistPage() {
   return (
     <div className="artistPage">
       <AudioPlayer />
+      <YoutubePlayer />
 
       <section className="section" id="schedule">
         <h3>Weekly Schedule</h3>

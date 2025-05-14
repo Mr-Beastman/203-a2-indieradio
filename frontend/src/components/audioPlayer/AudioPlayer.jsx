@@ -25,16 +25,7 @@ export default function AudioPlayer() {
           </p>
 
           <p><em>{station.genre} — {station.language}</em></p>
-
-          {/* Embedded YouTube Video */}
-          <div className="card video-container">
-            <iframe
-              src="https://www.youtube.com/embed/36YnV9STBqc?autoplay=1"
-              title="The Good Life Radio"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            ></iframe>
-          </div>
+          
         </>
       ) : (
         <p>Loading station data...</p>

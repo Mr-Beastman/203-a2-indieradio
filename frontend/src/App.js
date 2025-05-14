@@ -15,7 +15,11 @@ function App() {
   return (
     <div className="app">
       <NavigationBar />
-      <AudioPlayer /> {/* Always visible YouTube + audio stream player */}
+
+      
+      {/* removed as sits outside pages creating issues
+      <AudioPlayer />  
+      */}
 
       <main>
         <Routes>
