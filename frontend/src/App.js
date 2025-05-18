@@ -13,13 +13,13 @@ import Footer from './components/footer/Footer'
 import Home from './pages/home/Home'
 import ArtistPage from './pages/artistPage/ArtistPage'
 import LocalSpotlight from './pages/localSpotlight/LocalSpotlight'
-import Registration from './pages/registration/Registration'
+import Registration from './pages/registration/listnerRegistration/listenerRegistration'
 
 // main app
 function App() {
   return (
     <div className="app">
-      <NavigationBar />
+      <NavigationBar/>
 
       {/* removed as sits outside pages creating issues
       <AudioPlayer />  

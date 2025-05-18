@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Registration.css';
+import './listenerRegistrationStyle.css';
 import { useNavigate } from 'react-router-dom';
 
 export default function Registration() {

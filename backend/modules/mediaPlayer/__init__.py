@@ -1,0 +1,1 @@
+from .routes import now_playing_bp
