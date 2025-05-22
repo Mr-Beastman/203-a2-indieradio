@@ -8,7 +8,7 @@ export default function ArtistRegistrationForm() {
     lastName: '',
     username: '',
     channelName: '',
-    stream: '',
+    streamUrl: '',
     email: '',
     password: '',
   });
@@ -18,7 +18,7 @@ export default function ArtistRegistrationForm() {
     setFormInputs((prev) => ({ ...prev, [name]: value }));
   };
 
-  const submitForm = (eSubmit) => {
+  const submitForm = async (eSubmit) => {
     eSubmit.preventDefault();
 
     const missingField = CheckEmpty(formInputs, [
@@ -26,7 +26,7 @@ export default function ArtistRegistrationForm() {
       'lastName',
       'username',
       'channelName',
-      'stream',
+      'streamUrl',
       'email',
       'password',
     ]);
@@ -38,7 +38,24 @@ export default function ArtistRegistrationForm() {
       return;
     }
 
-    console.log('submitting artist Registration', formInputs);
+    try {
+      const reponse = await fetch(
+        'http://localhost:5000/register/artist', {
+          method: 'POST',
+          headers: {'content-type':'application/json'},
+          body: JSON.stringify(formInputs)
+        });
+      
+      const result = await reponse.json();
+
+      if(reponse.ok){
+        console.log('Artist regsitered in database');
+      } else {
+        console.log('Error');
+      }
+    } catch(error) {
+      console.log('fucked it')
+    }
   };
 
   return (
@@ -49,7 +66,7 @@ export default function ArtistRegistrationForm() {
         <label>Last Name: <input type="text" name="lastName" value={formInputs.lastName} onChange={updateInputs} /></label>
         <label>Username: <input type="text" name="username" value={formInputs.username} onChange={updateInputs} /></label>
         <label>Channel Name: <input type="text" name="channelName" value={formInputs.channelName} onChange={updateInputs} /></label>
-        <label>Stream Url: <input type="text" name="stream" value={formInputs.stream} onChange={updateInputs} /></label>
+        <label>Stream Url: <input type="text" name="streamUrl" value={formInputs.stream} onChange={updateInputs} /></label>
         <label>Email: <input type="text" name="email" value={formInputs.email} onChange={updateInputs} /></label>
         <label>Password: <input type="password" name="password" value={formInputs.password} onChange={updateInputs} /></label>
         <button type="submit">Submit</button>
