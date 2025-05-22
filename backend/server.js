@@ -3,7 +3,6 @@ const cors = require('cors');
 const app = express();
 const PORT = 5000;
 
-// Enable CORS so React frontend can fetch from here
 app.use(cors());
 
 app.get('/nowPlaying', (req, res) => {

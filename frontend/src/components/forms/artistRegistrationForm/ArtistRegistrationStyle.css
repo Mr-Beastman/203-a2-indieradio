@@ -1,0 +1,24 @@
+.component {
+  color: white;
+  padding: 20px;
+}
+
+.inputForm {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.inputForm label {
+  display: flex;
+  flex-direction: column;
+  font-size: 16px;
+}
+
+.inputForm input {
+  padding: 8px;
+  font-size: 14px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}

@@ -1,5 +1,5 @@
 import React from 'react';
-import useStationData from '../../hooks/useStationData';
+import useStationData from '../../../hooks/useStationData';
 import './AudioPlayer.css';
 
 export default function AudioPlayer() {

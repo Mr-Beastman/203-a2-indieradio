@@ -6,6 +6,7 @@ now_playing_bp = Blueprint('now_playing', __name__)
 # quick coded media player to handle display and streaming for testing purposes.
 
 @now_playing_bp.route('/nowPlaying')
+
 def get_station_info():
     try:
         response = requests.get("https://icecast.walmradio.com:8443/status-json.xsl", timeout=5)

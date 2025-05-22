@@ -2,7 +2,6 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import './NavigationBarStyle.css';
 import { MdAccountCircle } from 'react-icons/md';
-import AudioPlayer from '../../components/audioPlayer/AudioPlayer';<AudioPlayer />
 
 export default function NavigationBar() {
   return (
@@ -21,9 +20,7 @@ export default function NavigationBar() {
       </nav>
 
       <div className="navIcons">
-        <NavLink to="/register" title="Register or Login">
-          <MdAccountCircle className="icon" />
-        </NavLink>
+        <NavLink to="/login"> <MdAccountCircle className="icon" /> </NavLink>
       </div>
     </header>
   );

@@ -1,0 +1,24 @@
+.userForm {
+  color: white;
+  padding: 20px;
+}
+
+.userData {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.userData label {
+  display: flex;
+  flex-direction: column;
+  font-size: 16px;
+}
+
+.userData input {
+  padding: 8px;
+  font-size: 14px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}

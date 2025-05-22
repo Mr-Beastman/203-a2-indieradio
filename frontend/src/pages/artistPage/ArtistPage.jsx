@@ -4,8 +4,8 @@ import React from 'react'
 import './ArtistPageStyle.css'
 
 // importing components
-import AudioPlayer from '../../components/audioPlayer/AudioPlayer'
-import YoutubePlayer from '../../components/youtubePlayer/YoutubePlayer';
+import AudioPlayer from '../../components/media/audioPlayer/AudioPlayer'
+import YoutubePlayer from '../../components/media/youtubePlayer/YoutubePlayer';
 
 export default function ArtistPage() {
   return (

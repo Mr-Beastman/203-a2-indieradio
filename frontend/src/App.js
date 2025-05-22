@@ -7,13 +7,14 @@ import './globalStyle.css'
 // importing components
 import NavigationBar from './components/navigationBar/NavigationBar'
 import Footer from './components/footer/Footer'
-// import AudioPlayer from './components/audioPlayer/AudioPlayer';
 
 // importing pages
 import Home from './pages/home/Home'
 import ArtistPage from './pages/artistPage/ArtistPage'
 import LocalSpotlight from './pages/localSpotlight/LocalSpotlight'
-import Registration from './pages/registration/listnerRegistration/listenerRegistration'
+import Registration from './pages/entry/registration/Registration'
+import Login from './pages/entry/login/Login'
+
 
 // main app
 function App() {
@@ -21,16 +22,13 @@ function App() {
     <div className="app">
       <NavigationBar/>
 
-      {/* removed as sits outside pages creating issues
-      <AudioPlayer />  
-      */}
-
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/artist" element={<ArtistPage />} />
           <Route path="/localSpotlight" element={<LocalSpotlight />} />
           <Route path="/register" element={<Registration />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
       </main>
       

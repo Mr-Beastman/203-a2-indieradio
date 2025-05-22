@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 
+// reruns every 15 secs to check for new song info
 export default function useStationData(pollInterval = 15000) {
   const [station, setStation] = useState(null);
 
@@ -18,7 +19,7 @@ export default function useStationData(pollInterval = 15000) {
 
         const data = await response.json();
         setStation(data);
-        // console.debug('Fetched station data:', data);
+
       } catch (error) {
         if (error.name !== 'AbortError') {
           console.error('Error fetching station data:', error);
@@ -26,11 +27,10 @@ export default function useStationData(pollInterval = 15000) {
       }
     };
 
-    fetchStation(); // initial fetch
     const intervalId = setInterval(fetchStation, pollInterval);
 
     return () => {
-      controller.abort(); // clean up on unmount
+      controller.abort();
       clearInterval(intervalId);
     };
   }, [pollInterval]);
