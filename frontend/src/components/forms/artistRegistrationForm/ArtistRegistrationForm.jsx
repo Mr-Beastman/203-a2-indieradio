@@ -40,7 +40,7 @@ export default function ArtistRegistrationForm() {
 
     try {
       const reponse = await fetch(
-        'http://localhost:5000/register/artist', {
+        'http://localhost:5001/register/artist', {
           method: 'POST',
           headers: {'content-type':'application/json'},
           body: JSON.stringify(formInputs)
