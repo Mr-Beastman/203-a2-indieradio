@@ -9,8 +9,7 @@ import AudioPlayer from './components/audioPlayer/AudioPlayer';
 import Home from './pages/home/Home';
 import ArtistPage from './pages/artistPage/ArtistPage';
 import LocalSpotlight from './pages/localspotlight/LocalSpotlight';
-import Registration from './pages/registration/Registration';
-
+import DJDashboard from './pages/djdashboard/DJDashboard';
 function App() {
   return (
     <div className="app">
@@ -22,7 +21,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/artist" element={<ArtistPage />} />
           <Route path="/localspotlight" element={<LocalSpotlight />} />
-          <Route path="/register" element={<Registration />} />
+          <Route path="/djdashboard" element={<DJDashboard  />} />
         </Routes>
       </main>
          <Footer />
