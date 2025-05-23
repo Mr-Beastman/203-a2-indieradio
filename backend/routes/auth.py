@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request, jsonify, current_app
 from werkzeug.security import generate_password_hash, check_password_hash
 from models.user import User
 from models.db import db
@@ -10,9 +10,6 @@ import secrets
 
 auth_bp = Blueprint('auth', __name__)
 
-# Secret key for JWT
-SECRET_KEY = 'your-secret-key'  # In production, use environment variable
-
 def token_required(f):
     @wraps(f)
     def decorated(*args, **kwargs):
@@ -21,7 +18,7 @@ def token_required(f):
             return jsonify({'error': 'Token is missing'}), 401
         try:
             token = token.split()[1]  # Remove 'Bearer ' prefix
-            data = jwt.decode(token, SECRET_KEY, algorithms=["HS256"])
+            data = jwt.decode(token, current_app.config['JWT_SECRET_KEY'], algorithms=["HS256"])
             current_user = User.query.get(data['user_id'])
         except Exception:
             return jsonify({'error': 'Token is invalid'}), 401
@@ -55,9 +52,9 @@ def register():
         db.session.commit()
         
         token = jwt.encode({
-            'user_id': new_user.id,
+            'sub': new_user.id,
             'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=24)
-        }, SECRET_KEY)
+        }, current_app.config['JWT_SECRET_KEY'])
         
         return jsonify({
             'success': True,
@@ -86,9 +83,10 @@ def login():
         return jsonify({'error': 'Invalid username or password'}), 401
         
     token = jwt.encode({
-        'user_id': user.id,
+        'sub': user.id,
+        'role': user.role,
         'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=24)
-    }, SECRET_KEY)
+    }, current_app.config['JWT_SECRET_KEY'])
     
     return jsonify({
         'success': True,

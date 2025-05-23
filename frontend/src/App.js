@@ -1,87 +1,88 @@
 import React from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
-import './style.css';
-import './globalStyle.css';
-
-import { AuthProvider, useAuth } from './context/AuthContext';
-import NavigationBar from './components/navigationBar/NavigationBar';
-import Footer from './components/footer/Footer';
+import { Routes, Route, Link } from 'react-router-dom';
+import { UserProvider, useAuth } from './context/UserContext';
+import Login from './components/auth/Login';
+import Register from './components/auth/Register';
+import ProtectedRoute from './components/auth/ProtectedRoute';
 import AudioPlayer from './components/audioPlayer/AudioPlayer';
-import Home from './pages/home/Home';
-import ArtistPage from './pages/artistPage/ArtistPage';
-import LocalSpotlight from './pages/localspotlight/LocalSpotlight';
-import DJDashboard from './pages/djdashboard/DJDashboard';
-import Login from './pages/auth/Login';
-import Register from './pages/auth/Register';
-import ForgotPassword from './pages/auth/ForgotPassword';
-import ResetPassword from './pages/auth/ResetPassword';
+import './App.css';
 
-// Protected Route component
-const ProtectedRoute = ({ children }) => {
-  const { user, loading } = useAuth();
+// Navigation component with authentication status
+function Navigation() {
+  const { user, logout } = useAuth();
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (!user) {
-    return <Navigate to="/" replace />;
-  }
-
-  return children;
-};
-
-// DJ Protected Route component
-const DJProtectedRoute = ({ children }) => {
-  const { user, loading } = useAuth();
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (!user || user.role !== 'dj') {
-    return <Navigate to="/" replace />;
-  }
-
-  return children;
-};
-
-function AppContent() {
   return (
-    <div className="app">
-      <NavigationBar />
-      <AudioPlayer />
+    <nav className="main-nav">
+      <div className="nav-brand">
+        <Link to="/">IndieRadio</Link>
+      </div>
+      <div className="nav-links">
+        {user ? (
+          <>
+            <span className="welcome-text">
+              Welcome, {user.username}
+              {user.role === 'dj' && <span className="dj-badge">DJ</span>}
+            </span>
+            <button onClick={logout} className="nav-button">Logout</button>
+          </>
+        ) : (
+          <>
+            <Link to="/login" className="nav-link">Login</Link>
+            <Link to="/register" className="nav-link">Register</Link>
+          </>
+        )}
+      </div>
+    </nav>
+  );
+}
 
-      <main>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/artist" element={<ArtistPage />} />
-          <Route path="/localspotlight" element={<LocalSpotlight />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/forgot-password" element={<ForgotPassword />} />
-          <Route path="/reset-password" element={<ResetPassword />} />
-          <Route 
-            path="/djdashboard" 
-            element={
-              <DJProtectedRoute>
-                <DJDashboard />
-              </DJProtectedRoute>
-            } 
-          />
-        </Routes>
-      </main>
-
-      <Footer />
+// Home component
+function Home() {
+  const { user } = useAuth();
+  
+  return (
+    <div className="home-container">
+      <h1>Welcome to IndieRadio</h1>
+      {user ? (
+        <p>Tune in to your favorite shows!</p>
+      ) : (
+        <p>Please login or register to access all features.</p>
+      )}
     </div>
   );
 }
 
+// AppContent component to use auth context
+function AppContent() {
+  return (
+    <div className="app">
+      <Navigation />
+      <main className="main-content">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route 
+            path="/dj-dashboard" 
+            element={
+              <ProtectedRoute roles={['dj']}>
+                <div>DJ Dashboard (Coming Soon)</div>
+              </ProtectedRoute>
+            } 
+          />
+        </Routes>
+      </main>
+      <AudioPlayer />
+    </div>
+  );
+}
+
+// Main App component
 function App() {
   return (
-    <AuthProvider>
+    <UserProvider>
       <AppContent />
-    </AuthProvider>
+    </UserProvider>
   );
 }
 

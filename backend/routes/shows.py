@@ -1,5 +1,7 @@
 from flask import Blueprint, request, jsonify
-from flask_jwt_extended import jwt_required, get_jwt_identity, get_jwt
+from flask_jwt_extended import jwt_required, get_jwt_identity
+import jwt
+from flask import current_app, request
 from datetime import datetime, timedelta
 from models.show import Show, db
 from models.user import User
@@ -7,8 +9,15 @@ from models.user import User
 shows_bp = Blueprint('shows', __name__)
 
 def is_dj():
-    claims = get_jwt()
-    return claims.get('role') == 'dj'
+    auth_header = request.headers.get('Authorization', None)
+    if not auth_header:
+        return False
+    token = auth_header.split()[1]
+    try:
+        claims = jwt.decode(token, current_app.config['JWT_SECRET_KEY'], algorithms=["HS256"])
+        return claims.get('role') == 'dj'
+    except Exception:
+        return False
 
 @shows_bp.route('/', methods=['POST'])
 @jwt_required()
@@ -104,8 +113,11 @@ def update_show(show_id):
         show.duration = data['duration']
     if 'is_live' in data:
         show.is_live = data['is_live']
-    if 'stream_url' in data:
-        show.stream_url = data['stream_url']
+        if data['is_live']:
+            # When show goes live, set the stream URL to the Icecast mount point
+            show.stream_url = 'http://localhost:8000/stream'
+        else:
+            show.stream_url = None
         
     db.session.commit()
     

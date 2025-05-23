@@ -1,50 +1,58 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <icecast>
-    <limits>
-        <clients>100</clients>
-        <sources>2</sources>
-        <queue-size>524288</queue-size>
-        <client-timeout>30</client-timeout>
-        <header-timeout>15</header-timeout>
-        <source-timeout>10</source-timeout>
-        <burst-size>65535</burst-size>
-    </limits>
+  <hostname>localhost</hostname>
+  <location>Auckland, NZ</location>
+  <admin>you@example.com</admin>
 
-    <authentication>
-        <source-password>hackme</source-password>
-        <relay-password>hackme</relay-password>
-        <admin-user>admin</admin-user>
-        <admin-password>hackme</admin-password>
-    </authentication>
+  <limits>
+    <clients>100</clients>
+    <sources>2</sources>
+    <queue-size>524288</queue-size>
+    <client-timeout>30</client-timeout>
+    <header-timeout>15</header-timeout>
+    <source-timeout>10</source-timeout>
+    <burst-on-connect>1</burst-on-connect>
+    <burst-size>65535</burst-size>
+  </limits>
 
-    <hostname>localhost</hostname>
+  <authentication>
+    <source-password>hackme</source-password>
+    <relay-password>relaypass</relay-password>
+    <admin-user>admin</admin-user>
+    <admin-password>adminpass</admin-password>
+  </authentication>
 
-    <listen-socket>
-        <port>3000</port>
-    </listen-socket>
+  <mount>
+    <mount-name>/stream</mount-name>
+    <password>hackme</password>
+    <public>1</public>
+  </mount>
 
-    <http-headers>
-        <header name="Access-Control-Allow-Origin" value="*" />
-    </http-headers>
+  <listen-socket>
+    <port>8000</port>
+  </listen-socket>
 
-    <fileserve>1</fileserve>
+  <http-headers>
+    <header name="Access-Control-Allow-Origin" value="*" />
+  </http-headers>
 
-    <paths>
-        <basedir>/usr/local/share/icecast</basedir>
-        <logdir>./logs</logdir>
-        <webroot>/usr/local/share/icecast/web</webroot>
-        <adminroot>/usr/local/share/icecast/admin</adminroot>
-        <!-- <alias source="/" destination="/status.xsl"/> -->
-    </paths>
+  <fileserve>1</fileserve>
 
-    <logging>
-        <accesslog>access.log</accesslog>
-        <errorlog>error.log</errorlog>
-        <loglevel>3</loglevel>
-        <logsize>10000</logsize>
-    </logging>
+  <paths>
+    <basedir>/opt/homebrew/Cellar/icecast/2.4.4_2/share/icecast</basedir>
+    <logdir>/opt/homebrew/var/log/icecast</logdir>
+    <webroot>/opt/homebrew/Cellar/icecast/2.4.4_2/share/icecast/web</webroot>
+    <adminroot>/opt/homebrew/Cellar/icecast/2.4.4_2/share/icecast/admin</adminroot>
+    <alias source="/" destination="/status.xsl"/>
+  </paths>
 
-    <security>
-        <chroot>0</chroot>
-    </security>
+  <logging>
+    <accesslog>access.log</accesslog>
+    <errorlog>error.log</errorlog>
+    <loglevel>3</loglevel>
+    <logsize>10000</logsize>
+  </logging>
+
+  <security>
+    <chroot>0</chroot>
+  </security>
 </icecast>

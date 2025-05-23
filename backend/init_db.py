@@ -1,23 +1,32 @@
+import os
 from app import create_app, db
 from models.user import User
 from models.show import Show
 from datetime import datetime, timedelta
+from werkzeug.security import generate_password_hash
 
 def init_db():
     app = create_app()
+    
     with app.app_context():
-        # Create tables
+        # Drop all existing tables
+        db.drop_all()
+        
+        # Create all tables fresh
         db.create_all()
+        
+        print("Created database tables")
 
         # Create test DJ user
         dj = User(
             username='dj_seduction',
             email='dj@example.com',
+            password=generate_password_hash('password123'),
             role='dj'
         )
-        dj.set_password('password123')
         db.session.add(dj)
         db.session.commit()
+        print("Created test DJ user")
 
         # Create some test shows
         current_time = datetime.utcnow()
@@ -60,7 +69,10 @@ def init_db():
         db.session.add(show3)
         
         db.session.commit()
-        print("Database initialized with test data!")
+        print("Created test shows")
+        print("Database initialization completed successfully!")
 
 if __name__ == '__main__':
+    # Ensure the instance folder exists
+    os.makedirs('instance', exist_ok=True)
     init_db()
