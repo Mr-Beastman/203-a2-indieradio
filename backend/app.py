@@ -1,7 +1,8 @@
 from flask import Flask
 from flask_cors import CORS
 from modules.mediaPlayer import now_playing_bp
-from modules.registration.artistRegistration import artistBP
+from modules.registration.registerArtist import artistBP
+from modules.registration.registerUser import registerUserBP
 from database.database import database 
 
 import os
@@ -9,15 +10,18 @@ import os
 app = Flask(__name__)
 CORS(app)
 
-
+# setting up database
 basedir = os.path.abspath(os.path.dirname(__file__))
 db_path = os.path.join(basedir, 'database', 'indieradioData.db')
 app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{db_path}'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
 database.init_app(app)
 
+# media blueprints
 app.register_blueprint(now_playing_bp)
+
+# registration blueprints
+app.register_blueprint(registerUserBP)
 app.register_blueprint(artistBP)
 
 if __name__ == '__main__':

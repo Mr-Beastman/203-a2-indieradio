@@ -9,7 +9,7 @@ export default function useStationData(pollInterval = 15000) {
 
     const fetchStation = async () => {
       try {
-        const response = await fetch('http://localhost:5000/nowPlaying', {
+        const response = await fetch('http://localhost:5001/nowPlaying', {
           signal: controller.signal,
         });
 
