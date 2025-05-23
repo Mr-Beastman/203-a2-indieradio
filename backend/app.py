@@ -1,39 +1,33 @@
-from flask import Flask, jsonify # type: ignore
-from flask_cors import CORS # type: ignore
-import requests # type: ignore
+from flask import Flask, jsonify
+from flask_cors import CORS
+from flask_jwt_extended import JWTManager
+from flask_migrate import Migrate
+import os
 
-app = Flask(__name__)
-CORS(app)
+from models.db import db
+from models.user import User
+from models.show import Show
+from routes.auth import auth_bp
+from routes.shows import shows_bp
+from config import Config
 
-# hardcoding a live station for testing
-@app.route('/nowPlaying')
-def get_station_info():
-    try:
-        response = requests.get("https://icecast.walmradio.com:8443/status-json.xsl", timeout=5)
-        status = response.json()
+def create_app(config_class=Config):
+    app = Flask(__name__)
+    app.config.from_object(config_class)
+    
+    # Initialize extensions
+    CORS(app, origins=["http://localhost:3000"])
+    db.init_app(app)
+    jwt = JWTManager(app)
+    migrate = Migrate(app, db)
+    
+    # Register blueprints
+    app.register_blueprint(auth_bp, url_prefix='/api/auth')
+    app.register_blueprint(shows_bp, url_prefix='/api/shows')
+    
+    return app
 
-        sources = status.get("icestats", {}).get("source", [])
-        if isinstance(sources, list):
-            source_info = next((s for s in sources if s.get("listenurl", "").endswith("/classic")), {})
-        else:
-            source_info = sources  # Single source
-
-        current_song = source_info.get("title", "Unknown")
-
-    except Exception as e:
-        print("Error fetching Icecast data:", e)
-        current_song = "Unknown"
-
-    # Return static + dynamic data
-    return jsonify({
-        "name": "Classic Vinyl HD",
-        "stream_url": "https://icecast.walmradio.com:8443/classic",
-        "genre": "Classic Hits, Jazz, Easy Listening",
-        "logo": "https://icecast.walmradio.com:8443/classic.jpg",
-        "homepage": "https://walmradio.com/classic",
-        "language": "English",
-        "current_song": current_song
-    })
+app = create_app()
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=5001)

@@ -1,68 +1,142 @@
-.navBar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 40px;
-    background-color: #100E0E;
-    position: sticky;
-    top: 0;
-    z-index: 999;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: rgba(0, 0, 0, 0.9);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.navbar-brand {
+  flex-shrink: 0;
+}
+
+.logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #ff0066;
+  text-decoration: none;
+  letter-spacing: 1px;
+}
+
+.navbar-menu {
+  display: flex;
+  gap: 2rem;
+  margin: 0 2rem;
+}
+
+.nav-link {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: color 0.3s ease;
+  position: relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #ff0066;
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #ff0066;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.navbar-end {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.user-menu {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.username {
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.auth-buttons {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.auth-button {
+  background: transparent;
+  color: #ffffff;
+  border: 2px solid #ff0066;
+  padding: 0.5rem 1.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.auth-button:hover {
+  background: #ff0066;
+  color: #ffffff;
+}
+
+.auth-buttons .auth-button:last-child {
+  background-color: #ff0066;
+}
+
+.auth-buttons .auth-button:last-child:hover {
+  background-color: transparent;
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    padding: 1rem;
   }
-  
-  .logo .logoLink {
-    color: #FBFDF7;
-    font-size: 2rem;
-    font-weight: bold;
-    text-decoration: none;
-    letter-spacing: 2px;
+
+  .navbar-menu {
+    margin: 1rem 0;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
   }
-  
-  .logo .dot {
-    color: #d60132;
+
+  .navbar-end {
+    width: 100%;
+    justify-content: center;
   }
-  
-  .navMenu {
-    list-style: none;
-    display: flex;
-    gap: 24px;
-    margin: 0;
-    padding: 0;
+
+  .auth-buttons {
+    flex-direction: column;
+    width: 100%;
   }
-  
-  .navMenu li a {
-    color: #FBFDF7;
-    font-weight: 600;
-    text-decoration: none;
-    transition: color 0.3s;
+
+  .auth-button {
+    width: 100%;
+    text-align: center;
   }
-  
-  .navMenu li a:hover,
-  .navMenu li a.active {
-    color: #d60132;
-  }
-  
-  .navIcons .icon {
-    color: #FBFDF7;
-    font-size: 1.8rem;
-    transition: color 0.3s;
-  }
-  
-  .navIcons .icon:hover {
-    color: #d60132;
-  }
-  
-  /* Optional mobile responsiveness */
-  @media (max-width: 768px) {
-    .navBar {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-  
-    .navMenu {
-      flex-direction: column;
-      gap: 10px;
-      margin-top: 10px;
-    }
-  }
-  
+}

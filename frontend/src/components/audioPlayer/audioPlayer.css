@@ -1,57 +1,163 @@
-.audioPlayer {
-  background-color: #111;
-  color: #fff;
-  text-align: center;
-  padding: 40px 20px;
+.audio-player {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.95);
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.audioPlayer h2 {
-  font-size: 2rem;
-  margin-bottom: 10px;
+.show-info {
+  flex: 1;
+  margin-right: 2rem;
 }
 
-.audioPlayer p {
-  font-size: 1rem;
-  margin-bottom: 10px;
+.show-info h3 {
+  font-family: 'Playfair Display', serif;
+  color: #ffffff;
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
 }
 
-.audioPlayer audio {
-  margin-top: 15px;
+.show-info p {
+  color: #888888;
+  margin: 0.2rem 0 0;
+  font-size: 0.9rem;
 }
 
-.station-logo {
-  max-width: 120px;
-  height: auto;
-  margin-bottom: 15px;
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
 }
 
-/* YouTube Video Embed */
-.video-container {
-  position: relative;
-  padding-bottom: 56.25%; /* 16:9 aspect ratio */
-  height: 0;
-  overflow: hidden;
-  margin-top: 30px;
-  border-radius: 12px;
-  background-color: #000;
+.play-button {
+  background: #ff0066;
+  border: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: white;
+  font-size: 1.5rem;
+  transition: all 0.3s ease;
 }
 
-.video-container iframe {
+.play-button:hover {
+  background: #cc0052;
+  transform: scale(1.05);
+}
+
+.volume-control {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 150px;
+}
+
+.volume-control input[type="range"] {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+  outline: none;
+}
+
+.volume-control input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  background: #ff0066;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.volume-control input[type="range"]::-webkit-slider-thumb:hover {
+  background: #cc0052;
+  transform: scale(1.1);
+}
+
+.no-show {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  color: #888888;
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .audio-player {
+    flex-direction: column;
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .show-info {
+    text-align: center;
+    margin-right: 0;
+  }
+
+  .controls {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .volume-control {
+    width: 100px;
+  }
+}
+
+/* Progress Bar */
+.progress-bar {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  border: 0;
+  right: 0;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.1);
 }
 
-/* Optional: Match card look */
-.card {
-  background: #1b1b1b;
-  padding: 20px;
-  border-radius: 12px;
-  transition: transform 0.3s;
+.progress {
+  height: 100%;
+  background: #ff0066;
+  transition: width 0.1s linear;
 }
-.card:hover {
-  transform: translateY(-5px);
+
+/* Visualizer */
+.visualizer {
+  position: absolute;
+  top: -20px;
+  left: 0;
+  right: 0;
+  height: 20px;
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  padding: 0 1rem;
+}
+
+.bar {
+  flex: 1;
+  background: #ff0066;
+  height: 100%;
+  animation: visualize 0.5s infinite ease;
+}
+
+@keyframes visualize {
+  0% { height: 20%; }
+  50% { height: 100%; }
+  100% { height: 20%; }
 }

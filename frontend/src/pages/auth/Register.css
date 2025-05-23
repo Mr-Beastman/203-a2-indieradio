@@ -1,0 +1,136 @@
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 1rem;
+  background-color: var(--background-dark);
+}
+
+.auth-form-container {
+  background: var(--background-light);
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  margin: 2rem auto;
+}
+
+.auth-form-container h2 {
+  text-align: center;
+  color: var(--text-color);
+  margin-bottom: 2rem;
+  font-size: 2.5rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--text-color);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 0.8rem;
+  background: var(--background-light);
+  border: 1px solid var(--text-secondary);
+  border-radius: 4px;
+  color: var(--text-color);
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(255, 0, 102, 0.2);
+}
+
+.form-group select {
+  cursor: pointer;
+}
+
+.auth-button {
+  width: 100%;
+  padding: 1rem;
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+.auth-button:hover {
+  background: #cc0052;
+  transform: translateY(-1px);
+}
+
+.error-message {
+  background: rgba(255, 0, 102, 0.1);
+  color: var(--primary-color);
+  padding: 1rem;
+  border-radius: 4px;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-size: 0.9rem;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.auth-switch {
+  margin-top: 1.5rem;
+  text-align: center;
+  color: var(--text-secondary);
+}
+
+.switch-link {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.switch-link:hover {
+  color: #cc0052;
+  text-decoration: underline;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .auth-form-container {
+    margin: 1rem auto;
+    padding: 1.5rem;
+  }
+
+  .auth-form-container h2 {
+    font-size: 2rem;
+  }
+}

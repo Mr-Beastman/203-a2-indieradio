@@ -1,0 +1,48 @@
+[2025-05-23  21:06:44] INFO main/main Icecast 2.4.4 server started
+[2025-05-23  21:06:44] INFO yp/yp_update_thread YP update thread started
+[2025-05-23  21:06:44] INFO connection/get_ssl_certificate No SSL capability on any configured ports
+[2025-05-23  21:16:12] INFO connection/_handle_source_request Source logging in at mountpoint "/stream" from 127.0.0.1
+[2025-05-23  21:16:12] INFO connection/_handle_source_request Source (/stream) attempted to login with invalid or missing password
+[2025-05-23  21:16:14] INFO connection/_handle_source_request Source logging in at mountpoint "/stream" from 127.0.0.1
+[2025-05-23  21:16:14] INFO connection/_handle_source_request Source (/stream) attempted to login with invalid or missing password
+[2025-05-23  21:16:42] INFO connection/_handle_source_request Source logging in at mountpoint "/stream" from 127.0.0.1
+[2025-05-23  21:16:42] WARN format/format_get_type Unsupported or legacy stream type: "audio/mpeg". Falling back to generic minimal handler for best effort.
+[2025-05-23  21:16:42] INFO source/source_main listener count on /stream now 0
+[2025-05-23  21:16:42] WARN xslt/xslt_get_stylesheet Error checking for stylesheet file "/usr/local/share/icecast/web/status-json.xsl": No such file or directory
+[2025-05-23  21:16:42] EROR xslt/xslt_transform problem reading stylesheet "/usr/local/share/icecast/web/status-json.xsl"
+[2025-05-23  21:16:42] WARN xslt/xslt_get_stylesheet Error checking for stylesheet file "/usr/local/share/icecast/web/7.xsl": No such file or directory
+[2025-05-23  21:16:42] EROR xslt/xslt_transform problem reading stylesheet "/usr/local/share/icecast/web/7.xsl"
+[2025-05-23  21:16:52] WARN xslt/xslt_get_stylesheet Error checking for stylesheet file "/usr/local/share/icecast/web/status-json.xsl": No such file or directory
+[2025-05-23  21:16:52] EROR xslt/xslt_transform problem reading stylesheet "/usr/local/share/icecast/web/status-json.xsl"
+[2025-05-23  21:16:52] WARN xslt/xslt_get_stylesheet Error checking for stylesheet file "/usr/local/share/icecast/web/7.xsl": No such file or directory
+[2025-05-23  21:16:52] EROR xslt/xslt_transform problem reading stylesheet "/usr/local/share/icecast/web/7.xsl"
+[2025-05-23  21:16:59] INFO slave/_slave_thread Caught config reload request, re-reading config...
+[2025-05-23  21:16:59] WARN CONFIG/_parse_root Warning, <hostname> not configured, using default value "localhost". This will cause problems, e.g. with YP directory listings.
+[2025-05-23  21:16:59] WARN CONFIG/_parse_root Warning, <location> not configured, using default value "Earth".
+[2025-05-23  21:16:59] WARN CONFIG/_parse_root Warning, <admin> contact not configured, using default value "icemaster@localhost".
+[2025-05-23  21:16:59] WARN fserve/fserve_recheck_mime_types Cannot open mime types file /etc/mime.types
+[2025-05-23  21:17:02] WARN xslt/xslt_get_stylesheet Error checking for stylesheet file "/usr/local/share/icecast/web/status-json.xsl": No such file or directory
+[2025-05-23  21:17:02] EROR xslt/xslt_transform problem reading stylesheet "/usr/local/share/icecast/web/status-json.xsl"
+[2025-05-23  21:17:02] WARN xslt/xslt_get_stylesheet Error checking for stylesheet file "/usr/local/share/icecast/web/7.xsl": No such file or directory
+[2025-05-23  21:17:02] EROR xslt/xslt_transform problem reading stylesheet "/usr/local/share/icecast/web/7.xsl"
+[2025-05-23  21:17:12] WARN xslt/xslt_get_stylesheet Error checking for stylesheet file "/usr/local/share/icecast/web/status-json.xsl": No such file or directory
+[2025-05-23  21:17:12] EROR xslt/xslt_transform problem reading stylesheet "/usr/local/share/icecast/web/status-json.xsl"
+[2025-05-23  21:17:12] WARN xslt/xslt_get_stylesheet Error checking for stylesheet file "/usr/local/share/icecast/web/7.xsl": No such file or directory
+[2025-05-23  21:17:12] EROR xslt/xslt_transform problem reading stylesheet "/usr/local/share/icecast/web/7.xsl"
+[2025-05-23  21:18:32] INFO main/main Icecast 2.4.4 server started
+[2025-05-23  21:18:32] INFO yp/yp_update_thread YP update thread started
+[2025-05-23  21:18:32] INFO connection/get_ssl_certificate No SSL capability on any configured ports
+[2025-05-23  21:19:28] WARN xslt/xslt_get_stylesheet Error checking for stylesheet file "/usr/local/share/icecast/web/status.xsl": No such file or directory
+[2025-05-23  21:19:28] EROR xslt/xslt_transform problem reading stylesheet "/usr/local/share/icecast/web/status.xsl"
+[2025-05-23  21:20:02] WARN admin/admin_handle_request Admin command metadata on non-existent source /stream
+[2025-05-23  21:21:00] WARN xslt/xslt_get_stylesheet Error checking for stylesheet file "/usr/local/share/icecast/web/status.xsl": No such file or directory
+[2025-05-23  21:21:00] EROR xslt/xslt_transform problem reading stylesheet "/usr/local/share/icecast/web/status.xsl"
+[2025-05-23  21:21:00] INFO fserve/fserve_client_create checking for file /favicon.ico (/usr/local/share/icecast/web/favicon.ico)
+[2025-05-23  21:21:00] WARN fserve/fserve_client_create req for file "/usr/local/share/icecast/web/favicon.ico" No such file or directory
+[2025-05-23  21:22:43] INFO source/get_next_buffer End of Stream /stream
+[2025-05-23  21:22:43] INFO source/source_shutdown Source from 127.0.0.1 at "/stream" exiting
+[2025-05-23  21:25:45] INFO slave/_slave_thread Caught config reload request, re-reading config...
+[2025-05-23  21:25:45] WARN CONFIG/_parse_root Warning, <hostname> not configured, using default value "localhost". This will cause problems, e.g. with YP directory listings.
+[2025-05-23  21:25:45] WARN CONFIG/_parse_root Warning, <location> not configured, using default value "Earth".
+[2025-05-23  21:25:45] WARN CONFIG/_parse_root Warning, <admin> contact not configured, using default value "icemaster@localhost".
+[2025-05-23  21:25:45] WARN fserve/fserve_recheck_mime_types Cannot open mime types file /etc/mime.types

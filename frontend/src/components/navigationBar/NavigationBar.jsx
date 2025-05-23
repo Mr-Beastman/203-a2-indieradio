@@ -1,29 +1,64 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
 import './NavigationBarStyle.css';
-import { MdAccountCircle } from 'react-icons/md';
-import AudioPlayer from '../../components/audioPlayer/AudioPlayer';<AudioPlayer />
 
 export default function NavigationBar() {
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const handleLogout = () => {
+    logout();
+    navigate('/');
+  };
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
   return (
-    <header className="navBar">
-      <div className="logo">
-        <NavLink to="/" className="logoLink">Indie Radio<span className="dot">.</span></NavLink>
+    <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
+      <div className="navbar-brand">
+        <Link to="/" className="logo">IndieRadio</Link>
       </div>
 
-      <nav>
-        <ul className="navMenu">
-          <li><NavLink to="/artist" activeclassname="active">Stream</NavLink></li>
-          <li><NavLink to="/localspotlight" activeclassname="active">Local Spotlight</NavLink></li>
-          <li><NavLink to="/djdashboard" activeclassname="active">Dashboard</NavLink></li>
-        </ul>
-      </nav>
+      <button className="mobile-menu-button" onClick={toggleMobileMenu}>
+        <span className={`hamburger ${isMobileMenuOpen ? 'active' : ''}`}></span>
+      </button>
 
-      <div className="navIcons">
-        <NavLink to="/register" title="Register or Login">
-          <MdAccountCircle className="icon" />
-        </NavLink>
+      <div className={`navbar-menu ${isMobileMenuOpen ? 'active' : ''}`}>
+        <Link to="/" className="nav-link" onClick={() => setIsMobileMenuOpen(false)}>Home</Link>
+        <Link to="/artist" className="nav-link" onClick={() => setIsMobileMenuOpen(false)}>Artists</Link>
+        <Link to="/localspotlight" className="nav-link" onClick={() => setIsMobileMenuOpen(false)}>Local Spotlight</Link>
+        {user?.role === 'dj' && (
+          <Link to="/djdashboard" className="nav-link" onClick={() => setIsMobileMenuOpen(false)}>DJ Dashboard</Link>
+        )}
       </div>
-    </header>
+
+      <div className="navbar-end">
+        {user ? (
+          <div className="user-menu">
+            <span className="username">Welcome, {user.username}</span>
+            <button className="auth-button" onClick={handleLogout}>Logout</button>
+          </div>
+        ) : (
+          <div className="auth-buttons">
+            <Link to="/login" className="auth-button">Login</Link>
+            <Link to="/register" className="auth-button">Register</Link>
+          </div>
+        )}
+      </div>
+    </nav>
   );
 }

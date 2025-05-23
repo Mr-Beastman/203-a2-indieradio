@@ -1,25 +1,142 @@
 .localSpotlight {
-    background-color: #100E0E;
-    color: #FBFDF7;
-    padding: 60px 40px;
-    text-align: center;
+  background-color: var(--background-dark);
+  color: var(--text-color);
+  min-height: calc(100vh - 80px);
+  padding-top: 80px;
+  overflow-x: hidden;
+}
+
+.spotlightHeader {
+  text-align: center;
+  padding: 60px 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.spotlightHeader h1 {
+  font-size: 4rem;
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(45deg, var(--primary-color), #ff4d94);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 30px rgba(255, 0, 102, 0.3);
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+.spotlightHeader p {
+  font-size: 1.4rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+}
+
+.spotlightBanner {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto 40px;
+  padding: 0 20px;
+  position: relative;
+}
+
+.spotlightBanner::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 20px;
+  right: 20px;
+  bottom: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0) 100%);
+  pointer-events: none;
+  border-radius: 12px;
+}
+
+.spotlightBanner img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: block;
+}
+
+.spotlightBanner img:hover {
+  transform: scale(1.02) translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+}
+
+.spotlightContent {
+  padding: 60px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.artistGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 2rem 0;
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 20px rgba(255, 0, 102, 0.3);
   }
-  
-  .localSpotlight h1 {
+  to {
+    text-shadow: 0 0 30px rgba(255, 0, 102, 0.6);
+  }
+}
+
+@media (max-width: 768px) {
+  .spotlightHeader {
+    padding: 40px 20px;
+  }
+
+  .spotlightHeader h1 {
     font-size: 3rem;
-    margin-bottom: 10px;
   }
-  
-  .localSpotlight p {
-    font-size: 1.2rem;
-    margin-bottom: 40px;
+
+  .spotlightHeader p {
+    font-size: 1.1rem;
   }
-  
-  .spotlightBanner img {
-    width: 100%;
-    max-width: 1200px;
-    height: auto;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+
+  .spotlightBanner {
+    padding: 0 10px;
+    margin-bottom: 30px;
   }
-  
+
+  .spotlightContent {
+    padding: 40px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .spotlightHeader {
+    padding: 30px 15px;
+  }
+
+  .spotlightHeader h1 {
+    font-size: 2.5rem;
+  }
+
+  .spotlightHeader p {
+    font-size: 1rem;
+  }
+
+  .spotlightBanner {
+    padding: 0 5px;
+    margin-bottom: 20px;
+  }
+
+  .spotlightContent {
+    padding: 30px 15px;
+  }
+
+  .artistGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}

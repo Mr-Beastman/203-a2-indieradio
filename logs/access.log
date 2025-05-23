@@ -1,0 +1,15 @@
+127.0.0.1 - - [23/May/2025:21:16:12 +1200] "PUT /stream HTTP/1.1" 401 360 "-" "butt 1.44.0" 0
+127.0.0.1 - - [23/May/2025:21:16:14 +1200] "PUT /stream HTTP/1.1" 401 360 "-" "butt 1.44.0" 0
+127.0.0.1 - - [23/May/2025:21:16:42 +1200] "GET /status-json.xsl HTTP/1.1" 404 378 "-" "Mozilla" 0
+127.0.0.1 - - [23/May/2025:21:16:42 +1200] "GET /7.xsl HTTP/1.1" 404 378 "-" "Mozilla" 0
+127.0.0.1 - - [23/May/2025:21:16:52 +1200] "GET /status-json.xsl HTTP/1.1" 404 378 "-" "Mozilla" 0
+127.0.0.1 - - [23/May/2025:21:16:52 +1200] "GET /7.xsl HTTP/1.1" 404 378 "-" "Mozilla" 0
+127.0.0.1 - - [23/May/2025:21:17:02 +1200] "GET /status-json.xsl HTTP/1.1" 404 378 "-" "Mozilla" 0
+127.0.0.1 - - [23/May/2025:21:17:02 +1200] "GET /7.xsl HTTP/1.1" 404 378 "-" "Mozilla" 0
+127.0.0.1 - - [23/May/2025:21:17:12 +1200] "GET /status-json.xsl HTTP/1.1" 404 378 "-" "Mozilla" 0
+127.0.0.1 - - [23/May/2025:21:17:12 +1200] "GET /7.xsl HTTP/1.1" 404 378 "-" "Mozilla" 0
+::1 - - [23/May/2025:21:19:28 +1200] "GET / HTTP/1.1" 404 378 "-" "curl/8.6.0" 0
+::1 - - [23/May/2025:21:20:03 +1200] "GET /admin/metadata HTTP/1.0" 400 371 "-" "butt 1.44.0" 1
+::1 - - [23/May/2025:21:21:00 +1200] "GET / HTTP/1.1" 404 378 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36" 0
+::1 - - [23/May/2025:21:21:00 +1200] "GET /favicon.ico HTTP/1.1" 404 394 "http://localhost:8001/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36" 0
+127.0.0.1 - - [23/May/2025:21:22:43 +1200] "PUT /stream HTTP/1.1" 200 63 "-" "butt 1.44.0" 361

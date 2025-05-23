@@ -1,61 +1,204 @@
-/* dashboard.css - Billboard style */
+.dj-dashboard {
+  padding: 6rem 2rem 2rem;
+  min-height: 100vh;
+  background-color: #000000;
+  color: #ffffff;
+}
 
-body {
-    background-color: #0e0e0e;
-    color: #ffffff;
-    font-family: 'Helvetica Neue', sans-serif;
-    margin: 0;
-    padding: 0;
+.dj-dashboard h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.create-show-button {
+  display: block;
+  margin: 2rem auto;
+  padding: 1rem 2rem;
+  background: #ff0066;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.create-show-button:hover {
+  background: #cc0052;
+  transform: translateY(-2px);
+}
+
+.show-form {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #1a1a1a;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #ffffff;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 0.8rem;
+  background: #2a2a2a;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  color: #ffffff;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #ff0066;
+}
+
+.form-group textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.submit-button {
+  width: 100%;
+  padding: 1rem;
+  background: #ff0066;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.submit-button:hover {
+  background: #cc0052;
+}
+
+.shows-list {
+  max-width: 1200px;
+  margin: 2rem auto;
+}
+
+.shows-list h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #ffffff;
+  text-align: center;
+}
+
+.show-card {
+  background: #1a1a1a;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  padding: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.show-card:hover {
+  transform: translateY(-5px);
+}
+
+.show-info h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #ffffff;
+}
+
+.show-info p {
+  color: #888888;
+  margin-bottom: 0.5rem;
+  line-height: 1.6;
+}
+
+.show-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.live-button,
+.delete-button {
+  flex: 1;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.live-button {
+  background: #333333;
+  color: #ffffff;
+}
+
+.live-button.active {
+  background: #ff0066;
+}
+
+.live-button:hover {
+  background: #cc0052;
+}
+
+.delete-button {
+  background: #333333;
+  color: #ffffff;
+}
+
+.delete-button:hover {
+  background: #ff4444;
+}
+
+.error-message {
+  background: rgba(255, 68, 68, 0.1);
+  color: #ff4444;
+  padding: 1rem;
+  border-radius: 4px;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .dj-dashboard {
+    padding: 5rem 1rem 1rem;
   }
-  
-  h2 {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #ffffff;
+
+  .dj-dashboard h1 {
+    font-size: 2rem;
   }
-  
-  p {
-    color: #b3b3b3;
+
+  .show-actions {
+    flex-direction: column;
   }
-  
-  button {
-    background-color: #ff004f;
-    color: #fff;
-    font-weight: bold;
-    border: none;
-    padding: 10px 16px;
-    border-radius: 8px;
-    transition: background-color 0.3s ease;
-  }
-  
-  button:hover {
-    background-color: #e60047;
-  }
-  
-  .card {
-    background-color: #1a1a1a;
-    border-radius: 16px;
-    padding: 20px;
-    box-shadow: 0 4px 12px rgba(255, 0, 79, 0.3);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 18px rgba(255, 0, 79, 0.4);
-  }
-  
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 24px;
-    padding: 40px;
-  }
-  
-  @media (max-width: 768px) {
-    .grid {
-      padding: 20px;
-      grid-template-columns: 1fr;
-    }
-  }
-  
+}

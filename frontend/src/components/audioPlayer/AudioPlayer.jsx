@@ -1,43 +1,68 @@
-import React from 'react';
-import useStationData from '../../hooks/useStationData';
+import React, { useState, useRef, useEffect } from 'react';
+import { useShows } from '../../hooks/useShows';
 import './AudioPlayer.css';
 
 export default function AudioPlayer() {
-  const station = useStationData();
+  const { currentShow } = useShows();
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [volume, setVolume] = useState(1);
+  const audioRef = useRef(null);
+
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.volume = volume;
+    }
+  }, [volume]);
+
+  const togglePlay = () => {
+    if (audioRef.current) {
+      if (isPlaying) {
+        audioRef.current.pause();
+      } else {
+        audioRef.current.play();
+      }
+      setIsPlaying(!isPlaying);
+    }
+  };
+
+  const handleVolumeChange = (e) => {
+    const newVolume = parseFloat(e.target.value);
+    setVolume(newVolume);
+  };
 
   return (
-    <div className="audioPlayer">
-      {station ? (
+    <div className="audio-player">
+      {currentShow ? (
         <>
-          <img src={station.logo} alt={`${station.name} logo`} className="station-logo" />
-          <h2>{station.name}</h2>
-          <p><strong>Now Playing:</strong> {station.current_song}</p>
-
-          <audio controls>
-            <source src={station.stream_url} type="audio/mpeg" />
-            Your browser does not support the audio element.
-          </audio>
-
-          <p>
-            <a href={station.homepage} target="_blank" rel="noopener noreferrer">
-              Visit Station Homepage
-            </a>
-          </p>
-
-          <p><em>{station.genre} — {station.language}</em></p>
-
-          {/* Embedded YouTube Video */}
-          <div className="card video-container">
-            <iframe
-              src="https://www.youtube.com/embed/36YnV9STBqc?autoplay=1"
-              title="The Good Life Radio"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            ></iframe>
+          <div className="show-info">
+            <h3>{currentShow.title}</h3>
+            <p>with {currentShow.dj_username}</p>
           </div>
+          <div className="controls">
+            <button onClick={togglePlay} className="play-button">
+              {isPlaying ? '⏸' : '▶'}
+            </button>
+            <div className="volume-control">
+              <input
+                type="range"
+                min="0"
+                max="1"
+                step="0.1"
+                value={volume}
+                onChange={handleVolumeChange}
+              />
+            </div>
+          </div>
+          <audio
+            ref={audioRef}
+            src={currentShow.stream_url}
+            onEnded={() => setIsPlaying(false)}
+          />
         </>
       ) : (
-        <p>Loading station data...</p>
+        <div className="no-show">
+          <p>No show is currently live</p>
+        </div>
       )}
     </div>
   );
