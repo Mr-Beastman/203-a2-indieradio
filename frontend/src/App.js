@@ -10,13 +10,14 @@ import Footer from './components/footer/Footer'
 
 // importing pages
 import Home from './pages/home/Home'
+import DJDashboard from './pages/dashboards/djDashboard/DJDashboard'
+import UserDashboard from './pages/dashboards/listenerDashboard/ListenerDashboard'
 import ArtistPage from './pages/artistPage/ArtistPage'
 import LocalSpotlight from './pages/localSpotlight/LocalSpotlight'
 import Registration from './pages/entry/registration/Registration'
 import Login from './pages/entry/login/Login'
 
 
-// main app
 function App() {
   return (
     <div className="app">
@@ -29,6 +30,8 @@ function App() {
           <Route path="/localSpotlight" element={<LocalSpotlight />} />
           <Route path="/register" element={<Registration />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/djDashboard"  element={<DJDashboard />} />
+          <Route path="/userDashboard"  element={<UserDashboard />} />
         </Routes>
       </main>
       

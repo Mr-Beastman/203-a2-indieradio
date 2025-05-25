@@ -14,8 +14,7 @@ export default function NavigationBar() {
         <ul className="navMenu">
           <li><NavLink to="/artist" activeclassname="active">Stream</NavLink></li>
           <li><NavLink to="/localspotlight" activeclassname="active">Local Spotlight</NavLink></li>
-          <li><NavLink to="/register" activeclassname="active">Register</NavLink></li>
-          <li><NavLink to="/contact" activeclassname="active">Contact</NavLink></li>
+          <li><NavLink to="/userDashboard" activeclassname="active">Dashboard</NavLink></li>
         </ul>
       </nav>
 
