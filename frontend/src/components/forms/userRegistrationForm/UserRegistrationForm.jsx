@@ -5,6 +5,8 @@ import './UserRegistrationFormStyle.css'
 import CheckEmpty from '../../../utilities/checkEmpty';
 
 export default function UserRegistrationForm({ detectInputs }) {
+  
+  // state to store inputs and keep code/ui synced
   const [formInputs, setFormInputs] = useState({
     firstName: '',
     lastName: '',
@@ -21,6 +23,7 @@ export default function UserRegistrationForm({ detectInputs }) {
   const submitForm = async (eSubmit) => {
     eSubmit.preventDefault();
 
+    //checking all fields have been entered
     const missingField = CheckEmpty(formInputs, [
       'firstName',
       'lastName',
@@ -29,13 +32,13 @@ export default function UserRegistrationForm({ detectInputs }) {
       'password',
     ]);
 
-    //check all fields have been entered 
     if (missingField) {
       console.log(`Missing ${missingField}`);
       alert(`Please complete all fields`);
       return;
     }
 
+    // try to connect 
     try {
       const reponse = await fetch(
         'http://localhost:5001/register/user', {
@@ -52,7 +55,7 @@ export default function UserRegistrationForm({ detectInputs }) {
         console.log('Error');
       }
     } catch(error) {
-      console.log('error')
+      console.log('Error : Unable to connect to database')
     }
   };
     return(

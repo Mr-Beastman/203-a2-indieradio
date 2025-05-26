@@ -15,9 +15,11 @@ export default function LoginForm() {
     setFormInputs(previous => ({...previous, [name]:value}));
   };
 
+  // connect submit button to backend logic
   const onInputSubmit = async (e) => {
     e.preventDefault();
 
+    //checking that all fields have been entered
     const missingField = CheckEmpty(formInputs, ['username', 'password']);
 
     if (missingField) {
@@ -25,7 +27,7 @@ export default function LoginForm() {
       return;
     }
 
-    // testing success
+    // temporay testing success message
     console.log('Submitting login', formInputs);
   };
 
@@ -33,15 +35,18 @@ export default function LoginForm() {
   return (
     <div className="loginForm">
 
-      <h1 className="title">Login</h1>
+      <h1 className="title">Sign In</h1>
+      <p>Don't have an account? <NavLink to="/register" className="register">Sign Up</NavLink></p>
 
       <form className='loginData' onSubmit={onInputSubmit}>
         <label>Username:<input type="text" name='username' value={formInputs.username} onChange={onInputUpdate}/></label>  
         <label>Password:<input type="password" name='password' value={formInputs.password} onChange={onInputUpdate}/></label>
-        <button className="submitButton">Submit</button>  
+        <button className="submitButton">Login</button>  
       </form>
 
-      <NavLink to="/register" className="register">Register New Account</NavLink>
+{/*   section to later add google login      
+      <p>------------ or ------------</p> 
+      */}
 
     </div>
   )

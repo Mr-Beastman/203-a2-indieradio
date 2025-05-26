@@ -39,6 +39,7 @@ export default function ArtistRegistrationForm() {
     }
 
     try {
+      // post formInputs and check response
       const reponse = await fetch(
         'http://localhost:5001/register/artist', {
           method: 'POST',
@@ -49,12 +50,13 @@ export default function ArtistRegistrationForm() {
       const result = await reponse.json();
 
       if(reponse.ok){
-        console.log('Artist regsitered in database');
+        console.log('Success : Artist regsitered in database');
       } else {
-        console.log('Error');
+        console.log('Error : Unable to register artist');
       }
     } catch(error) {
-      console.log('fucked it')
+      // log database error if can't connect
+      console.log('Error : Not able to connect to database')
     }
   };
 

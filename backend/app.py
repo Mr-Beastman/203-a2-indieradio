@@ -1,7 +1,7 @@
 from flask import Flask
 from flask_cors import CORS
-from modules.mediaPlayer import now_playing_bp
-from modules.registration.registerArtist import artistBP
+from modules.media import now_playing_bp
+from backend.modules.registration.registration import artistBP
 from modules.registration.registerUser import registerUserBP
 from database.database import database 
 
