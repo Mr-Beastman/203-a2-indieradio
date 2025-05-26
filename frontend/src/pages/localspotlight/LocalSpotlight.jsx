@@ -8,7 +8,7 @@ export default function LocalSpotlight() {
       <p>Showcasing the finest underground talent from Aotearoa.</p>
 
       <div className="spotlightBanner">
-        <img src="/local-spotlight-banner.png" alt="Local Artists Banner" />
+        <img src="/images/local-spotlight-banner.png" alt="Local Artists Banner" />
       </div>
     </div>
   );

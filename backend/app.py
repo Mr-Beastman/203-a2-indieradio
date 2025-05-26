@@ -1,8 +1,7 @@
 from flask import Flask
 from flask_cors import CORS
 from modules.media import now_playing_bp
-from backend.modules.registration.registration import artistBP
-from modules.registration.registerUser import registerUserBP
+from modules.registration.registration import registrationBP
 from database.database import database 
 
 import os
@@ -21,8 +20,7 @@ database.init_app(app)
 app.register_blueprint(now_playing_bp)
 
 # registration blueprints
-app.register_blueprint(registerUserBP)
-app.register_blueprint(artistBP)
+app.register_blueprint(registrationBP)
 
 if __name__ == '__main__':
     app.run(debug=True, port=5001)
