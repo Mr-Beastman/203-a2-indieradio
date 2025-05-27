@@ -16,8 +16,8 @@ class User(database.Model):
     __tablename__ = 'userData'
 
     id = database.Column(database.Integer, primary_key=True)
-    first_name = database.Column(database.String(100))
-    last_name = database.Column(database.String(100))
+    firstName = database.Column(database.String(100))
+    lastName = database.Column(database.String(100))
     username = database.Column(database.String(100), unique=True)
     email = database.Column(database.String(100), unique=True)
     password = database.Column(database.String(100))

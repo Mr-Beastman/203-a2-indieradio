@@ -1,6 +1,6 @@
 from flask import Flask
 from flask_cors import CORS
-from modules.media import now_playing_bp
+from modules.media.audioPlayer import audioPlayerBP
 from modules.registration.registration import registrationBP
 from database.database import database 
 
@@ -17,7 +17,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 database.init_app(app)
 
 # media blueprints
-app.register_blueprint(now_playing_bp)
+app.register_blueprint(audioPlayerBP)
 
 # registration blueprints
 app.register_blueprint(registrationBP)

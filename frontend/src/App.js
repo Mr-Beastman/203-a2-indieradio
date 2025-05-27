@@ -20,9 +20,12 @@ import Login from './pages/entry/login/Login'
 
 function App() {
   return (
+    // building website display
     <div className="app">
+      {/* header component */}
       <NavigationBar/>
 
+      {/* creating routes for page navigation */}
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -35,6 +38,7 @@ function App() {
         </Routes>
       </main>
       
+      {/* foor component */}
       <Footer />
     </div>
   );

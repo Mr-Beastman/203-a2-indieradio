@@ -1,13 +1,13 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint,request,Response, jsonify
 import requests
 
-now_playing_bp = Blueprint('now_playing', __name__)
+audioPlayerBP = Blueprint('audioPlayerBP', __name__)
 
 # quick coded media player to handle display and streaming for testing purposes.
 
-@now_playing_bp.route('/nowPlaying')
+@audioPlayerBP.route('/nowPlaying')
 
-def get_station_info():
+def nowPlaying():
     try:
         response = requests.get("https://icecast.walmradio.com:8443/status-json.xsl", timeout=5)
         status = response.json()
@@ -16,7 +16,7 @@ def get_station_info():
         if isinstance(sources, list):
             source_info = next((s for s in sources if s.get("listenurl", "").endswith("/classic")), {})
         else:
-            source_info = sources  # Single source
+            source_info = sources
 
         current_song = source_info.get("title", "Unknown")
 
@@ -33,3 +33,16 @@ def get_station_info():
         "language": "English",
         "current_song": current_song
     })
+
+# ====== starting to expand stream functions below this line ======
+
+@audioPlayerBP.route('/playStation')
+def playStation():
+    # hardcoded url for testing - taken from https://dir.xiph.org/
+    streamUrl = request.args.get('url','http://digitalaudiobroadcasting.net:8015/stream')
+
+    try:
+        audio = requests.get(streamUrl, stream=True)
+        return Response(audio.iter_content(chunk_size = 1024), content_type='audio/mpeg')
+    except Exception as error:
+        return f"Error : {str(error)}"

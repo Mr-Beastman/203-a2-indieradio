@@ -62,11 +62,11 @@ export default function UserRegistrationForm({ detectInputs }) {
         <div className="userForm">
             <h1>Details</h1>
             <form className="userData" onSubmit={submitForm}>
-                <label>First Name: <input type="text"/></label>
-                <label>Last Name: <input type="text"/></label>
-                <label>Username: <input type="text"/></label>
-                <label>Email: <input type="text"/></label>
-                <label>Password: <input type="text"/></label>
+                <label>First Name: <input type="text" name="firstName" value={formInputs.firstName} onChange={updateInputs}/></label>
+                <label>Last Name: <input type="text" name="lastName"value={formInputs.lastName} onChange={updateInputs}/></label>
+                <label>Username: <input type="text" name="username" value={formInputs.username} onChange={updateInputs}/></label>
+                <label>Email: <input type="text" name="email" value={formInputs.email} onChange={updateInputs}/></label>
+                <label>Password: <input type="text" name="password" value={formInputs.password} onChange={updateInputs}/></label>
                 <button>Submit</button>
             </form>
         </div>

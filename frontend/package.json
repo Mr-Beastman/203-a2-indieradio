@@ -1,5 +1,5 @@
 {
-  "name": "frontend",
+  "name": "frontend2",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -7,16 +7,12 @@
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^13.5.0",
-    "cors": "^2.8.5",
-    "express": "^5.1.0",
-    "firebase": "^11.7.3",
     "lucide-react": "^0.511.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "react-h5-audio-player": "^3.10.0-rc.1",
     "react-icons": "^5.5.0",
-    "react-router-dom": "^7.6.0",
-    "react-scripts": "^5.0.1",
+    "react-router-dom": "^7.6.1",
+    "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -42,9 +38,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "main": "index.js",
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  }
 }

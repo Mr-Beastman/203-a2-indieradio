@@ -1,5 +1,11 @@
 import React, { useState } from 'react';
 
+// import react icons
+import { RiHeadphoneLine } from "react-icons/ri";
+import { IoMusicalNotesOutline } from "react-icons/io5";
+
+
+
 import './RegistrationStyle.css';
 import UserRegistrationForm from '../../../components/forms/userRegistrationForm/UserRegistrationForm';
 import ArtistRegistrationForm from '../../../components/forms/artistRegistrationForm/ArtistRegistrationForm';
@@ -22,8 +28,8 @@ export default function Registration() {
         <div className="pageContents">
             <h2>Registration Type</h2>
             <div className="selectionButtons">
-                <button onClick={openUserForm}>User</button>
-                <button onClick={openArtistForm}>Artist</button>
+                <button onClick={openUserForm}> <RiHeadphoneLine /> Listener </button>
+                <button onClick={openArtistForm}> <IoMusicalNotesOutline/> Artist</button>
             </div>
 
             <div className="formContainer">
