@@ -14,7 +14,8 @@ def login():
     userType = "artist"
 
     # check if username exists
-    checkUsername = loginDetails.get('username')
+    checkUsername = loginDetails.get('username').lower()
+
     if not usernameCheck(checkUsername):
         return jsonify({"success" : False, "message" : "No account with that username"})
     

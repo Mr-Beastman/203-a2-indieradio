@@ -1,8 +1,13 @@
+// react and hooks
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
+// style sheet
 import './UserRegistrationFormStyle.css'
 
-import CheckEmpty from '../../../utilities/checkEmpty';
+// utilities
+import * as utilities from '../../../utilities/utilities';
+
 
 export default function UserRegistrationForm({ detectInputs }) {
   
@@ -18,6 +23,9 @@ export default function UserRegistrationForm({ detectInputs }) {
   // set error state to be updated if applicable
   const [errorMessage, setErrorMessage] = useState('')
 
+  // setting to allow for redirect on register
+  const navigate = useNavigate()
+
   const updateInputs = (eInput) => {
     const { name, value } = eInput.target;
     setFormInputs((prev) => ({ ...prev, [name]: value }));
@@ -27,7 +35,7 @@ export default function UserRegistrationForm({ detectInputs }) {
     eSubmit.preventDefault();
 
     //checking all fields have been entered
-    const missingField = CheckEmpty(formInputs, [
+    const missingField = utilities.CheckEmpty(formInputs, [
       'firstName',
       'lastName',
       'username',
@@ -43,21 +51,15 @@ export default function UserRegistrationForm({ detectInputs }) {
 
     // try to connect 
     try {
-      const reponse = await fetch(
-        'http://localhost:5001/register/user', {
-          method: 'POST',
-          headers: {'content-type':'application/json'},
-          body: JSON.stringify(formInputs)
-        });
-      
-      const result = await reponse.json();
+      const response = await utilities.postData('http://localhost:5001/register/user', formInputs)
 
-      if(reponse.ok){
+      if(response.ok){
         console.log('Success : User regsitered in database');
         //clearing error messgae on access
         setErrorMessage('')
+        navigate("/login")
       } else {
-        setErrorMessage(result.error || 'Unable to Register')
+        setErrorMessage(response.error || 'Unable to Register')
         console.log(errorMessage)
       }
     } catch(error) {
@@ -75,7 +77,7 @@ export default function UserRegistrationForm({ detectInputs }) {
                 <label>Password: <input type="text" name="password" value={formInputs.password} onChange={updateInputs}/></label>
                 <button>Submit</button>
             </form>
-            
+
             <div className="errorDisplay"><p>{errorMessage}</p></div>
         </div>
     )

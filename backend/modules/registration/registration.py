@@ -12,8 +12,8 @@ def registerArtist():
     artistData = request.get_json()
 
     # check if username is in use
-    checkUsername = artistData.get('username')
-    checkEmail = artistData.get('email')
+    checkUsername = artistData.get('username').lower()
+    checkEmail = artistData.get('email').lower()
 
     #temp terminal display for testing
     print("Checking Username : " + checkUsername)
@@ -29,12 +29,12 @@ def registerArtist():
     print("Check Results : No dublicates found")
     
     artist = Artist(
-        firstName = artistData['firstName'],
-        lastName = artistData['lastName'],
-        username = artistData['username'],
-        channelName = artistData['channelName'],
-        streamUrl = artistData['streamUrl'],
-        email = artistData['email'],
+        firstName = artistData['firstName'].lower(),
+        lastName = artistData['lastName'].lower(),
+        username = artistData['username'].lower(),
+        channelName = artistData['channelName'].lower(),
+        streamUrl = artistData['streamUrl'].lower(),
+        email = artistData['email'].lower(),
         password = artistData['password']
     )
 
@@ -48,12 +48,8 @@ def registerUser():
     userData = request.get_json()
 
     # check if username is in use
-    checkUsername = userData.get('username')
-    checkEmail = userData.get('email')
-
-    #temp terminal display for testing
-    print("Checking Username : " + checkUsername)
-    print("Checking Email : " + checkEmail)
+    checkUsername = userData.get('username').lower()
+    checkEmail = userData.get('email').lower()
 
     if usernameCheck(checkUsername):
         return jsonify({"error": "Username "+ checkUsername +" already in use"}), 400
@@ -65,10 +61,10 @@ def registerUser():
     print("Check Results : No dublicates found")
 
     user = User(
-        firstName = userData['firstName'],
-        lastName = userData['lastName'],
-        username = userData['username'],
-        email = userData['email'],
+        firstName = userData['firstName'].lower(),
+        lastName = userData['lastName'].lower(),
+        username = userData['username'].lower(),
+        email = userData['email'].lower(),
         password = userData['password']
     )
 

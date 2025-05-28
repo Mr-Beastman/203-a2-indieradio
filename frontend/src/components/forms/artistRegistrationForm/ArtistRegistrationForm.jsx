@@ -1,6 +1,12 @@
+// react and hooks
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+// style sheet
 import './ArtistRegistrationStyle.css';
-import CheckEmpty from '../../../utilities/checkEmpty';
+
+// utilities
+import * as utilities from '../../../utilities/utilities';
 
 export default function ArtistRegistrationForm() {
   const [formInputs, setFormInputs] = useState({
@@ -16,6 +22,9 @@ export default function ArtistRegistrationForm() {
   // set error state to be updated if applicable
   const [errorMessage, setErrorMessage] = useState('')
 
+  // setting to allow for redirect on register
+  const navigate = useNavigate()
+
   const updateInputs = (eInput) => {
     const { name, value } = eInput.target;
     setFormInputs((prev) => ({ ...prev, [name]: value }));
@@ -24,7 +33,7 @@ export default function ArtistRegistrationForm() {
   const submitForm = async (eSubmit) => {
     eSubmit.preventDefault();
 
-    const missingField = CheckEmpty(formInputs, [
+    const missingField = utilities.CheckEmpty(formInputs, [
       'firstName',
       'lastName',
       'username',
@@ -56,6 +65,7 @@ export default function ArtistRegistrationForm() {
         console.log('Success : Artist regsitered in database');
         //clearing error messgae on access
         setErrorMessage('')
+        navigate("/login")
       } else {
         setErrorMessage(result.error || 'Unable to Register')
         console.log(errorMessage)

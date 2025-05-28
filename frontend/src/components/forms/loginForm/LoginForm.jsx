@@ -4,12 +4,15 @@ import { NavLink } from 'react-router-dom';
 
 
 // import ultilities
-import CheckEmpty from '../../../utilities/checkEmpty';
+import * as utilities from '../../../utilities/utilities';
 
 export default function LoginForm() {
 
   // state to store inputs and keep code/ui synced
   const [formInputs, setFormInputs] = useState({username:'',password:''});
+
+  // set error state to be updated if applicable
+  const [errorMessage, setErrorMessage] = useState('')
 
   const onInputUpdate = (enterInput) => {
     const {name, value} = enterInput.target;
@@ -21,29 +24,26 @@ export default function LoginForm() {
     eSubmit.preventDefault();
 
     //checking that all fields have been entered
-    const missingField = CheckEmpty(formInputs, ['username', 'password']);
+    const missingField = utilities.CheckEmpty(formInputs, ['username', 'password']);
 
     if (missingField) {
       console.log(`Missing ${missingField}`);
+      setErrorMessage('Please enter all fields')
       return;
     }
 
     // sending to backend for auth
     try{
-      const response = await fetch(
-        'http://localhost:5001/authentication/login', {
-          method: 'POST',
-          headers: {'content-type':'application/json'},
-          body: JSON.stringify(formInputs)
-        });
-      
-      const result = await response.json();
+      const result = await utilities.postData('http://localhost:5001/authentication/login', formInputs)
 
       if (result.success){
+        setErrorMessage('')
         alert(`Succesful Login for ${result.username} with the user type ${result.userType}
           \nDashboards currently underconstruction`)
+
       } else {
         console.error('login failed', result.message)
+        setErrorMessage(result.message)
       }
 
     } catch(error) {
@@ -63,6 +63,8 @@ export default function LoginForm() {
         <label>Password:<input type="password" name='password' value={formInputs.password} onChange={onInputUpdate}/></label>
         <button className="submitButton">Login</button>  
       </form>
+
+      <div className="errorDisplay"><p>{errorMessage}</p></div>
 
 {/*   section to later add google login      
       <p>------------ or ------------</p> 
