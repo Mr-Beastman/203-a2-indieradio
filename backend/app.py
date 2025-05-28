@@ -2,6 +2,7 @@ from flask import Flask
 from flask_cors import CORS
 from modules.media.audioPlayer import audioPlayerBP
 from modules.registration.registration import registrationBP
+from modules.authentication.authentication import authenticationBP
 from database.database import database 
 
 import os
@@ -21,6 +22,9 @@ app.register_blueprint(audioPlayerBP)
 
 # registration blueprints
 app.register_blueprint(registrationBP)
+
+# auth blueprints
+app.register_blueprint(authenticationBP)
 
 if __name__ == '__main__':
     with app.app_context():

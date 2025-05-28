@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 
 import { NavLink } from 'react-router-dom';
 
-// import hooks
+
+// import ultilities
 import CheckEmpty from '../../../utilities/checkEmpty';
 
 export default function LoginForm() {
@@ -16,8 +17,8 @@ export default function LoginForm() {
   };
 
   // connect submit button to backend logic
-  const onInputSubmit = async (e) => {
-    e.preventDefault();
+  const onInputSubmit = async (eSubmit) => {
+    eSubmit.preventDefault();
 
     //checking that all fields have been entered
     const missingField = CheckEmpty(formInputs, ['username', 'password']);
@@ -27,8 +28,27 @@ export default function LoginForm() {
       return;
     }
 
-    // temporay testing success message
-    console.log('Submitting login', formInputs);
+    // sending to backend for auth
+    try{
+      const response = await fetch(
+        'http://localhost:5001/authentication/login', {
+          method: 'POST',
+          headers: {'content-type':'application/json'},
+          body: JSON.stringify(formInputs)
+        });
+      
+      const result = await response.json();
+
+      if (result.success){
+        alert(`Succesful Login for ${result.username} with the user type ${result.userType}
+          \nDashboards currently underconstruction`)
+      } else {
+        console.error('login failed', result.message)
+      }
+
+    } catch(error) {
+      console.log("Cant access database", error)
+    }
   };
 
   //visual elements of componet
