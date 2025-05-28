@@ -26,7 +26,7 @@ export default function LoginForm() {
     eSubmit.preventDefault();
 
     //checking that all fields have been entered
-    const missingField = utilities.CheckEmpty(formInputs, ['username', 'password']);
+    const missingField = utilities.CheckEmpty(formInputs, 'login');
 
     if (missingField) {
       console.log(`Missing ${missingField}`);
@@ -65,7 +65,8 @@ export default function LoginForm() {
         <label>Password:<input type="password" name='password' value={formInputs.password} onChange={onInputUpdate}/></label>
         <button className="submitButton">Login</button>  
       </form>
-
+      
+      {/* display error message to user */}
       <div className="errorDisplay"><p>{errorMessage}</p></div>
 
 {/*   section to later add google login      

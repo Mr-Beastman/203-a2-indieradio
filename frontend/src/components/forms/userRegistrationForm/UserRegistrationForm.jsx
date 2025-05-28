@@ -35,17 +35,17 @@ export default function UserRegistrationForm({ detectInputs }) {
     eSubmit.preventDefault();
 
     //checking all fields have been entered
-    const missingField = utilities.CheckEmpty(formInputs, [
-      'firstName',
-      'lastName',
-      'username',
-      'email',
-      'password',
-    ]);
+    const missingField = utilities.CheckEmpty(formInputs, 'listener');
+
+    console.log(missingField)
+
+    if (!missingField){
+      console.log('all fields entereed')
+    }
 
     if (missingField) {
       console.log(`Missing ${missingField}`);
-      alert(`Please complete all fields`);
+      setErrorMessage(`Please complete all fields`);
       return;
     }
 

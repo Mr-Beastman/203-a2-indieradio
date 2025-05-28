@@ -1,7 +1,36 @@
 
 
 //checks if parts of form have not been filled out correctly
-export function CheckEmpty(formData, requiredFields) {
+export function CheckEmpty(formData, type) {
+  let requiredFields =[]
+
+  if (type === 'artist') {
+    requiredFields = [
+      'firstName',
+      'lastName',
+      'username',
+      'channelName',
+      'streamUrl',
+      'email',
+      'password',
+    ];
+  } else if (type === 'listener') {
+    requiredFields = [
+      'firstName',
+      'lastName',
+      'username',
+      'email',
+      'password',
+    ];
+  } else if (type === 'login') {
+    requiredFields = [
+      'username',
+      'password'
+    ];
+  } else {
+    requiredFields =[]
+  }
+
   for (let field of requiredFields) {
     if (!formData[field]) {
         console.log(field)    
@@ -11,6 +40,7 @@ export function CheckEmpty(formData, requiredFields) {
   return null;
 }
 
+// send form data to backend for processing
 export async function postData(url, data) {
   const response = await fetch (url, {
     method: 'POST',

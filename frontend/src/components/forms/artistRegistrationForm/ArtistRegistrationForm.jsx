@@ -33,15 +33,7 @@ export default function ArtistRegistrationForm() {
   const submitForm = async (eSubmit) => {
     eSubmit.preventDefault();
 
-    const missingField = utilities.CheckEmpty(formInputs, [
-      'firstName',
-      'lastName',
-      'username',
-      'channelName',
-      'streamUrl',
-      'email',
-      'password',
-    ]);
+    const missingField = utilities.CheckEmpty(formInputs, 'artist');
 
     //check all fields have been entered 
     if (missingField) {
