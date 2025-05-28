@@ -59,3 +59,14 @@ html {
     font-size: 16px;
   }
 }
+
+/* push footer to bottom */
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.app main {
+  flex: 1;
+}
