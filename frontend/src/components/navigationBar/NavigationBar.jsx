@@ -12,9 +12,15 @@ export default function NavigationBar() {
 
       <nav>
         <ul className="navMenu">
+          {/* 
           <li><NavLink to="/artist" activeclassname="active">Stream</NavLink></li>
           <li><NavLink to="/localspotlight" activeclassname="active">Local Spotlight</NavLink></li>
-          <li><NavLink to="/userDashboard" activeclassname="active">Dashboard</NavLink></li>
+          <li><NavLink to="/userDashboard" activeclassname="active">Dashboard</NavLink></li> 
+          */}
+          <li><NavLink to="/liveNow" activeclassname="active">Live Now</NavLink></li>
+          <li><NavLink to="/showBrowser" activeclassname="active">Show Browser</NavLink></li> 
+          <li><NavLink to="/localspotlight" activeclassname="active">Local Spotlight</NavLink></li>
+
         </ul>
       </nav>
 
