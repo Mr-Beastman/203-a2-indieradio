@@ -81,6 +81,7 @@ export default function ArtistRegistrationForm() {
         <button type="submit">Submit</button>
       </form>
 
+      {/* display error message to user */}
       <div className="errorDisplay"><p>{errorMessage}</p></div>
 
     </div>

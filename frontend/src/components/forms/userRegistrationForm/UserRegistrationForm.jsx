@@ -79,6 +79,7 @@ export default function UserRegistrationForm({ detectInputs }) {
                 <button>Submit</button>
             </form>
 
+            {/* display error message to user */}
             <div className="errorDisplay"><p>{errorMessage}</p></div>
         </div>
     )
