@@ -1,5 +1,7 @@
 import React from 'react';
+
 import './LocalSpotlight.css';
+import bannerImage from './images/local-spotlight-banner.png';
 
 export default function LocalSpotlight() {
   return (
@@ -8,7 +10,7 @@ export default function LocalSpotlight() {
       <p>Showcasing the finest underground talent from Aotearoa.</p>
 
       <div className="spotlightBanner">
-        <img src="/images/local-spotlight-banner.png" alt="Local Artists Banner" />
+        <img src={bannerImage} alt="Local Artists Banner" />
       </div>
     </div>
   );

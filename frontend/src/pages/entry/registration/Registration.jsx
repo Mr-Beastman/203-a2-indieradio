@@ -28,8 +28,8 @@ export default function Registration() {
         <div className="pageContents">
             <h2>Registration Type</h2>
             <div className="selectionButtons">
-                <button onClick={openUserForm}> <RiHeadphoneLine /> Listener </button>
-                <button onClick={openArtistForm}> <IoMusicalNotesOutline/> Artist</button>
+                <button onClick={openUserForm}className={`selectButton ${userType === 'user' ? 'active' : ''}`}> <RiHeadphoneLine /> Listener </button>
+                <button onClick={openArtistForm} className={`selectButton ${userType === 'artist' ? 'active' : ''}`}> <IoMusicalNotesOutline/> Artist</button>
             </div>
 
             <div className="formContainer">

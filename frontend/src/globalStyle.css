@@ -27,6 +27,20 @@ a {
   text-decoration: none;
 }
 
+  button {
+    background-color: #ff004f;
+    color: #fff;
+    font-weight: bold;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #e60047;
+  }
+
 /* WebKit Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
