@@ -13,8 +13,11 @@ export default function ArtistRegistrationForm() {
     password: '',
   });
 
-  const updateInputs = (e) => {
-    const { name, value } = e.target;
+  // set error state to be updated if applicable
+  const [errorMessage, setErrorMessage] = useState('')
+
+  const updateInputs = (eInput) => {
+    const { name, value } = eInput.target;
     setFormInputs((prev) => ({ ...prev, [name]: value }));
   };
 
@@ -34,13 +37,13 @@ export default function ArtistRegistrationForm() {
     //check all fields have been entered 
     if (missingField) {
       console.log(`Missing ${missingField}`);
-      alert(`Please complete all fields`);
+      setErrorMessage('Please complete all fields')
       return;
     }
 
     try {
       // post formInputs and check response
-      const reponse = await fetch(
+      const reponse = await fetch( 
         'http://localhost:5001/register/artist', {
           method: 'POST',
           headers: {'content-type':'application/json'},
@@ -51,12 +54,14 @@ export default function ArtistRegistrationForm() {
 
       if(reponse.ok){
         console.log('Success : Artist regsitered in database');
+        //clearing error messgae on access
+        setErrorMessage('')
       } else {
-        console.log('Error : Unable to register artist');
+        setErrorMessage(result.error || 'Unable to Register')
+        console.log(errorMessage)
       }
     } catch(error) {
-      // log database error if can't connect
-      console.log('Error : Not able to connect to database')
+      setErrorMessage('Server error: could not connect');
     }
   };
 
@@ -68,11 +73,14 @@ export default function ArtistRegistrationForm() {
         <label>Last Name: <input type="text" name="lastName" value={formInputs.lastName} onChange={updateInputs} /></label>
         <label>Username: <input type="text" name="username" value={formInputs.username} onChange={updateInputs} /></label>
         <label>Channel Name: <input type="text" name="channelName" value={formInputs.channelName} onChange={updateInputs} /></label>
-        <label>Stream Url: <input type="text" name="streamUrl" value={formInputs.stream} onChange={updateInputs} /></label>
+        <label>Stream Url: <input type="text" name="streamUrl" value={formInputs.streamUrl} onChange={updateInputs} /></label>
         <label>Email: <input type="text" name="email" value={formInputs.email} onChange={updateInputs} /></label>
         <label>Password: <input type="password" name="password" value={formInputs.password} onChange={updateInputs} /></label>
         <button type="submit">Submit</button>
       </form>
+
+      <div className="errorDisplay"><p>{errorMessage}</p></div>
+
     </div>
   );
 }

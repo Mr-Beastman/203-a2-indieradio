@@ -23,4 +23,6 @@ app.register_blueprint(audioPlayerBP)
 app.register_blueprint(registrationBP)
 
 if __name__ == '__main__':
+    with app.app_context():
+        database.create_all()
     app.run(debug=True, port=5001)

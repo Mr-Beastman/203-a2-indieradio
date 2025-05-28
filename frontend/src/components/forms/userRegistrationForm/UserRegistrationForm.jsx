@@ -15,6 +15,9 @@ export default function UserRegistrationForm({ detectInputs }) {
     password: '',
     });
   
+  // set error state to be updated if applicable
+  const [errorMessage, setErrorMessage] = useState('')
+
   const updateInputs = (eInput) => {
     const { name, value } = eInput.target;
     setFormInputs((prev) => ({ ...prev, [name]: value }));
@@ -50,12 +53,15 @@ export default function UserRegistrationForm({ detectInputs }) {
       const result = await reponse.json();
 
       if(reponse.ok){
-        console.log('User regsitered in database');
+        console.log('Success : User regsitered in database');
+        //clearing error messgae on access
+        setErrorMessage('')
       } else {
-        console.log('Error');
+        setErrorMessage(result.error || 'Unable to Register')
+        console.log(errorMessage)
       }
     } catch(error) {
-      console.log('Error : Unable to connect to database')
+      setErrorMessage('Server error: could not connect');
     }
   };
     return(
@@ -69,6 +75,8 @@ export default function UserRegistrationForm({ detectInputs }) {
                 <label>Password: <input type="text" name="password" value={formInputs.password} onChange={updateInputs}/></label>
                 <button>Submit</button>
             </form>
+            
+            <div className="errorDisplay"><p>{errorMessage}</p></div>
         </div>
     )
 }
