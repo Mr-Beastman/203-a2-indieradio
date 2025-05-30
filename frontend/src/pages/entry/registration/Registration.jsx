@@ -1,3 +1,4 @@
+// react
 import React, { useState } from 'react';
 
 // react icons
@@ -8,10 +9,14 @@ import { IoMusicalNotesOutline } from "react-icons/io5";
 import djBack from './images/matty-adame-nLUb9GThIcg-unsplash.jpg'
 import listenerBack from './images/viktor-forgacs-B88PgQXS4qg-unsplash.jpg'
 
+// style
 import './RegistrationStyle.css';
+
+// components
 import UserRegistrationForm from '../../../components/forms/userRegistrationForm/UserRegistrationForm';
 import ArtistRegistrationForm from '../../../components/forms/artistRegistrationForm/ArtistRegistrationForm';
 
+// page
 export default function Registration() {
     const [userType, setUserType] = useState('user');
 
@@ -26,22 +31,22 @@ export default function Registration() {
         setUserType('artist');
     };
 
+    //allow for background switching
     const backgroundImage =
-        userType === 'artist'
-        ? `url(${djBack})`
-        : userType === 'user'
-        ? `url(${listenerBack})`
+        userType === 'artist' ? `url(${djBack})`: 
+        userType === 'user' ? `url(${listenerBack})`
         : '';
 
     return (
-        // inline style done here to allow for dynamic switching 
+        // inline style done here to allow for dynamic background switching 
         <div className="pagebackground"   style={{
-                minHeight: '100vh',
+                height: '100vh',
                 width: '100%',
                 backgroundImage: backgroundImage,
                 backgroundSize: 'cover',
-                backgroundPosition: 'center',
+                backgroundPosition: 'top',
                 backgroundRepeat: 'no-repeat',
+                overflow: 'hidden'
         }}>
             <div className="pageContents">
                 <h2>Registration Type</h2>

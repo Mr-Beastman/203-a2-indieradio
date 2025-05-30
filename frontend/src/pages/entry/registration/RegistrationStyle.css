@@ -41,10 +41,6 @@
   margin-bottom: 6px;
 }
 
-.selectionButtons button:hover {
-  background-color: #3a3a3a;
-}
-
 .selectionButtons .active {
   background-color: #ff004f;
   color: #fff;
