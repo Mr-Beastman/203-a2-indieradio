@@ -57,7 +57,7 @@ export default function UserRegistrationForm({ detectInputs }) {
         console.log('Success : User regsitered in database');
         // clearing error messagae on access
         setErrorMessage('')
-        // on success navigate to login
+        // on success navigate to login page
         navigate("/login")
       } else {
         setErrorMessage(response.error || 'Unable to Register')

@@ -1,68 +1,147 @@
+/* main/desktop screens */
+
 .navBar {
+    z-index: 10;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 40px;
-    background-color: #100E0E;
+    height: 8rem;
     position: sticky;
-    top: 0;
-    z-index: 999;
+    padding: 0 5rem;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #100E0E;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
   }
   
-  .logo .logoLink {
+.logo .logoLink {
+  color: #FBFDF7;
+  font-size: 3rem;
+  font-weight: bold;
+  text-decoration: none;
+  letter-spacing: 2px;
+}
+
+.logo .dot {
+  color: #d60132;
+}
+
+.navMenu {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  font-size: 1.5rem;
+}
+
+li a {
+  color: #FBFDF7;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+li a:hover,
+li a.active {
+  color: #d60132;
+  text-decoration: none;
+}
+
+.icon {
     color: #FBFDF7;
     font-size: 2rem;
-    font-weight: bold;
-    text-decoration: none;
-    letter-spacing: 2px;
+    transition: color 0.3s;
   }
   
-  .logo .dot {
+.icon:hover {
     color: #d60132;
+  }
+
+
+/* hiding mobile menus on larger screens */
+.hamburger {
+  display: none;
+  padding: 1rem;
+}
+
+.mobileMenu {
+  display: none;
+}
+
+/* mobile screens */
+@media screen and (max-width: 940px) {
+  
+
+
+  /* Dropdown menu */
+  .mobileMenu {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    top: -50vh;
+    left: 0;  
+    position:absolute;
+    justify-content: space-between;
+    background-color: rgb(31, 31, 31);
+    transition: 0.3s;
+    z-index: 5;
+  }
+
+  /* part of active state to hide/show menu */
+  .active {
+    top: 4rem;
+  }
+  
+
+  .mobileMenu li{
+    padding: 1rem 1rem;
+    margin : 0 1rem; 
+    border-bottom: 1px solid #FBFDF7;
+  }
+
+  .mobileNav {
+  list-style: none;
+  } 
+
+  .mobileNav li a {
+    text-decoration: none;
+    color: #FBFDF7;
+    font-weight: 600;
+    transition: color 0.3s;
+  }
+
+  .mobileNav li a:hover,
+  .mobileNav li a.active {
+    color: #d60132;
+    text-decoration: underline;
+  }
+
+  .mobileMenuBot{
+    width: 100%;
+    text-align: center;
+    padding-bottom: 1rem;
+  }
+
+  /* mobile resizng */
+  .mobileNav{
+    margin: 1rem 0;
   }
   
   .navMenu {
-    list-style: none;
-    display: flex;
-    gap: 24px;
-    margin: 0;
-    padding: 0;
+    display: none;
   }
-  
-  .navMenu li a {
-    color: #FBFDF7;
-    font-weight: 600;
-    text-decoration: none;
-    transition: color 0.3s;
+
+  .logo .logoLink{
+    font-size: 2rem;
   }
-  
-  .navMenu li a:hover,
-  .navMenu li a.active {
-    color: #d60132;
+
+  .navBar{
+    height: 4rem;
+    padding: 0 2rem;
   }
-  
-  .navIcons .icon {
-    color: #FBFDF7;
-    font-size: 1.8rem;
-    transition: color 0.3s;
+
+  .hamburger {
+    display: block;
   }
-  
-  .navIcons .icon:hover {
-    color: #d60132;
+
+  .navIcons{
+    display: none;
   }
-  
-  /* Optional mobile responsiveness */
-  @media (max-width: 768px) {
-    .navBar {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-  
-    .navMenu {
-      flex-direction: column;
-      gap: 10px;
-      margin-top: 10px;
-    }
-  }
-  
+}
