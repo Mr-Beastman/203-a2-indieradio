@@ -19,23 +19,6 @@ body {
   color: #333;
 }
 
-li {
-  text-decoration: none;
-}
-
-li a {
-  color: #FBFDF7;
-  font-weight: 600;
-  text-decoration: none;
-  transition: color 0.3s;
-}
-
-li a:hover,
-li a.active {
-  color: #d60132;
-}
-
-
 h2 {
   color: #444;
 }

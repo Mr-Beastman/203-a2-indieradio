@@ -12,17 +12,9 @@
 
 .media {
   display: flex;
-  height: 75vh;
+  flex-direction: column;
+  padding: 3rem;
   width: 100%;
-  background-color: transparent;
-  align-items: center;
-}
-.media .leftContent, .media .rightContent {
-  flex: 1;
-  padding: 1rem;
-  box-sizing: border-box;
-  overflow: hidden;
-  background-color: transparent;
 }
 
   

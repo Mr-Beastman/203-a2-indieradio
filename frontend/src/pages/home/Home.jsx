@@ -1,24 +1,60 @@
 import React from 'react'
 
 // importing style sheet and images
-import './Home.css'
+import './HomeStyle.css'
 
 // import components 
-import AudioPlayer from '../../components/media/audioPlayer/AudioPlayer';
-import YoutubePlayer from '../../components/media/youtubePlayer/YoutubePlayer';
+import StationCarousel from '../../components/stationCarousel/StationCarousel';
 
 export default function Home() {
-  return (
-    <div className="homePage">
+  
+  // temp test for showBrowser
+  const placeHolders = [
+    {
+      id: 1,
+      name: 'a station',
+      streamUrl: 'www.test.com',
+      logoUrl: 'https://via.assets.so/game.png?id=1&q=95&w=360&h=360&fit=fill'
+    },
+    {
+      id: 2,
+      name: 'another station',
+      streamUrl: 'www.test.com',
+      logoUrl: 'https://via.assets.so/album.png?id=1&q=95&w=360&h=360&fit=fill'
+    },
+    {
+      id: 3,
+      name: 'Last station',
+      streamUrl: 'www.test.com',
+      logoUrl: 'https://via.assets.so/movie.png?id=1&q=95&w=360&h=360&fit=fill'
+    }
+  ];
 
+    const newHolders = [
+    {
+      id: 1,
+      name: 'a station',
+      streamUrl: 'www.test.com',
+      logoUrl: 'https://via.assets.so/game.png?id=1&q=95&w=360&h=360&fit=fill'
+    },
+    {
+      id: 2,
+      name: 'another station',
+      streamUrl: 'www.test.com',
+      logoUrl: 'https://via.assets.so/album.png?id=1&q=95&w=360&h=360&fit=fill'
+    }
+  ];
+
+  return (
+
+    
+    <div className="homePage">
+      
       <div className="media">
-        <div className="leftContent">
-          <AudioPlayer/>
-        </div>
-        <div className="rightContent">
-          <YoutubePlayer/>
-        </div>
+        <StationCarousel displayName='Live Now' stationList={placeHolders}/>
+        <StationCarousel displayName='New to Air' stationList={newHolders}/>
       </div>
+      
     </div>
   );
 }

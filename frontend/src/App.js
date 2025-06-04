@@ -12,7 +12,7 @@ import Footer from './components/footer/Footer'
 import Home from './pages/home/Home'
 import DJDashboard from './pages/dashboards/djDashboard/DJDashboard'
 import UserDashboard from './pages/dashboards/listenerDashboard/ListenerDashboard'
-import ArtistPage from './pages/artistPage/ArtistPage'
+import StationPage from './pages/stationPage/StationPage'
 import LocalSpotlight from './pages/localSpotlight/LocalSpotlight'
 import Registration from './pages/entry/registration/Registration'
 import Login from './pages/entry/login/Login'
@@ -31,7 +31,7 @@ function App() {
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/artist" element={<ArtistPage />} />
+          <Route path="/station" element={<StationPage />} />
           <Route path="/localSpotlight" element={<LocalSpotlight />} />
           <Route path="/register" element={<Registration />} />
           <Route path="/login" element={<Login />} />

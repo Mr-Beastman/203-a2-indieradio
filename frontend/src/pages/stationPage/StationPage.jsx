@@ -1,15 +1,15 @@
 import React from 'react'
 
 // importing style sheet
-import './ArtistPageStyle.css'
+import './StationPageStyle.css'
 
 // importing components
 import AudioPlayer from '../../components/media/audioPlayer/AudioPlayer'
 import YoutubePlayer from '../../components/media/youtubePlayer/YoutubePlayer';
 
-export default function ArtistPage() {
+export default function StationPage() {
   return (
-    <div className="artistPage">
+    <div className="StationPage">
       <AudioPlayer />
       <YoutubePlayer />
 
