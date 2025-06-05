@@ -11,6 +11,8 @@ class Artist(database.Model):
     streamUrl = database.Column(database.String(255))
     email = database.Column(database.String(100), unique=True, nullable=False)
     password = database.Column(database.String(100), nullable=False)
+    logo = database.Column(database.String(100))
+    live = database.Column(database.Integer)
 
 class User(database.Model):
     __tablename__ = 'userData'

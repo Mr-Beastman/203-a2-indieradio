@@ -5,13 +5,27 @@ import './StationPageStyle.css'
 
 // importing components
 import AudioPlayer from '../../components/media/audioPlayer/AudioPlayer'
-import YoutubePlayer from '../../components/media/youtubePlayer/YoutubePlayer';
 
 export default function StationPage() {
   return (
     <div className="StationPage">
-      <AudioPlayer />
-      <YoutubePlayer />
+
+      <div className="stationDetials">
+        <h1>Station Logo</h1>
+        <p>station Tagline</p>
+      </div>
+
+      <div className="stationMedia">
+        <div className="leftContent">
+          <AudioPlayer />
+        </div>
+        <div className="rightContent">
+          <div className="chatWindow">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3vrTUU3CKbUDThpm8aZzFXdTmai6PodNfXA&s" alt="temp" className="placeHolder" />
+          </div>
+        </div>
+      </div>
+      
 
       <section className="section" id="schedule">
         <h3>Weekly Schedule</h3>
@@ -52,14 +66,7 @@ export default function StationPage() {
           </div>
         </div>
       </section>
-
-      <section className="section" id="contact">
-        <h3>Get in Touch</h3>
-        <p>
-          Text your requests to: 022-123-4567<br />
-          Follow us on <a href="https://facebook.com">Facebook</a>
-        </p>
-      </section>
+      
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import React from 'react'
+import { React, useEffect, useState }  from 'react'
 
 // importing style sheet and images
 import './HomeStyle.css'
@@ -7,43 +7,27 @@ import './HomeStyle.css'
 import StationCarousel from '../../components/stationCarousel/StationCarousel';
 
 export default function Home() {
-  
-  // temp test for showBrowser
-  const placeHolders = [
-    {
-      id: 1,
-      name: 'a station',
-      streamUrl: 'www.test.com',
-      logoUrl: 'https://via.assets.so/game.png?id=1&q=95&w=360&h=360&fit=fill'
-    },
-    {
-      id: 2,
-      name: 'another station',
-      streamUrl: 'www.test.com',
-      logoUrl: 'https://via.assets.so/album.png?id=1&q=95&w=360&h=360&fit=fill'
-    },
-    {
-      id: 3,
-      name: 'Last station',
-      streamUrl: 'www.test.com',
-      logoUrl: 'https://via.assets.so/movie.png?id=1&q=95&w=360&h=360&fit=fill'
-    }
-  ];
 
-    const newHolders = [
-    {
-      id: 1,
-      name: 'a station',
-      streamUrl: 'www.test.com',
-      logoUrl: 'https://via.assets.so/game.png?id=1&q=95&w=360&h=360&fit=fill'
-    },
-    {
-      id: 2,
-      name: 'another station',
-      streamUrl: 'www.test.com',
-      logoUrl: 'https://via.assets.so/album.png?id=1&q=95&w=360&h=360&fit=fill'
-    }
-  ];
+  // pulling all stations from database
+  const[stations, setStations] = useState([])
+
+  useEffect(() => {
+    fetch('http://localhost:5001/station/getStations')
+    .then(response => response.json())
+    .then(data => setStations(data))
+    .catch(err => console.error("Issue fetching stations", err));
+  }, []);
+
+  // pulling live stations from database
+  const[liveStations, setLiveStations] = useState([])
+
+  useEffect(() => {
+     fetch('http://localhost:5001/station/getLiveStations')
+    .then(response => response.json())
+    .then(data => setLiveStations(data))
+    .catch(err => console.error("Issue fetching stations", err));
+  }, []);
+
 
   return (
 
@@ -51,8 +35,8 @@ export default function Home() {
     <div className="homePage">
       
       <div className="media">
-        <StationCarousel displayName='Live Now' stationList={placeHolders}/>
-        <StationCarousel displayName='New to Air' stationList={newHolders}/>
+        <StationCarousel displayName='Live Now' stationList={liveStations}/>
+        <StationCarousel displayName='New to Air' stationList={stations}/>
       </div>
       
     </div>
