@@ -4,6 +4,9 @@
     background-color: #111111ab;
     color: #fff;
     border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
 }
 
 .carouselDisplay {

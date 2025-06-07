@@ -5,6 +5,8 @@ audioPlayerBP = Blueprint('audioPlayerBP', __name__)
 
 # quick coded media player to handle display and streaming for testing purposes.
 
+# most code is now redundent as we are pulling from the database. Will need to review what can be taken.
+
 @audioPlayerBP.route('/nowPlaying')
 
 def nowPlaying():
@@ -36,8 +38,8 @@ def nowPlaying():
 
 # ====== starting to expand stream functions below this line ======
 
-@audioPlayerBP.route('/playStation')
-def playStation():
+@audioPlayerBP.route('/streamStation')
+def streamStation():
     # hardcoded url for testing - taken from https://dir.xiph.org/
     streamUrl = request.args.get('url','http://digitalaudiobroadcasting.net:8015/stream')
 

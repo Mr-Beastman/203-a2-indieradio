@@ -1,4 +1,5 @@
-import React from 'react'
+import { React, useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom';
 
 // importing style sheet
 import './StationPageStyle.css'
@@ -7,17 +8,33 @@ import './StationPageStyle.css'
 import AudioPlayer from '../../components/media/audioPlayer/AudioPlayer'
 
 export default function StationPage() {
+  // grab id from url
+  const { id } = useParams();
+  const[stationData, setStationData] = useState({})
+
+  useEffect(() => {
+    fetch(`http://localhost:5001/station/${id}`)
+    .then(response => response.json())
+    .then(data => setStationData(data))
+    .catch(err => console.error("Couldn't fetch station data", err))
+  }, [])
+
+
   return (
     <div className="StationPage">
 
       <div className="stationDetials">
-        <h1>Station Logo</h1>
+        <h1>{stationData.channelName}</h1>
         <p>station Tagline</p>
       </div>
 
+      
       <div className="stationMedia">
         <div className="leftContent">
-          <AudioPlayer />
+          <AudioPlayer 
+            streamUrl={stationData.streamUrl}
+            streamLogo={stationData.logo}
+          />
         </div>
         <div className="rightContent">
           <div className="chatWindow">

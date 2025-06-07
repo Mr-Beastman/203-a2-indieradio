@@ -34,3 +34,18 @@ def getLiveStations():
     stations = Artist.query.filter_by(live=1).all()
 
     return buildList(stations)
+
+# get single station info from ID
+@stationBP.route('/station/<int:id>', methods =['GET'])
+def getStationById(id):
+    station = Artist.query.get(id)
+
+    stationData = {
+        'id': station.id,
+        'channelName': station.channelName,
+        'streamUrl': station.streamUrl,
+        'logo': station.logo
+    }
+
+    return jsonify(stationData)
+

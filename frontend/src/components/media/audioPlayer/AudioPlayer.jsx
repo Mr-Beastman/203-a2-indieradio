@@ -1,35 +1,27 @@
 import React from 'react';
-import useStationData from '../../../hooks/useStationData';
 import './AudioPlayer.css';
 
-export default function AudioPlayer() {
-  const station = useStationData();
+export default function AudioPlayer({streamUrl, streamLogo}) {
 
   return (
     <div className="audioPlayer">
-      {station ? (
-        <>
-          <img src={station.logo} alt={`${station.name} logo`} className="station-logo" />
-          <h2>{station.name}</h2>
-          <p><strong>Now Playing:</strong> {station.current_song}</p>
+      <div className="leftColumn">
+        <img src={streamLogo} alt="playingLogo" className="stationLogo" />
+      </div>
+      <div className="rightColumn">
+        <h2>Station Name</h2>
+        <h2>Station Tag</h2>
 
-          <audio controls>
-            <source src={station.stream_url} type="audio/mpeg" />
-            Your browser does not support the audio element.
-          </audio>
-
-          <p>
-            <a href={station.homepage} target="_blank" rel="noopener noreferrer">
-              Visit Station Homepage
-            </a>
-          </p>
-
-          <p><em>{station.genre} — {station.language}</em></p>
-          
-        </>
-      ) : (
-        <p>Loading station data...</p>
-      )}
+        {/* conditonal check to handle rendering before variable ready */}
+        {streamUrl ? (
+        <audio controls preload='auto'>
+          <source src={streamUrl} type="audio/mpeg" />
+        </audio>
+        ) : (
+          <p>Loading Stream</p>
+        )}
+        <h3>Now Playing</h3>
+      </div>
     </div>
   );
 }

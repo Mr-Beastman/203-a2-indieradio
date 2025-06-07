@@ -1,8 +1,7 @@
 .audioPlayer {
-  background-color: #111;
-  color: #fff;
-  text-align: center;
-  padding: 40px 20px;
+  display: flex;
+  flex-direction: row;
+  text-align: left;
   height: 100%;
   width: 100%;
   box-sizing: border-box;
@@ -10,20 +9,19 @@
 
 .audioPlayer h2 {
   font-size: 2rem;
-  margin-bottom: 10px;
+  margin: 1rem;
 }
 
-.audioPlayer p {
-  font-size: 1rem;
-  margin-bottom: 10px;
+.audioPlayer .leftColumn, 
+.audioPlayer .rightColumn {
+  background-color: transparent;
 }
 
-.audioPlayer audio {
-  margin-top: 15px;
+.audioPlayer .rightColumn {
+  padding-top: 1rem;
 }
 
-.station-logo {
-  max-width: 120px;
+.stationLogo {
+  max-width: 100%;
   height: auto;
-  margin-bottom: 15px;
 }

@@ -1,4 +1,4 @@
-import React, { use } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './StationCarouselStyle.css';
 import '../../globalStyle.css';
@@ -10,16 +10,17 @@ import '../../globalStyle.css';
 export default function StationCarousel({displayName = "stations", stationList = []}) {
     const navigate = useNavigate();
 
-    const naviagteToArtist = () => {
-        navigate('/station')
+    // passing station id on navigate to build page
+    function naviagteToArtist(stationId) {
+        navigate(`/station/${stationId}`);
     }
 
     return (
         <div className="carouselComponent">
-        <h2 className="displayName">{displayName}</h2>
+        <h1 className="displayName">{displayName}</h1>
         <div className="carouselDisplay">
             {stationList.map(station => (
-            <div key={station.id} className="card" onClick={naviagteToArtist}>
+            <div key={station.id} className="card" onClick={() => naviagteToArtist(station.id)}>
                 <img src={station.logoUrl} alt={station.name} />
                 <div className="cardContents">
                 <h3>{station.name}</h3>

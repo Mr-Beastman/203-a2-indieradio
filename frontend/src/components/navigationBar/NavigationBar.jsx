@@ -28,7 +28,8 @@ export default function NavigationBar() {
       {/* menu for desktop view */}
       <nav>
         <ul className="navMenu">
-          <li><NavLink to="/liveNow" activeclassname="active">Live Now</NavLink></li>
+          {/* temp removal of live now as currently unrequired */}
+          {/* <li><NavLink to="/liveNow" activeclassname="active">Live Now</NavLink></li> */}
           <li><NavLink to="/showBrowser" activeclassname="active">Show Browser</NavLink></li> 
           <li><NavLink to="/localspotlight" activeclassname="active">Local Spotlight</NavLink></li>
         </ul>

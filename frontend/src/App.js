@@ -31,7 +31,7 @@ function App() {
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/station" element={<StationPage />} />
+          <Route path="/station/:id" element={<StationPage />} />
           <Route path="/localSpotlight" element={<LocalSpotlight />} />
           <Route path="/register" element={<Registration />} />
           <Route path="/login" element={<Login />} />
