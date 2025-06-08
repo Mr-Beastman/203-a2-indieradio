@@ -16,7 +16,6 @@
 .stationDetials h1 {
   font-size: 2.8rem;
   margin-bottom: 10px;
-  color: #ff0050;
   letter-spacing: 1px;
   text-transform: uppercase;
 }
@@ -38,7 +37,7 @@
 .rightContent {
   background-color: #1e1e1e;
   border-radius: 12px;
-  box-shadow: 0 0 10px rgba(255, 0, 80, 0.15);
+  box-shadow: 0 0 10px #FF005026;
   padding: 15px;
   display: flex;
   align-items: center;
@@ -53,25 +52,61 @@
   flex: 2;
 }
 
-/* chat placeholder */
+/* chat placeholder*/
+/* hardcoded image to display look once chat implemented */
 .chatWindow {
+  position: relative;
   width: 100%;
   height: 100%;
-  background-color: #eee;
+  background-image: url('https://chromeunboxed.com/wp-content/uploads/2021/08/Google-Chat-Dark-Mode-1-1.png');
+  background-size: cover;
+  background-position: center;
   border: 1px solid #bbb;
   border-radius: 8px;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-style: italic;
-  color: #666;
 }
 
-.chatWindow .placeHolder {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
+/* Blur + overlay */
+.chatWindow::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  backdrop-filter: blur(6px);
+  background-color: #00000057;
+  z-index: 1;
+  border-radius: 8px;
+}
+
+/* Sign-in content */
+.chatWindow .loginOverlay {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: white;
+}
+
+.chatWindow .loginOverlay p {
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+}
+
+.chatWindow .loginOverlay button {
+  background: #ff0050;
+  border: none;
+  color: white;
+  padding: 10px 20px;
   border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.chatWindow .loginOverlay button:hover {
+  background: #ff3366;
 }
 
 /* sections */
@@ -84,31 +119,28 @@
 .section h3 {
   font-size: 2.2rem;
   margin-bottom: 30px;
-  color: #ff0050;
   letter-spacing: 1px;
   text-transform: uppercase;
 }
 
 /* card grid */
 .card-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 30px;
-  margin-top: 20px;
-  padding: 0 10px;
+  display: flex;
+  justify-content: center;
+  gap: 5rem;
 }
 
 .card {
   background: #1e1e1e;
   padding: 25px;
   border-radius: 16px;
-  box-shadow: 0 0 10px rgba(255, 0, 80, 0.15);
+  box-shadow: 0 0 10px #FF005026;
   transition: all 0.3s ease-in-out;
 }
 
 .card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 0 20px rgba(255, 0, 80, 0.25);
+  box-shadow: 0 0 20px #FF005026;
 }
 
 .card h4 {
@@ -178,7 +210,9 @@ a:hover {
   }
 
   .card-grid {
-    gap: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .card {

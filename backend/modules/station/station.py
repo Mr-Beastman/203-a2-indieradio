@@ -44,7 +44,9 @@ def getStationById(id):
         'id': station.id,
         'channelName': station.channelName,
         'streamUrl': station.streamUrl,
-        'logo': station.logo
+        'logo': station.logo,
+        'tag' : station.tagLine,
+        'bio' :station.bio
     }
 
     return jsonify(stationData)

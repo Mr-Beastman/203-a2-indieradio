@@ -13,6 +13,8 @@ class Artist(database.Model):
     password = database.Column(database.String(100), nullable=False)
     logo = database.Column(database.String(100))
     live = database.Column(database.Integer)
+    tagLine = database.Column(database.String(255))
+    bio = database.Column(database.String(255))
 
 class User(database.Model):
     __tablename__ = 'userData'

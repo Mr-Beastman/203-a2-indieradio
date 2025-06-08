@@ -25,7 +25,7 @@ export default function StationPage() {
 
       <div className="stationDetials">
         <h1>{stationData.channelName}</h1>
-        <p>station Tagline</p>
+        <p>{stationData.tag}</p>
       </div>
 
       
@@ -34,11 +34,18 @@ export default function StationPage() {
           <AudioPlayer 
             streamUrl={stationData.streamUrl}
             streamLogo={stationData.logo}
+            showName = {false}
+            showTag = {false}
+            showBio = {true}
+            streamBio = {stationData.bio}
           />
         </div>
         <div className="rightContent">
           <div className="chatWindow">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3vrTUU3CKbUDThpm8aZzFXdTmai6PodNfXA&s" alt="temp" className="placeHolder" />
+            <div className="loginOverlay">
+              <p>Sign in to join the discussion!</p>
+              <button onClick = {()=>alert("Will redirect to sign in")}> Sign in </button>
+            </div>
           </div>
         </div>
       </div>
@@ -62,7 +69,8 @@ export default function StationPage() {
         </div>
       </section>
 
-      <section className="section" id="archive">
+      {/* temporaily removed as archive has not be set up in database */}
+      {/* <section className="section" id="archive">
         <h3>On Demand</h3>
         <div className="card-grid">
           <div className="card">
@@ -82,7 +90,7 @@ export default function StationPage() {
             </p>
           </div>
         </div>
-      </section>
+      </section> */}
       
     </div>
   );
