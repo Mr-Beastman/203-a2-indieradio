@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from database.models import database, Artist, User
+from database.models import database, Station, User
 from modules.utilities.utilities import usernameCheck, emailCheck
 
 
@@ -8,12 +8,12 @@ registrationBP = Blueprint('registrationBP', __name__)
 
 
 @registrationBP.route('/register/artist', methods=['POST'])
-def registerArtist():
-    artistData = request.get_json()
+def registerStation():
+    stationData = request.get_json()
 
     # check if username is in use
-    checkUsername = artistData.get('username').lower()
-    checkEmail = artistData.get('email').lower()
+    checkUsername = stationData.get('username').lower()
+    checkEmail = stationData.get('email').lower()
 
     #temp terminal display for testing
     print("Checking Username : " + checkUsername)
@@ -28,17 +28,21 @@ def registerArtist():
     # valid username/email entered
     print("Check Results : No dublicates found")
     
-    artist = Artist(
-        firstName = artistData['firstName'].lower(),
-        lastName = artistData['lastName'].lower(),
-        username = artistData['username'].lower(),
-        channelName = artistData['channelName'].lower(),
-        streamUrl = artistData['streamUrl'].lower(),
-        email = artistData['email'].lower(),
-        password = artistData['password']
+    station = Station(
+        firstName = stationData['firstName'].lower(),
+        lastName = stationData['lastName'].lower(),
+        username = stationData['username'].lower(),
+        channelName = stationData['channelName'].lower(),
+        streamUrl = stationData['streamUrl'].lower(),
+        email = stationData['email'].lower(),
+        password = stationData['password'],
+        logo =stationData['logo'],
+        live = 0,
+        tagLine =stationData['tagLine'],
+        bio = stationData['bio']
     )
 
-    database.session.add(artist)
+    database.session.add(station)
     database.session.commit()
 
     return jsonify({'message':'Arist Registered'})

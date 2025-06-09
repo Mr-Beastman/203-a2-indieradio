@@ -13,11 +13,10 @@ import Home from './pages/home/Home'
 import DJDashboard from './pages/dashboards/djDashboard/DJDashboard'
 import UserDashboard from './pages/dashboards/listenerDashboard/ListenerDashboard'
 import StationPage from './pages/stationPage/StationPage'
-import LocalSpotlight from './pages/localSpotlight/LocalSpotlight'
+import ArtistSpotlight from './pages/ArtistSpotlight/ArtistSpotlight'
 import Registration from './pages/entry/registration/Registration'
 import Login from './pages/entry/login/Login'
 import StationBrowser from './pages/stationBrowser/StationBrowser'
-import LiveNow from './pages/liveNow/LiveNow'
 
 
 function App() {
@@ -32,13 +31,12 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/station/:id" element={<StationPage />} />
-          <Route path="/localSpotlight" element={<LocalSpotlight />} />
+          <Route path="/artistSpotlight" element={<ArtistSpotlight />} />
           <Route path="/register" element={<Registration />} />
           <Route path="/login" element={<Login />} />
           <Route path="/djDashboard"  element={<DJDashboard />} />
           <Route path="/userDashboard"  element={<UserDashboard />} />
           <Route path="/stationBrowser"  element={<StationBrowser />} />
-          <Route path="/liveNow"  element={<LiveNow />} />
         </Routes>
       </main>
       

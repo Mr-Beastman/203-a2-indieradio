@@ -1,18 +1,18 @@
 from flask import jsonify
 
 # build list from route query
-def buildList(djs):
+def buildList(artists):
     # create list to hold stations
-    djList = []
+    artistList = []
 
     # populate list
-    for dj in djs:
-        djList.append({
-            "id" : dj.id,
-            "name" : dj.name,
-            "bio" : dj.bio,
-            "display" : dj.displayPicture,
-            "demo" : dj.demoVideo
+    for artist in artists:
+        artistList.append({
+            "id" : artist.id,
+            "name" : artist.name,
+            "bio" : artist.bio,
+            "display" : artist.displayPicture,
+            "demo" : artist.demoVideo
         })
 
-    return jsonify(djList)
+    return jsonify(artistList)

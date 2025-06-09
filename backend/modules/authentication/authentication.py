@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from database.models import database, Artist, User
+from database.models import database, Station, User
 
 from modules.utilities.utilities import usernameCheck, emailCheck
 
@@ -11,7 +11,7 @@ def login():
     loginDetails = request.get_json()
 
     # default usertype is artist
-    userType = "artist"
+    userType = "station"
 
     # check if username exists
     checkUsername = loginDetails.get('username').lower()
@@ -20,9 +20,9 @@ def login():
         return jsonify({"success" : False, "message" : "No account with that username"})
     
     # if account is valid, grab account details
-    account = database.session.query(Artist).filter_by(username=checkUsername).first()
+    account = database.session.query(Station).filter_by(username=checkUsername).first()
 
-    # if artist account not found, query userData
+    # if station account not found, query userData
     if not account:
         account = database.session.query(User).filter_by(username=checkUsername).first()
         userType = "listener"

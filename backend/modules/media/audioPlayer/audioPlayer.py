@@ -4,7 +4,6 @@ import requests
 audioPlayerBP = Blueprint('audioPlayerBP', __name__)
 
 # quick coded media player to handle display and streaming for testing purposes.
-
 # most code is now redundent as we are pulling from the database. Will need to review what can be taken.
 
 @audioPlayerBP.route('/nowPlaying')
@@ -35,16 +34,3 @@ def nowPlaying():
         "language": "English",
         "current_song": current_song
     })
-
-# ====== starting to expand stream functions below this line ======
-
-@audioPlayerBP.route('/streamStation')
-def streamStation():
-    # hardcoded url for testing - taken from https://dir.xiph.org/
-    streamUrl = request.args.get('url','http://digitalaudiobroadcasting.net:8015/stream')
-
-    try:
-        audio = requests.get(streamUrl, stream=True)
-        return Response(audio.iter_content(chunk_size = 1024), content_type='audio/mpeg')
-    except Exception as error:
-        return f"Error : {str(error)}"

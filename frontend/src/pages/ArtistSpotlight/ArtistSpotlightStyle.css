@@ -1,0 +1,30 @@
+
+.localSpotlight {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+  
+.localSpotlight h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+  
+.localSpotlight p {
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+}
+
+.allGrid, .pageIntro {
+    margin-top: 2rem;
+    width: 85%;
+    background-color: rgba(0, 0, 0, 0.616);
+    padding: 2rem;
+    border-radius: 25px;
+}
+
+.pageIntro {
+    text-align: center;
+}

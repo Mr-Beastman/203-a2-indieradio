@@ -1,11 +1,6 @@
-/* media section */
+/* main page */
 
 .homePage{
-  background-image: url('./Hero.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
   display: flex;
   flex-direction: column;
   padding-top: 4rem;
@@ -15,6 +10,7 @@
   gap: 3rem
 }
 
+/* top column layout */
 .twoColumnSection {
   display: flex;
   width: 85%;
@@ -23,6 +19,13 @@
   flex-wrap: wrap;
 }
 
+.leftColumn,
+.rightColumn {
+  flex: 1 1 45%;
+  box-sizing: border-box;
+  background-color: #111111ab;
+  border-radius: 25px;
+}
 .leftColumn {
   max-width: 40%;
   padding: 2rem;
@@ -34,19 +37,21 @@
   font-size: 3rem;
 }
 
-.leftColumn,
-.rightColumn {
-  flex: 1 1 45%;
-  box-sizing: border-box;
+.stationDisplay {
   background-color: #111111ab;
   border-radius: 25px;
+  padding: 2rem;
+  margin-bottom: 2rem;
 }
+
+/* website tagline */
 
 .tagline {
   font-size: 2rem;
   font-weight: bold;
 }
 
+/* buttons */
 .getStarted {
   width: 100%;
   align-items: right;
@@ -61,19 +66,42 @@
   font-size: 1.5rem;
 }
 
+/* carousel */
 .stationDisplay{
   width: 85%;
 }
 
+/* mobile */
 @media (max-width: 768px) {
   .twoColumnSection {
     flex-direction: column;
-    align-items: center;
+    width:85%;
   }
 
   .leftColumn,
   .rightColumn {
     width: 100%;
+    max-width: 100%;
     text-align: center;
+    padding: 1.5rem;
+  }
+
+  .tagline {
+    font-size: 1.5rem;
+  }
+  
+
+  .rightColumn h1 {
+    font-size: 1.75rem;
+    padding: 0;
+  }
+
+  .getStarted button {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+  }
+
+  .stationDisplay {
+    width: 85%;
   }
 }

@@ -1,7 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './StationGridStyle.css';
-import '../../globalStyle.css';
 
 export default function StationGrid({ displayName = "stations", stationList = [] }) {
   const navigate = useNavigate();

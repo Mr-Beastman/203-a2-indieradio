@@ -4,11 +4,15 @@ import {React, useState, useEffect} from 'react'
 import './StationBrowserStyle.css'
 
 // import components 
-import StationCarousel from '../../components/stationCarousel/StationCarousel';
-import StationGrid from '../../components/stationGrid/StationGrid';
+import StationCarousel from '../../components/browsers/station/stationCarousel/StationCarousel';
+import StationGrid from '../../components/browsers/station/stationGrid/StationGrid';
 
 export default function ShowBrowser() {
-  
+
+  //variable for browser text
+  const liveTitle = 'Checkout these stations streaming now!'
+  const allTitle = 'Or find  a new favourite and see when they are next on!'
+
   // pulling live stations from database
   const[liveStations, setLiveStations] = useState([])
   const[allStations, setAllStations] = useState([])
@@ -32,13 +36,11 @@ export default function ShowBrowser() {
   return (
       <div className="pageContent">
         <div className="liveDisplay">
-          <h1>Checkout whos Currently airing right now!</h1>
-          <StationCarousel displayName='Currently Live' stationList={liveStations}/>
+          <StationCarousel displayName={liveTitle} stationList={liveStations}/>
         </div>
 
        <div className="allDisplay">
-        <h1>Find a new favourite and see when they are next on!</h1>
-        <StationGrid displayName='All Stations' stationList={allStations}/>
+        <StationGrid displayName={allTitle} stationList={allStations}/>
       </div>
              
       </div>

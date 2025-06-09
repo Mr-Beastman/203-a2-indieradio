@@ -56,7 +56,6 @@ export default function LoginForm() {
   //visual elements of componet
   return (
     <div className="loginForm">
-
       <h1 className="title">Sign In</h1>
       <p>Don't have an account? <NavLink to="/register" className="register">Sign Up</NavLink></p>
 

@@ -4,28 +4,30 @@
   left: 0;
   height: 100vh;
   width: 100vw;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(51, 51, 51, 0.85);;
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
+  z-index: 9999;
+  backdrop-filter: blur(4px);
 }
 
 .overlayContent {
-  background: #fff;
+  background: black;
   border-radius: 12px;
   padding: 2rem;
   width: 90%;
   max-width: 600px;
   position: relative;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
 }
 
 .closeButton {
+  background: red;
   position: absolute;
   top: 12px;
   right: 16px;
   font-size: 24px;
-  background: none;
   border: none;
   cursor: pointer;
 }

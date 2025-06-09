@@ -1,7 +1,7 @@
 from flask import jsonify
 import requests, threading
 from database.database import database
-from database.models import Artist
+from database.models import Station
 
 stop_event = threading.Event()
 
@@ -36,7 +36,7 @@ def checkStationActive(url):
 def updateLiveStatus(app):
     with app.app_context():
         try:
-            stations = Artist.query.all()
+            stations = Station.query.all()
             for station in stations:
                 if checkStationActive(station.streamUrl):
                     if station.live != 1:

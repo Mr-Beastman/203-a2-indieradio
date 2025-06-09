@@ -1,11 +1,16 @@
+# import flask
 from flask import Flask
 from flask_cors import CORS
-from modules.media.audioPlayer import audioPlayerBP
+
+# import from modules
+from modules.media.audioPlayer.audioPlayer import audioPlayerBP
 from modules.registration.registration import registrationBP
 from modules.authentication.authentication import authenticationBP
 from modules.station.stationRoutes import stationBP
 from modules.artist.artistRoutes import artistBP
-from modules.station.stationRoutes import updateLiveStatus
+from modules.station.stationUtilities import updateLiveStatus
+
+# import database
 from database.database import database 
 
 import os

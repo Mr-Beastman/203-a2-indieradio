@@ -1,5 +1,6 @@
 import React from 'react';
-// import './ArtistOverlayStyle.css';
+import './ArtistOverlayStyle.css';
+import YoutubePlayer from '../../../media/youtubePlayer/YoutubePlayer'
 
 export default function ArtistOverlay({ artist, onClose }) {
   if (!artist) return null;
@@ -11,17 +12,8 @@ export default function ArtistOverlay({ artist, onClose }) {
         <img src={artist.display} alt={artist.name} className="overlayImage" />
         <h2>{artist.name}</h2>
         <p>{artist.bio}</p>
-
-        {artist.demo && (
-          <iframe
-            width="100%"
-            height="315"
-            src={artist.demoVideo}
-            title="Demo Video"
-            frameBorder="0"
-            allowFullScreen
-          ></iframe>
-        )}
+        <h2>See them in action!</h2>
+        <YoutubePlayer url={artist.demo}/>
       </div>
     </div>
   );

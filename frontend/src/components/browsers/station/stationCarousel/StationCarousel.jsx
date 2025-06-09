@@ -1,7 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './StationCarouselStyle.css';
-import '../../globalStyle.css';
 
 
 // display browser with change title/contents

@@ -1,7 +1,5 @@
 import { React, useEffect, useState }  from 'react';
-import './AudioPlayer.css';
-
-import { CiHeart } from "react-icons/ci";
+import './AudioPlayerStyle.css';
 
 // 
 export default function AudioPlayer({stationId, showName = true, showTag = true, showBio = false}) {
@@ -36,7 +34,8 @@ export default function AudioPlayer({stationId, showName = true, showTag = true,
                 <audio controls preload='auto'>
                   <source src={stationData.streamUrl} type="audio/mpeg" />
                 </audio>
-                <h3>Now Playing</h3>
+                {/* out while testing metadata retrival */}
+                {/* <h3>Now Playing</h3> */}
               </>
             ) : (
               <p>Loading Stream</p>
@@ -53,7 +52,6 @@ export default function AudioPlayer({stationId, showName = true, showTag = true,
       {/* display only if showBio true */}
       <div className="botContent">
           { showBio && (<p>{stationData.bio}</p>)}
-          <CiHeart />
       </div>
     </div>
   );

@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 // style sheet
-import './ArtistRegistrationStyle.css';
+import './StationRegistrationStyle.css';
 
 // utilities
 import * as utilities from '../../../utilities/utilities';
@@ -17,6 +17,9 @@ export default function ArtistRegistrationForm() {
     streamUrl: '',
     email: '',
     password: '',
+    logo: '',
+    tagLine: '',
+    bio: ''
   });
 
   // set error state to be updated if applicable
@@ -78,6 +81,9 @@ export default function ArtistRegistrationForm() {
         <label>Stream Url: <input type="text" name="streamUrl" value={formInputs.streamUrl} onChange={updateInputs} /></label>
         <label>Email: <input type="text" name="email" value={formInputs.email} onChange={updateInputs} /></label>
         <label>Password: <input type="password" name="password" value={formInputs.password} onChange={updateInputs} /></label>
+        <label>Logo Url: <input type="logo" name="logo" value={formInputs.logo} onChange={updateInputs} /></label>
+        <label>Tag Line: <input type="tagLine" name="tagLine" value={formInputs.tagLine} onChange={updateInputs} /></label>
+        <label>Sation Bio: <input type="bio" name="bio" value={formInputs.bio} onChange={updateInputs} /></label>
         <button type="submit">Submit</button>
       </form>
 

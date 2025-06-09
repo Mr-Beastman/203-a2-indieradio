@@ -1,5 +1,5 @@
 import { React, useState } from 'react';
-import '../../globalStyle.css';
+import './ArtistGridStyle.css'
 
 // import components
 import ArtistOverlay from '../artistOverlay/ArtistOverlay';
@@ -9,8 +9,9 @@ export default function ArtistGrid({ displayName = "Artists", djList = [] }) {
 
 
   return (
+    <>
     <div className="gridComponent">
-      <h1 className="displayName">{displayName}</h1>
+      <h2 className="displayName">{displayName}</h2>
       <div className="gridDisplay">
         {djList.map(dj => (
           <div key={dj.id} className="card" onClick={() => setSelectedArtist(dj)}>
@@ -21,8 +22,9 @@ export default function ArtistGrid({ displayName = "Artists", djList = [] }) {
           </div>
         ))}
       </div>
-
-      <ArtistOverlay artist={selectedArtist} onClose={() => setSelectedArtist(null)} />
     </div>
+
+    <ArtistOverlay artist={selectedArtist} onClose={() => setSelectedArtist(null)} />
+  </>
   );
 }

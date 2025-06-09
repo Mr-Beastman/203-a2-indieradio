@@ -14,7 +14,7 @@
 
 .audioPlayer h2 {
   font-size: 2rem;
-  margin: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .audioPlayer .leftColumn, 
@@ -25,12 +25,32 @@
 .audioPlayer .rightColumn {
   display: flex;
   flex-direction: column;
-  padding-top: 1rem;
-
-
+  justify-content: center;
 }
 
 .stationLogo {
   max-width: 100%;
   height: auto;
+  border-radius: 25px;
+}
+
+@media (max-width: 768px) {
+  .topContent {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .stationLogo {
+    max-width: 125px;
+    max-height: 125px;
+  }
+
+  .audioPlayer h2 {
+    font-size: 1.25rem;
+  }
+
+  .botContent {
+    text-align: center;
+  }
 }

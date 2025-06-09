@@ -17,7 +17,7 @@ export default function StationPage() {
     .then(response => response.json())
     .then(data => setStationData(data))
     .catch(err => console.error("Couldn't fetch station data", err))
-  }, [])
+  }, [id])
 
 
   return (
@@ -67,7 +67,7 @@ export default function StationPage() {
         </div>
       </section>
 
-      {/* temporaily removed as archive has not be set up in database */}
+      {/* temporaily removed as archive has not been set up in database */}
       {/* <section className="section" id="archive">
         <h3>On Demand</h3>
         <div className="card-grid">

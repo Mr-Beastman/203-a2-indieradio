@@ -1,7 +1,7 @@
 from database.database import database
 
-class Artist(database.Model):
-    __tablename__ = 'artistData'
+class Station(database.Model):
+    __tablename__ = 'stationData'
 
     id = database.Column(database.Integer, primary_key=True)
     firstName = database.Column(database.String(100))
@@ -19,14 +19,15 @@ class Artist(database.Model):
 class User(database.Model):
     __tablename__ = 'userData'
 
+
     username = database.Column(database.String(100), nullable=False, primary_key=True, unique=True)
     firstName = database.Column(database.String(100))
     lastName = database.Column(database.String(100))
     email = database.Column(database.String(100), nullable=False, unique=True)
     password = database.Column(database.String(100), nullable=False)
 
-class Dj(database.Model):
-    __tablename__ = 'djData'
+class Artist(database.Model):
+    __tablename__ = 'artistData'
 
     id = database.Column(database.Integer, primary_key=True)
     name = database.Column(database.String(100))

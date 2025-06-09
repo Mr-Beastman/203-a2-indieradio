@@ -1,13 +1,13 @@
-from database.models import database, Artist, User
+from database.models import database, Station, User
 
 ## check database if username in use across both tables
 ## arguments : username to check
 ## retunrs : True/False
 def usernameCheck(username):
-    artistUsername =  database.session.query(Artist).filter_by(username=username).first() is not None
+    stationUsername =  database.session.query(Station).filter_by(username=username).first() is not None
     userUsername =  database.session.query(User).filter_by(username=username).first() is not None
 
-    if(artistUsername or userUsername):
+    if(stationUsername or userUsername):
         return True
     else:
         return False
@@ -16,11 +16,11 @@ def usernameCheck(username):
 ## arguments : email check
 ## retunrs : True/False
 def emailCheck(email):
-    artistEmail= database.session.query(Artist).filter_by(email=email).first() is not None
+    stationEmail= database.session.query(Station).filter_by(email=email).first() is not None
     userEmail = database.session.query(User).filter_by(email=email).first() is not None
     
 
-    if(artistEmail or userEmail):
+    if(stationEmail or userEmail):
         return True
     else:
         return False

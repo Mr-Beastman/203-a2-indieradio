@@ -1,19 +1,14 @@
 .carouselComponent {
     width: 100%;
-    padding: 2rem;
-    background-color: #111111ab;
-    color: #fff;
-    border-radius: 25px;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1rem;
 }
 
 .carouselDisplay {
     display: flex;
     gap: 1rem;
     scroll-behavior: smooth;
-    padding-bottom: 1rem;
 }
 
 .card {
