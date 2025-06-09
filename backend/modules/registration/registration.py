@@ -45,7 +45,7 @@ def registerStation():
     database.session.add(station)
     database.session.commit()
 
-    return jsonify({'message':'Arist Registered'})
+    return jsonify({'message':'Station Registered'})
 
 @registrationBP.route('/register/user', methods=['POST'])
 def registerUser():

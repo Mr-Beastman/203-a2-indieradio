@@ -51,16 +51,24 @@ export default function UserRegistrationForm({ detectInputs }) {
 
     // try to connect 
     try {
-      const response = await utilities.postData('http://localhost:5001/register/user', formInputs)
+      // post formInputs and check response
+      const reponse = await fetch( 
+        'http://localhost:5001/register/user', {
+          method: 'POST',
+          headers: {'content-type':'application/json'},
+          body: JSON.stringify(formInputs)
+        });
+      
+      const result = await reponse.json();
 
-      if(response.ok){
+      if(reponse.ok){
         console.log('Success : User regsitered in database');
         // clearing error messagae on access
         setErrorMessage('')
         // on success navigate to login page
         navigate("/login")
       } else {
-        setErrorMessage(response.error || 'Unable to Register')
+        setErrorMessage(reponse.error || 'Unable to Register')
         console.log(errorMessage)
       }
     } catch(error) {

@@ -47,5 +47,6 @@ export async function postData(url, data) {
     headers: {'content-type' : 'application/json'},
     body: JSON.stringify(data)
   });
-  return response.json()
+  const json = await response.json();
+  return { ok: response.ok, status: response.status, ...json };
 }

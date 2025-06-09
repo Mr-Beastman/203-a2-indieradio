@@ -44,5 +44,5 @@ app.register_blueprint(artistBP)
 if __name__ == '__main__':
     with app.app_context():
         database.create_all()
-        updateLiveStatus(app)
+        # updateLiveStatus(app)
     app.run(debug=True, port=5001)
