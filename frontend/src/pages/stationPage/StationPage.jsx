@@ -32,12 +32,10 @@ export default function StationPage() {
       <div className="stationMedia">
         <div className="leftContent">
           <AudioPlayer 
-            streamUrl={stationData.streamUrl}
-            streamLogo={stationData.logo}
+            stationId={id}
             showName = {false}
             showTag = {false}
             showBio = {true}
-            streamBio = {stationData.bio}
           />
         </div>
         <div className="rightContent">
@@ -50,7 +48,7 @@ export default function StationPage() {
         </div>
       </div>
       
-
+      {/* hardcoded for display, will populate when atrits tools built */}
       <section className="section" id="schedule">
         <h3>Weekly Schedule</h3>
         <div className="card-grid">

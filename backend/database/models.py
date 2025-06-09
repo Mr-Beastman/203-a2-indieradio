@@ -24,3 +24,12 @@ class User(database.Model):
     lastName = database.Column(database.String(100))
     email = database.Column(database.String(100), nullable=False, unique=True)
     password = database.Column(database.String(100), nullable=False)
+
+class Dj(database.Model):
+    __tablename__ = 'djData'
+
+    id = database.Column(database.Integer, primary_key=True)
+    name = database.Column(database.String(100))
+    bio = database.Column(database.String(255))
+    displayPicture = database.Column(database.String(255))
+    demoVideo = database.Column(database.String(255))

@@ -1,17 +1,24 @@
-import React from 'react';
+import {React, useState, useEffect } from 'react';
 
 import './LocalSpotlight.css';
-import bannerImage from './images/local-spotlight-banner.png';
+import DjGrid from '../../components/artistGrid/ArtistGrid';
 
 export default function LocalSpotlight() {
+  
+  // pulling current artsits from database
+  const[currentArtists, setcurrentArtists] = useState([])
+
+  useEffect(() => {
+     fetch('http://localhost:5001/artist/getArtists')
+    .then(response => response.json())
+    .then(data => setcurrentArtists(data))
+    .catch(err => console.error("Issue fetching stations", err));
+  }, []);
+
+  console.log({currentArtists})
   return (
     <div className="localSpotlight">
-      <h1>Local Spotlight</h1>
-      <p>Showcasing the finest underground talent from Aotearoa.</p>
-
-      <div className="spotlightBanner">
-        <img src={bannerImage} alt="Local Artists Banner" />
-      </div>
+      <DjGrid displayName='All Artists' djList={currentArtists}/>
     </div>
   );
 }

@@ -1,39 +1,58 @@
-import React from 'react';
+import { React, useEffect, useState }  from 'react';
 import './AudioPlayer.css';
 
 import { CiHeart } from "react-icons/ci";
 
+// 
+export default function AudioPlayer({stationId, showName = true, showTag = true, showBio = false}) {
+  const [stationData, setStationData] = useState({});
 
-export default function AudioPlayer({streamUrl, streamLogo, streamBio, showName = true, showTag = true, showBio = false}) {
+    useEffect(() => {
+      if (stationId) {
+        fetch(`http://localhost:5001/station/${stationId}`)
+          .then(response => response.json())
+          .then(data => setStationData(data))
+          .catch(err => console.error("Couldn't fetch station data", err));
+      }
+    }, [stationId]);
 
   return (
     <div className="audioPlayer">
       <div className="topContent">
         <div className="leftColumn">
-          <img src={streamLogo} alt="playingLogo" className="stationLogo" />
+          <img src={stationData.logo} alt="playingLogo" className="stationLogo" />
         </div>
         <div className="rightColumn">
 
           {/* diplay only if params are true */}
-          {showName && <h2>Station Name</h2> }
-          {showTag && <h2>Station Tag</h2> }
+          {showName && <h2>{stationData.channelName}</h2> }
+          {showTag && <h2>{stationData.tagLine}</h2> }
 
 
           {/* conditonal check to handle rendering before the stream is ready */}
-          {streamUrl ? (
-          <audio controls preload='auto'>
-            <source src={streamUrl} type="audio/mpeg" />
-          </audio>
+          {stationData.live ? (
+            stationData.streamUrl ? (
+              <>
+                <audio controls preload='auto'>
+                  <source src={stationData.streamUrl} type="audio/mpeg" />
+                </audio>
+                <h3>Now Playing</h3>
+              </>
+            ) : (
+              <p>Loading Stream</p>
+            )
           ) : (
-            <p>Loading Stream</p>
+            <div className="notLive">
+              <h2>Stream not live</h2>
+            </div>
+
           )}
-          <h3>Now Playing</h3>
-        </div>
+          </div>
       </div>
       
       {/* display only if showBio true */}
       <div className="botContent">
-          { showBio && (<p>{streamBio}</p>)}
+          { showBio && (<p>{stationData.bio}</p>)}
           <CiHeart />
       </div>
     </div>

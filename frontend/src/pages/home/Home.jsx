@@ -23,8 +23,8 @@ export default function Home() {
   }, []);
 
   //hardcode for testing
-  const toPlay = 'https://icecast.walmradio.com:8443/classic'
-  const logo = 'https://icecast.walmradio.com:8443/classic.jpg'
+  const toPlay = 4
+
 
   return (
 
@@ -49,8 +49,7 @@ export default function Home() {
         <div className="rightColumn">
           <h1>Hot right now</h1>
           <AudioPlayer 
-            streamUrl={toPlay}
-            streamLogo={logo}
+            stationId={toPlay}
           />
         </div>
       </div>

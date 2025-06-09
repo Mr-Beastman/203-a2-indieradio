@@ -30,8 +30,8 @@ export default function NavigationBar() {
         <ul className="navMenu">
           {/* temp removal of live now as currently unrequired */}
           {/* <li><NavLink to="/liveNow" activeclassname="active">Live Now</NavLink></li> */}
-          <li><NavLink to="/showBrowser" activeclassname="active">Show Browser</NavLink></li> 
-          <li><NavLink to="/localspotlight" activeclassname="active">Local Spotlight</NavLink></li>
+          <li><NavLink to="/stationBrowser" activeclassname="active">Show Browser</NavLink></li> 
+          <li><NavLink to="/localspotlight" activeclassname="active">Artist Spotlight</NavLink></li>
         </ul>
       </nav>
 

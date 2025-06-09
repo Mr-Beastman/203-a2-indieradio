@@ -3,7 +3,9 @@ from flask_cors import CORS
 from modules.media.audioPlayer import audioPlayerBP
 from modules.registration.registration import registrationBP
 from modules.authentication.authentication import authenticationBP
-from modules.station.station import stationBP
+from modules.station.stationRoutes import stationBP
+from modules.artist.artistRoutes import artistBP
+from modules.station.stationRoutes import updateLiveStatus
 from database.database import database 
 
 import os
@@ -30,7 +32,12 @@ app.register_blueprint(authenticationBP)
 #station blueprints
 app.register_blueprint(stationBP)
 
+#artist blueprints
+app.register_blueprint(artistBP)
+
+
 if __name__ == '__main__':
     with app.app_context():
         database.create_all()
+        # updateLiveStatus(app)
     app.run(debug=True, port=5001)
