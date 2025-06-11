@@ -1,6 +1,7 @@
 # import flask
 from flask import Flask
 from flask_cors import CORS
+import threading
 
 # import from modules
 from modules.media.audioPlayer.audioPlayer import audioPlayerBP
@@ -44,5 +45,5 @@ app.register_blueprint(artistBP)
 if __name__ == '__main__':
     with app.app_context():
         database.create_all()
-        # updateLiveStatus(app)
-    app.run(debug=True, port=5001)
+        threading.Thread(target=updateLiveStatus, args=(app,), daemon=True).start()
+    app.run(debug=True, port=5001, threaded = True)

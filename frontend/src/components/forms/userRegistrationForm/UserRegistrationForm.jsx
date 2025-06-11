@@ -58,8 +58,6 @@ export default function UserRegistrationForm({ detectInputs }) {
           headers: {'content-type':'application/json'},
           body: JSON.stringify(formInputs)
         });
-      
-      const result = await reponse.json();
 
       if(reponse.ok){
         console.log('Success : User regsitered in database');
