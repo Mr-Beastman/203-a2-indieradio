@@ -1,9 +1,11 @@
 import { React, useEffect, useState }  from 'react';
+import useGetCurrentSong from '../../../hooks/useGetCurrentSong';
 import './AudioPlayerStyle.css';
 
 // 
 export default function AudioPlayer({stationId, showName = true, showTag = true, showBio = false}) {
   const [stationData, setStationData] = useState({});
+  const nowPlaying = useGetCurrentSong(stationData.streamUrl)
 
     useEffect(() => {
       if (stationId) {
@@ -34,8 +36,9 @@ export default function AudioPlayer({stationId, showName = true, showTag = true,
                 <audio controls preload='auto'>
                   <source src={stationData.streamUrl} type="audio/mpeg" />
                 </audio>
-                {/* out while testing metadata retrival */}
-                {/* <h3>Now Playing</h3> */}
+
+                <h3>Now Playing</h3>
+                <h3>{nowPlaying ? nowPlaying : "No song info provided"}</h3>
               </>
             ) : (
               <p>Loading Stream</p>

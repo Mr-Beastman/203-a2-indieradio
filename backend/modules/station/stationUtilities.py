@@ -5,7 +5,7 @@ from database.models import Station
 from sqlalchemy.orm import sessionmaker
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
-stop_event = threading.Event()
+
 
 # build list from route query
 def buildList(stations):
@@ -22,18 +22,21 @@ def buildList(stations):
 
     return jsonify(stationList)
 
+
+###################### Background Tasks ######################
+
+stop_event = threading.Event()
+
 # check if station active
 def checkStationActive(url):
     try:
-        headers = {'Ice-Metadata' : '1'}
+        headers = {'Ice-Metadata' : '1', 'User-Agent': 'Mozilla/5.0'}
         repsonse = requests.get(url, stream=True, timeout=5, headers=headers)
         contentType = repsonse.headers.get('Content-Type','')
         return "audio" in contentType
     except Exception as error:
         print(f"stream check failed for {url}: {error}")
         return False
-
-###################### Background Tasks ######################
 
 # uses seperate SQLAlchemy session for thread safety and only commits if changes present
 

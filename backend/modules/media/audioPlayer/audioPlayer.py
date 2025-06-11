@@ -9,28 +9,33 @@ audioPlayerBP = Blueprint('audioPlayerBP', __name__)
 @audioPlayerBP.route('/nowPlaying')
 
 def nowPlaying():
+    streamUrl = request.args.get('streamUrl')
+    headers = {'Icy-Metadata' : '1', 'User-Agent': 'Mozilla/5.0'}
+    
     try:
-        response = requests.get("https://icecast.walmradio.com:8443/status-json.xsl", timeout=5)
-        status = response.json()
+        response = requests.get(streamUrl, headers = headers, stream=True, timeout=5)
+        metaintHeader = response.headers.get('icy-metaint')
 
-        sources = status.get("icestats", {}).get("source", [])
-        if isinstance(sources, list):
-            source_info = next((s for s in sources if s.get("listenurl", "").endswith("/classic")), {})
-        else:
-            source_info = sources
+        if metaintHeader is None:
+            print("No metadata available")
+            return None
+    
+        metaint = int(metaintHeader)
+        stream = response.raw
 
-        current_song = source_info.get("title", "Unknown")
+        # skipping audio data
+        stream.read(metaint)
+        metadataLen = ord(stream.read(1)) * 16
 
-    except Exception as e:
-        print("Error fetching Icecast data:", e)
-        current_song = "Unknown"
+        if metadataLen > 0:
+            metadata = stream.read(metadataLen).decode('utf-8', errors='ignore')
+            for piece in metadata.split(';'):
+                if piece.strip().startswith("StreamTitle"):
+                    title = piece.split('=')[1].strip(" ' ")
+                    return jsonify({'title': title})
 
-    return jsonify({
-        "name": "Classic Vinyl HD",
-        "stream_url": "https://icecast.walmradio.com:8443/classic",
-        "genre": "Classic Hits, Jazz, Easy Listening",
-        "logo": "https://icecast.walmradio.com:8443/classic.jpg",
-        "homepage": "https://walmradio.com/classic",
-        "language": "English",
-        "current_song": current_song
-    })
+        return jsonify({'title': None})
+    
+    except Exception as error:
+        print(f"Failed to get current song : {error}")
+        return jsonify({'error' : 'Faild to get Metadata'}), 500
