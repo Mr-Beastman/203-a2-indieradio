@@ -29,10 +29,10 @@ def registerStation():
     print("Check Results : No dublicates found")
     
     station = Station(
-        firstName = stationData['firstName'].lower(),
-        lastName = stationData['lastName'].lower(),
+        firstName = stationData['firstName'],
+        lastName = stationData['lastName'],
         username = stationData['username'].lower(),
-        channelName = stationData['channelName'].lower(),
+        channelName = stationData['channelName'],
         streamUrl = stationData['streamUrl'].lower(),
         email = stationData['email'].lower(),
         password = stationData['password'],

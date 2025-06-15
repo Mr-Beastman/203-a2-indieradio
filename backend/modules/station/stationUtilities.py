@@ -30,7 +30,9 @@ stop_event = threading.Event()
 # check if station active
 def checkStationActive(url):
     try:
-        headers = {'Ice-Metadata' : '1', 'User-Agent': 'Mozilla/5.0'}
+        headers = {'Icy-Metadata': '1',
+            'User-Agent': 'WinampMPEG/5.09',
+            'Accept': '*/*',}
         repsonse = requests.get(url, stream=True, timeout=5, headers=headers)
         contentType = repsonse.headers.get('Content-Type','')
         return "audio" in contentType

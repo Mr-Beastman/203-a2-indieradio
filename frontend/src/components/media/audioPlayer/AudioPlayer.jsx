@@ -24,9 +24,11 @@ export default function AudioPlayer({stationId, showName = true, showTag = true,
         </div>
         <div className="rightColumn">
 
-          {/* diplay only if params are true */}
-          {showName && <h2>{stationData.channelName}</h2> }
-          {showTag && <h2>{stationData.tagLine}</h2> }
+          <div className="titleTag">
+            {/* diplay only if params are true */}
+            {showName && <h2>{stationData.channelName}</h2> }
+            {showTag && <p>{stationData.tag}</p> }
+          </div>
 
 
           {/* conditonal check to handle rendering before the stream is ready */}
@@ -36,9 +38,10 @@ export default function AudioPlayer({stationId, showName = true, showTag = true,
                 <audio controls preload='auto'>
                   <source src={stationData.streamUrl} type="audio/mpeg" />
                 </audio>
-
-                <h3>Now Playing</h3>
-                <h3>{nowPlaying ? nowPlaying : "No song info provided"}</h3>
+                <div className="playingInfo">
+                  <h3>Now Playing</h3>
+                  <p>{nowPlaying ? nowPlaying : "No song info provided"}</p>
+                </div>
               </>
             ) : (
               <p>Loading Stream</p>

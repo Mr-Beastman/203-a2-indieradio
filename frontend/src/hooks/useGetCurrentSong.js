@@ -1,4 +1,4 @@
-import { useState, useEffect, use } from 'react';
+import { useState, useEffect } from 'react';
 
 // reruns every 15 secs to check for new song info
 export default function useGetCurrentSong(streamUrl) {
@@ -31,7 +31,7 @@ export default function useGetCurrentSong(streamUrl) {
         };
 
         fetchNowPlaying()
-        const intervalId = setInterval(fetchNowPlaying, 15000)
+        const intervalId = setInterval(fetchNowPlaying, 30000)
 
         return () => {
           controller.abort()

@@ -10,7 +10,9 @@ audioPlayerBP = Blueprint('audioPlayerBP', __name__)
 
 def nowPlaying():
     streamUrl = request.args.get('streamUrl')
-    headers = {'Icy-Metadata' : '1', 'User-Agent': 'Mozilla/5.0'}
+    headers = {'Icy-Metadata': '1',
+                'User-Agent': 'WinampMPEG/5.09',
+                'Accept': '*/*',}
     
     try:
         response = requests.get(streamUrl, headers = headers, stream=True, timeout=5)
@@ -18,7 +20,7 @@ def nowPlaying():
 
         if metaintHeader is None:
             print("No metadata available")
-            return None
+            return jsonify({'title': None, 'message': 'No metadata available'}), 200
     
         metaint = int(metaintHeader)
         stream = response.raw

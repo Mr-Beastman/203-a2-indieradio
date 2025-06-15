@@ -29,7 +29,7 @@ export default function NavigationBar() {
       <nav>
         <ul className="navMenu">
           {/* temp removal of live now as currently unrequired */}
-          {/* <li><NavLink to="/liveNow" activeclassname="active">Live Now</NavLink></li> */}
+          <li><NavLink to="/stationDashboard" activeclassname="active">Dashbaord</NavLink></li>
           <li><NavLink to="/stationBrowser" activeclassname="active">Station Browser</NavLink></li> 
           <li><NavLink to="/artistSpotlight" activeclassname="active">Artist Spotlight</NavLink></li>
         </ul>

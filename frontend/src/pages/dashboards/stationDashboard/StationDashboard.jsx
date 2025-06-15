@@ -1,11 +1,11 @@
 import React from 'react';
 import { CalendarDays, Settings, Clock4 } from 'lucide-react';
-import './DJDashboardStyle.css';
+import './StationDashboardStyle.css';
 
 
 
 
-export default function DJDashboard() {
+export default function StationDashboard() {
   return (
     <div className="grid">
       {/* DJ Section */}

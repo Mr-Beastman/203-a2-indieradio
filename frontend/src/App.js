@@ -10,7 +10,7 @@ import Footer from './components/footer/Footer'
 
 // importing pages
 import Home from './pages/home/Home'
-import DJDashboard from './pages/dashboards/djDashboard/DJDashboard'
+import StationDashboard from './pages/dashboards/stationDashboard/StationDashboard'
 import UserDashboard from './pages/dashboards/listenerDashboard/ListenerDashboard'
 import StationPage from './pages/stationPage/StationPage'
 import ArtistSpotlight from './pages/ArtistSpotlight/ArtistSpotlight'
@@ -34,7 +34,7 @@ function App() {
           <Route path="/artistSpotlight" element={<ArtistSpotlight />} />
           <Route path="/register" element={<Registration />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/djDashboard"  element={<DJDashboard />} />
+          <Route path="/stationDashboard"  element={<StationDashboard />} />
           <Route path="/userDashboard"  element={<UserDashboard />} />
           <Route path="/stationBrowser"  element={<StationBrowser />} />
         </Routes>

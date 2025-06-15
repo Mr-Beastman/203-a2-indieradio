@@ -30,7 +30,7 @@ export default function Home() {
   }, []);
 
   //hardcode for testing
-  const toPlay = 4
+  const toPlay = 10
 
   // visual elements
   return (
