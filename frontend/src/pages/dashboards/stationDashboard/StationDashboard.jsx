@@ -1,57 +1,68 @@
-import React from 'react';
-import { CalendarDays, Settings, Clock4 } from 'lucide-react';
+import { React, useState } from 'react';
 import './StationDashboardStyle.css';
+import Calendar from 'react-calendar'
 
 
+// components
+import AudioPlayer from '../../../components/media/audioPlayer/AudioPlayer';
 
+// style
 
 export default function StationDashboard() {
+  // hardcoded station for testing
+  const stationID = 13
+  
+  const [selectedDate, setSelectedDate] = useState(new Date());
+
   return (
-    <div className="grid">
-      {/* DJ Section */}
-      <div className="card">
-        <div className="card-content">
-          <h2 className="flex items-center gap-2">
-            <Settings /> Show Settings
-          </h2>
-          <p>Manage your show title, description, and genre tags.</p>
-          <button className="button">Update Show</button>
-        </div>
-      </div>
+    <div className="stationDashboard">
 
-      <div className="card">
-        <div className="card-content">
-          <h2 className="flex items-center gap-2">
-            <CalendarDays /> Scheduler
-          </h2>
-          <p>Schedule your live broadcasts and upload pre-recorded content.</p>
-          <button className="button">Open Scheduler</button>
-        </div>
-      </div>
+      <section className="pageTop">
 
-      <div className="card">
-        <div className="card-content">
-          <h2 className="flex items-center gap-2">
-            <Clock4 /> Analytics
-          </h2>
-          <p>Track listeners, peak times, and location metrics.</p>
-          <button className="button">View Analytics</button>
-        </div>
-      </div>
+        {/* left side */}
+        <div className="leftSide">
+          {/* on air status */}
+          <div className="statusTools">
+            <h2>On-Air Controls</h2>
+            <button className="onAirButton">Live</button>
+            <button className="onAirButton">Offline</button>
+            <div className="status">
+              <strong>Status: </strong>
+              <span className="statusLive">LIVE</span>
+            </div>
+          </div>
 
-      {/* DJ Account Options */}
-      <div className="card">
-        <div className="card-content">
-          <h2>DJ Account Settings</h2>
-          <ul>
-            <li>Edit profile</li>
-            <li>Change password</li>
-            <li>Upload profile picture</li>
-            <li>Connect social media</li>
-          </ul>
+          {/* scheduling tools */}
+          <div className="schedulingTools">
+            <h2>Scheduling</h2>
+            <button className="button">Add / Edit Shows</button>
+            <div className="nextShow">
+              <strong>Next Show: </strong>
+              Place Holder Show 3:00pm
+            </div>    
+          </div>
+          {/* session details */}
+          <h2>Station Details</h2>
+          < AudioPlayer stationId={stationID} showLogo={false} showName={false} showTag={false}/>
         </div>
-      </div>
-      
+
+        {/* right side */}
+        <div className="rightSide">
+          <div className="chatWindow">
+            <div className="loginOverlay">
+              <p>Chat Window Heres</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="pageBottom">
+        <Calendar
+          onChange={setSelectedDate}
+          value={selectedDate}
+        />
+      </section>
+
     </div>
   );
 }

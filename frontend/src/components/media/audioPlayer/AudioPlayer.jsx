@@ -3,7 +3,7 @@ import useGetCurrentSong from '../../../hooks/useGetCurrentSong';
 import './AudioPlayerStyle.css';
 
 // 
-export default function AudioPlayer({stationId, showName = true, showTag = true, showBio = false}) {
+export default function AudioPlayer({stationId, showLogo = true, showName = true, showTag = true, showPlayer =true, showBio = false}) {
   const [stationData, setStationData] = useState({});
   const nowPlaying = useGetCurrentSong(stationData.streamUrl)
 
@@ -19,9 +19,11 @@ export default function AudioPlayer({stationId, showName = true, showTag = true,
   return (
     <div className="audioPlayer">
       <div className="topContent">
+        {showLogo &&
         <div className="leftColumn">
-          <img src={stationData.logo} alt="playingLogo" className="stationLogo" />
+           <img src={stationData.logo} alt="playingLogo" className="stationLogo" />
         </div>
+        }
         <div className="rightColumn">
 
           <div className="titleTag">
@@ -30,29 +32,28 @@ export default function AudioPlayer({stationId, showName = true, showTag = true,
             {showTag && <p>{stationData.tag}</p> }
           </div>
 
-
-          {/* conditonal check to handle rendering before the stream is ready */}
-          {stationData.live ? (
-            stationData.streamUrl ? (
-              <>
-                <audio controls preload='auto'>
-                  <source src={stationData.streamUrl} type="audio/mpeg" />
-                </audio>
-                <div className="playingInfo">
-                  <h3>Now Playing</h3>
-                  <p>{nowPlaying ? nowPlaying : "No song info provided"}</p>
-                </div>
-              </>
+          {showPlayer && (
+            stationData.live ? (
+              stationData.streamUrl ? (
+                <>
+                  <audio controls preload='auto'>
+                    <source src={stationData.streamUrl} type="audio/mpeg" />
+                  </audio>
+                  <div className="playingInfo">
+                    <h3>Now Playing</h3>
+                    <p>{nowPlaying ? nowPlaying : "No song info provided"}</p>
+                  </div>
+                </>
+              ) : (
+                <p>Loading Stream</p>
+              )
             ) : (
-              <p>Loading Stream</p>
+              <div className="notLive">
+                <h2>Stream not live</h2>
+              </div>
             )
-          ) : (
-            <div className="notLive">
-              <h2>Stream not live</h2>
-            </div>
-
           )}
-          </div>
+        </div>
       </div>
       
       {/* display only if showBio true */}
