@@ -5,6 +5,7 @@ import Calendar from 'react-calendar'
 
 // components
 import AudioPlayer from '../../../components/media/audioPlayer/AudioPlayer';
+import ChatWindow from '../../../components/chatWindow/ChatWindow';
 
 // style
 
@@ -48,11 +49,9 @@ export default function StationDashboard() {
 
         {/* right side */}
         <div className="rightSide">
-          <div className="chatWindow">
-            <div className="loginOverlay">
-              <p>Chat Window Heres</p>
-            </div>
-          </div>
+          <ChatWindow 
+          stationId={stationID}
+          username={"test"}/>
         </div>
       </section>
 

@@ -1,3 +1,4 @@
+from datetime import datetime
 from database.database import database
 
 class Station(database.Model):
@@ -34,3 +35,12 @@ class Artist(database.Model):
     bio = database.Column(database.String(255))
     displayPicture = database.Column(database.String(255))
     demoVideo = database.Column(database.String(255))
+
+class ChatMessage(database.Model):
+    __tablename__ = 'chatMessages'
+
+    id = database.Column(database.Integer, primary_key=True, autoincrement=True)
+    stationId = database.Column(database.String, nullable=False)
+    username = database.Column(database.String, nullable=False)
+    message = database.Column(database.Text, nullable=False)
+    timestamp = database.Column(database.DateTime, default=datetime.utcnow, nullable=False)

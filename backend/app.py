@@ -2,6 +2,7 @@
 from flask import Flask
 from flask_cors import CORS
 import threading
+from flask_socketio import SocketIO
 
 # import from modules
 from modules.media.audioPlayer.audioPlayer import audioPlayerBP
@@ -11,6 +12,7 @@ from modules.station.stationRoutes import stationBP
 from modules.artist.artistRoutes import artistBP
 from modules.station.stationUtilities import updateLiveStatus
 
+
 # import database
 from database.database import database 
 
@@ -18,6 +20,9 @@ import os
 
 app = Flask(__name__)
 CORS(app)
+
+socketIo = SocketIO(cors_allowed_origins="*")
+socketIo.init_app(app)
 
 # setting up database
 basedir = os.path.abspath(os.path.dirname(__file__))
@@ -41,9 +46,14 @@ app.register_blueprint(stationBP)
 #artist blueprints
 app.register_blueprint(artistBP)
 
+#chat blueprints
+from modules.chat.chatRoutes import chatBP, register_socketio_handlers
+app.register_blueprint(chatBP)
+register_socketio_handlers(socketIo)
+
 
 if __name__ == '__main__':
     with app.app_context():
         database.create_all()
         threading.Thread(target=updateLiveStatus, args=(app,), daemon=True).start()
-    app.run(debug=True, port=5001, threaded = True)
+    socketIo.run(app, debug=True, port=5001)
