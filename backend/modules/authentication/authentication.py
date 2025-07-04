@@ -1,5 +1,8 @@
 from flask import Blueprint, request, jsonify
 from database.models import database, Station, User
+import jwt
+
+authKey = "superSecret"
 
 from modules.utilities.utilities import usernameCheck, emailCheck
 
@@ -33,12 +36,19 @@ def login():
     enteredPassword = loginDetails.get('password')
 
     if enteredPassword == account.password:
+        # creating a JWT token
+        payload = {
+            'username': account.username,
+            'userType': userType,
+        }
+
+        authToken = jwt.encode(payload, authKey, algorithm="HS256")
+        
         #return success
         return jsonify({
             "success" : True,
             "message" : "Login Successful",
-            "userType" : userType,
-            "username" : account.username
+            "authToken" : authToken
         })
     else :
         # return fail

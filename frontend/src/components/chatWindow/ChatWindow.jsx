@@ -3,9 +3,10 @@ import React, { useEffect, useState } from 'react';
 
 // socket
 import io from 'socket.io-client';
+import { captializeWord } from '../../utilities/utilities';
 
 // style sheet
-import './ChatWindowStyle.css';
+// import './ChatWindowStyle.css';
 
 // constants
 const socket = io('http://localhost:5001');
@@ -57,14 +58,14 @@ export default function ChatWindow({ stationId, username }) {
   };
 
   // submit message to server
-  const onInputSubmit = (eSubmit) => {
+  const sendMessage = (eSubmit) => {
     eSubmit.preventDefault();
 
     if (!message.trim()) return;
 
     socket.emit('sendMessage', {
       stationId,
-      username,
+      username: captializeWord(username),
       message
     });
 
@@ -75,7 +76,7 @@ export default function ChatWindow({ stationId, username }) {
   return (
     <div className="chatWindow">
       <h2>Live Chat</h2>
-      <form onSubmit={onInputSubmit} className="display">
+      <form onSubmit={sendMessage} className="display">
         <div className="chatMessages">
           {!chatLoaded ? (
             <p>Loading chat...</p>

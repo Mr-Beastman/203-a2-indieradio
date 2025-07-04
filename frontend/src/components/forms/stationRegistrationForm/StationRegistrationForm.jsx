@@ -10,8 +10,8 @@ import * as utilities from '../../../utilities/utilities';
 
 export default function ArtistRegistrationForm() {
   const [formInputs, setFormInputs] = useState({
-    firstName: '',
-    lastName: '',
+    // firstName: '',
+    // lastName: '',
     username: '',
     channelName: '',
     streamUrl: '',
@@ -36,7 +36,7 @@ export default function ArtistRegistrationForm() {
   const submitForm = async (eSubmit) => {
     eSubmit.preventDefault();
 
-    const missingField = utilities.CheckEmpty(formInputs, 'artist');
+    const missingField = utilities.CheckEmpty(formInputs, 'station');
 
     //check all fields have been entered 
     if (missingField) {
@@ -48,7 +48,7 @@ export default function ArtistRegistrationForm() {
     try {
       // post formInputs and check response
       const reponse = await fetch( 
-        'http://localhost:5001/register/artist', {
+        'http://localhost:5001/register/station', {
           method: 'POST',
           headers: {'content-type':'application/json'},
           body: JSON.stringify(formInputs)
@@ -74,8 +74,8 @@ export default function ArtistRegistrationForm() {
     <div className="component">
       <h1>Details</h1>
       <form className="inputForm" onSubmit={submitForm}>
-        <label>First Name: <input type="text" name="firstName" value={formInputs.firstName} onChange={updateInputs} /></label>
-        <label>Last Name: <input type="text" name="lastName" value={formInputs.lastName} onChange={updateInputs} /></label>
+        {/* <label>First Name: <input type="text" name="firstName" value={formInputs.firstName} onChange={updateInputs} /></label>
+        <label>Last Name: <input type="text" name="lastName" value={formInputs.lastName} onChange={updateInputs} /></label> */}
         <label>Username: <input type="text" name="username" value={formInputs.username} onChange={updateInputs} /></label>
         <label>Channel Name: <input type="text" name="channelName" value={formInputs.channelName} onChange={updateInputs} /></label>
         <label>Stream Url: <input type="text" name="streamUrl" value={formInputs.streamUrl} onChange={updateInputs} /></label>

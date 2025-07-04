@@ -1,6 +1,7 @@
 // react
 import {React , useState} from 'react';
 import { NavLink } from 'react-router-dom';
+import { useAuth } from '../../contexts/AuthenticationContext';
 
 
 // react icons
@@ -9,7 +10,7 @@ import { TiThMenu  } from 'react-icons/ti';
 
 // style sheet
 import './NavigationBarStyle.css';
-import '../../globalStyle.css'
+import '../../globalStyle.css';
 
 export default function NavigationBar() {
 
@@ -17,6 +18,8 @@ export default function NavigationBar() {
   const [navView, setNav] = useState(false)
 
   const showMenu = () => setNav(!navView)
+
+  const { isLoggedIn, userType } = useAuth();
 
   // visual componets
   return (
@@ -28,8 +31,9 @@ export default function NavigationBar() {
       {/* menu for desktop view */}
       <nav>
         <ul className="navMenu">
-          {/* temp removal of live now as currently unrequired */}
-          <li><NavLink to="/stationDashboard" activeclassname="active">Dashbaord</NavLink></li>
+          {isLoggedIn && (
+            <NavLink to={userType === 'station' ? "/stationDashboard" : "/userDashboard"} activeclassname="active">Dashboard</NavLink>
+          )}
           <li><NavLink to="/stationBrowser" activeclassname="active">Station Browser</NavLink></li> 
           <li><NavLink to="/artistSpotlight" activeclassname="active">Artist Spotlight</NavLink></li>
         </ul>

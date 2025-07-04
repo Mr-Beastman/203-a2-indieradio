@@ -5,8 +5,6 @@ class Station(database.Model):
     __tablename__ = 'stationData'
 
     id = database.Column(database.Integer, primary_key=True)
-    firstName = database.Column(database.String(100))
-    lastName = database.Column(database.String(100))
     username = database.Column(database.String(100), unique=True, nullable=False)
     channelName = database.Column(database.String(100))
     streamUrl = database.Column(database.String(255))
@@ -19,7 +17,6 @@ class Station(database.Model):
 
 class User(database.Model):
     __tablename__ = 'userData'
-
 
     username = database.Column(database.String(100), nullable=False, primary_key=True, unique=True)
     firstName = database.Column(database.String(100))
@@ -44,3 +41,20 @@ class ChatMessage(database.Model):
     username = database.Column(database.String, nullable=False)
     message = database.Column(database.Text, nullable=False)
     timestamp = database.Column(database.DateTime, default=datetime.utcnow, nullable=False)
+
+class UserSubscriptions(database.Model):
+    __tablename__= 'userSubscriptions'
+    
+    username = database.Column(database.String, database.ForeignKey('userData.username'), primary_key=True)
+    stationId = database.Column(database.Integer, primary_key=True)
+
+class Show(database.Model):
+    __tablename__ = 'showData'
+
+    id = database.Column(database.Integer, primary_key=True, autoincrement=True)
+    stationId = database.Column(database.Integer, database.ForeignKey('stationData.id'), nullable=False)
+    artistName = database.Column(database.String, nullable=False)
+    title = database.Column(database.String(100), nullable=False)
+    description = database.Column(database.Text)
+    startTime = database.Column(database.DateTime, nullable=False)
+    endTime = database.Column(database.DateTime, nullable=True)

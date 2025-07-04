@@ -1,6 +1,7 @@
 // react
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { useAuth } from '../../../contexts/AuthenticationContext';
 
 // style sheet
 import './LoginFormStyle.css'
@@ -9,6 +10,8 @@ import './LoginFormStyle.css'
 import * as utilities from '../../../utilities/utilities';
 
 export default function LoginForm() {
+  const navigate = useNavigate();
+  const { logIn } = useAuth();
 
   // state to store inputs and keep code/ui synced
   const [formInputs, setFormInputs] = useState({username:'',password:''});
@@ -40,9 +43,21 @@ export default function LoginForm() {
 
       if (result.success){
         setErrorMessage('')
-        alert(`Succesful Login for ${result.username} with the user type ${result.userType}
-          \nDashboards currently underconstruction`)
 
+        //storing user token and update state
+        logIn(result.authToken)
+
+        const loggedIn = utilities.getCurrentUser()
+
+        console.log(loggedIn.userType)
+
+        if(loggedIn.userType === "station"){
+          navigate('/stationDashboard')
+        } else {
+          navigate('/userDashboard')
+        }     
+
+        
       } else {
         console.error('login failed', result.message)
         setErrorMessage(result.message)
@@ -67,10 +82,6 @@ export default function LoginForm() {
       
       {/* display error message to user */}
       <div className="errorDisplay"><p>{errorMessage}</p></div>
-
-{/*   section to later add google login      
-      <p>------------ or ------------</p> 
-      */}
 
     </div>
   )

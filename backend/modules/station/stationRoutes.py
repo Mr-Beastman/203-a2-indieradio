@@ -1,7 +1,5 @@
 from flask import Blueprint, jsonify, current_app
 from database.models import Station
-from database.database import database
-import threading, requests
 
 from .stationUtilities import buildList
 
@@ -26,6 +24,23 @@ def getLiveStations():
 @stationBP.route('/station/<int:id>', methods =['GET'])
 def getStationById(id):
     station = Station.query.get(id)
+
+    stationData = {
+        'id': station.id,
+        'channelName': station.channelName,
+        'streamUrl': station.streamUrl,
+        'logo': station.logo,
+        'tag' : station.tagLine,
+        'bio' :station.bio,
+        'live': station.live
+    }
+
+    return jsonify(stationData)
+
+# get station info from username
+@stationBP.route('/station/<username>', methods =['GET'])
+def getStationByUsername(username):
+    station = Station.query.filter_by(username=username).first()
 
     stationData = {
         'id': station.id,

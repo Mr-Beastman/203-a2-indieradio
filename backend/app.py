@@ -9,7 +9,11 @@ from modules.media.audioPlayer.audioPlayer import audioPlayerBP
 from modules.registration.registration import registrationBP
 from modules.authentication.authentication import authenticationBP
 from modules.station.stationRoutes import stationBP
+from modules.subscribe.subscribeRoutes import subscriptionBP
+from modules.shows.showRoutes import showsBP
 from modules.artist.artistRoutes import artistBP
+
+# import utillities
 from modules.station.stationUtilities import updateLiveStatus
 
 
@@ -43,13 +47,22 @@ app.register_blueprint(authenticationBP)
 #station blueprints
 app.register_blueprint(stationBP)
 
+#listner blueprints
+app.register_blueprint(showsBP)
+
 #artist blueprints
 app.register_blueprint(artistBP)
+
+#subscribtion blueprints
+app.register_blueprint(subscriptionBP)
+
+# show blueprints
 
 #chat blueprints
 from modules.chat.chatRoutes import chatBP, register_socketio_handlers
 app.register_blueprint(chatBP)
 register_socketio_handlers(socketIo)
+
 
 
 if __name__ == '__main__':

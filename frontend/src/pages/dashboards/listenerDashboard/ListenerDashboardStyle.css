@@ -1,61 +1,6 @@
-/* dashboard.css - Billboard style */
-
-body {
-    background-color: #0e0e0e;
-    color: #ffffff;
-    font-family: 'Helvetica Neue', sans-serif;
-    margin: 0;
-    padding: 0;
-  }
-  
-  h2 {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #ffffff;
-  }
-  
-  p {
-    color: #b3b3b3;
-  }
-  
-  button {
-    background-color: #ff004f;
-    color: #fff;
-    font-weight: bold;
-    border: none;
-    padding: 10px 16px;
-    border-radius: 8px;
-    transition: background-color 0.3s ease;
-  }
-  
-  button:hover {
-    background-color: #e60047;
-  }
-  
-  .card {
-    background-color: #1a1a1a;
-    border-radius: 16px;
-    padding: 20px;
-    box-shadow: 0 4px 12px rgba(255, 0, 79, 0.3);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 18px rgba(255, 0, 79, 0.4);
-  }
-  
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 24px;
-    padding: 40px;
-  }
-  
-  @media (max-width: 768px) {
-    .grid {
-      padding: 20px;
-      grid-template-columns: 1fr;
-    }
-  }
-  
+.library {
+  width: 100%;
+  padding: 1rem;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}

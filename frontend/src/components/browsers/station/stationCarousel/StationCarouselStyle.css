@@ -11,30 +11,7 @@
     scroll-behavior: smooth;
 }
 
-.card {
-    flex: 0 0 auto;
-    width: 200px;
-    background: #222;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    transition: transform 0.3s;
-    text-align: center;
+.slick-slide {
+    padding: 0 10px;
+    box-sizing: border-box;
 }
-
-.card:hover {
-    transform: scale(1.05);
-}
-
-.card img {
-    width: 125px;
-    height: 125px;
-    object-fit: cover;
-}
-
-.cardContents {
-    padding: 1rem;
-    text-align: center;
-}
-
-

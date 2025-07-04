@@ -1,13 +1,14 @@
 
+import { jwtDecode } from 'jwt-decode';
+
+
 
 //checks if parts of form have not been filled out correctly
 export function CheckEmpty(formData, type) {
   let requiredFields =[]
 
-  if (type === 'artist') {
+  if (type === 'station') {
     requiredFields = [
-      'firstName',
-      'lastName',
       'username',
       'channelName',
       'streamUrl',
@@ -38,6 +39,34 @@ export function CheckEmpty(formData, type) {
     }
   }
   return null;
+}
+
+export function LogOut() {
+  localStorage.removeItem('authToken');
+}
+
+export function checkToken() {
+  const token = localStorage.getItem('authToken');
+  if(token){
+    return true;
+  } else {
+    return false;
+  }
+}
+
+//captialize first letter
+export function captializeWord(word) {
+  if (!word) return "";
+  return word.charAt(0).toUpperCase() + word.slice(1);
+}
+
+export function getCurrentUser() {
+  const authToken = localStorage.getItem('authToken');
+  // do nothing if no valid token
+  if(!authToken)
+    return
+  //return token
+  return jwtDecode(authToken);
 }
 
 // send form data to backend for processing

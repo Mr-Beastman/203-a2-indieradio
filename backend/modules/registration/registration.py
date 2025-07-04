@@ -7,7 +7,7 @@ from modules.utilities.utilities import usernameCheck, emailCheck
 registrationBP = Blueprint('registrationBP', __name__)
 
 
-@registrationBP.route('/register/artist', methods=['POST'])
+@registrationBP.route('/register/station', methods=['POST'])
 def registerStation():
     stationData = request.get_json()
 
@@ -29,8 +29,6 @@ def registerStation():
     print("Check Results : No dublicates found")
     
     station = Station(
-        firstName = stationData['firstName'],
-        lastName = stationData['lastName'],
         username = stationData['username'].lower(),
         channelName = stationData['channelName'],
         streamUrl = stationData['streamUrl'].lower(),

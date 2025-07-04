@@ -1,16 +1,25 @@
 import { React, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 
+import { useAuth } from '../../contexts/AuthenticationContext';
+
 // importing style sheet
 import './StationPageStyle.css'
 
 // importing components
 import AudioPlayer from '../../components/media/audioPlayer/AudioPlayer'
+import Subscribe from '../../components/subscribe/Subscribe';
+import ChatWindow from '../../components/chatWindow/ChatWindow'
+
+//import
+import { getCurrentUser } from '../../utilities/utilities';
 
 export default function StationPage() {
   // grab id from url
   const { id } = useParams();
   const[stationData, setStationData] = useState({})
+
+  const { isLoggedIn, username, userType } = useAuth();
 
   useEffect(() => {
     fetch(`http://localhost:5001/station/${id}`)
@@ -37,13 +46,19 @@ export default function StationPage() {
             showTag = {false}
             showBio = {true}
           />
+          {/* show listner subscribe if logged in */}
+          { isLoggedIn && userType === 'listener' && ( <Subscribe stationId={id}/>)}
         </div>
         <div className="rightContent">
           <div className="chatWindow">
-            <div className="loginOverlay">
-              <p>Sign in to join the discussion!</p>
-              <button onClick = {()=>alert("Will redirect to sign in")}> Sign in </button>
-            </div>
+            { !isLoggedIn ? (
+              <div className="loginOverlay">
+                <p>Sign in to join the discussion!</p>
+                <button onClick = {()=>alert("Will redirect to sign in")}> Sign in </button>
+              </div>
+            ) : (
+              <ChatWindow stationId={id} username={username}/>
+            )}
           </div>
         </div>
       </div>
@@ -51,7 +66,7 @@ export default function StationPage() {
       {/* hardcoded for display, will populate when atrits tools built */}
       <section className="section" id="schedule">
         <h3>Weekly Schedule</h3>
-        <div className="card-grid">
+        <div className="cardGrid">
           <div className="card">
             <h4>Monday: Indie Vibes</h4>
             <p>DJ Kora - 4PM to 6PM</p>
@@ -66,29 +81,6 @@ export default function StationPage() {
           </div>
         </div>
       </section>
-
-      {/* temporaily removed as archive has not been set up in database */}
-      {/* <section className="section" id="archive">
-        <h3>On Demand</h3>
-        <div className="card-grid">
-          <div className="card">
-            <h4>Replay: Indie Vibes</h4>
-            <p>
-              <button className="link-button" onClick={() => alert('Coming soon')}>
-                Listen Now
-              </button>
-            </p>
-          </div>
-          <div className="card">
-            <h4>Replay: Chill Sessions</h4>
-            <p>
-              <button className="link-button" onClick={() => alert('Coming soon')}>
-                Listen Now
-              </button>
-            </p>
-          </div>
-        </div>
-      </section> */}
       
     </div>
   );

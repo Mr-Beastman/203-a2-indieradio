@@ -54,6 +54,15 @@ li a.active {
     color: #d60132;
   }
 
+.navLinkButton {
+  background: none;
+  border: none;
+  color: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+  font: inherit;
+}
+
 
 /* hiding mobile menus on larger screens */
 .hamburger {

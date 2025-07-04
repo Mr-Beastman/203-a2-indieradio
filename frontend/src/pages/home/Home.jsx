@@ -9,9 +9,11 @@ import './HomeStyle.css'
 import StationCarousel from '../../components/browsers/station/stationCarousel/StationCarousel';
 import AudioPlayer from '../../components/media/audioPlayer/AudioPlayer';
 
+//import ultilities
+import { useAuth } from '../../contexts/AuthenticationContext';
+
 export default function Home() {
-
-
+  
   // pulling live stations from database
   const[liveStations, setLiveStations] = useState([])
 
@@ -22,6 +24,9 @@ export default function Home() {
   const homePlayer = 'Hot right now'
   const homeCarousel = 'Stations Currently Live'
 
+  //logged in status
+  const { isLoggedIn } = useAuth();
+
   useEffect(() => {
      fetch('http://localhost:5001/station/getLiveStations')
     .then(response => response.json())
@@ -29,32 +34,33 @@ export default function Home() {
     .catch(err => console.error("Issue fetching stations", err));
   }, []);
 
-  //hardcode for testing
-  const toPlay = 10
+  //set random station from live list
+  const toPlay = liveStations[Math.floor(Math.random() * liveStations.length)];
 
   // visual elements
   return (
     <div className="homePage">
-
       <div className="twoColumnSection">
         <div className="leftColumn">
           <div className="tagline">
             <h1>{welcomeTitle}</h1>
-            <h2>{welcomeIntro}</h2>
+            <h3>{welcomeIntro}</h3>
           </div>
-          <div className="getStarted">
-            <NavLink to="/login">
-              <button> Sign In </button>
-            </NavLink>
-            <NavLink to='/register'>
-              <button>Register</button>
-            </NavLink>
-          </div>
+          { !isLoggedIn && (
+            <div className="getStarted">
+              <NavLink to="/login">
+                <button> Sign In </button>
+              </NavLink>
+              <NavLink to='/register'>
+                <button>Register</button>
+              </NavLink>
+            </div>
+          )}
         </div>
         <div className="rightColumn">
           <h1>{homePlayer}</h1>
           <AudioPlayer 
-            stationId={toPlay}
+            stationId={toPlay?.id}
           />
         </div>
       </div>

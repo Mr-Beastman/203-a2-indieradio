@@ -31,7 +31,7 @@ export default function useGetCurrentSong(streamUrl) {
         };
 
         fetchNowPlaying()
-        const intervalId = setInterval(fetchNowPlaying, 30000)
+        const intervalId = setInterval(fetchNowPlaying, 15000)
 
         return () => {
           controller.abort()

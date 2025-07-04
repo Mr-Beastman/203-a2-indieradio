@@ -1,19 +1,32 @@
-import { React, useState } from 'react';
+import { React, useEffect, useState } from 'react'
 import './StationDashboardStyle.css';
-import Calendar from 'react-calendar'
 
 
 // components
 import AudioPlayer from '../../../components/media/audioPlayer/AudioPlayer';
 import ChatWindow from '../../../components/chatWindow/ChatWindow';
+import MonthlyCalendar from '../../../components/calendars/MonthlyCalendar';
 
 // style
 
+// import ultilities
+import * as utilities from '../../../utilities/utilities';
+
+
+
 export default function StationDashboard() {
-  // hardcoded station for testing
-  const stationID = 13
+
+  // pulling userdata from stored token
+  const currentUser = utilities.getCurrentUser();
+  const[stationData, setStationData] = useState({});
+
+  useEffect(() => {
+    fetch(`http://localhost:5001/station/${currentUser.username}`)
+    .then(response => response.json())
+    .then(data => setStationData(data))
+    .catch(err => console.error("Couldn't fetch lsitener data", err))
+  }, [currentUser.username]);
   
-  const [selectedDate, setSelectedDate] = useState(new Date());
 
   return (
     <div className="stationDashboard">
@@ -44,22 +57,21 @@ export default function StationDashboard() {
           </div>
           {/* session details */}
           <h2>Station Details</h2>
-          < AudioPlayer stationId={stationID} showLogo={false} showName={false} showTag={false}/>
+          < AudioPlayer stationId={stationData.id} showLogo={false} showName={false} showTag={false}/>
         </div>
 
         {/* right side */}
         <div className="rightSide">
           <ChatWindow 
-          stationId={stationID}
-          username={"test"}/>
+          stationId={stationData.id}
+          username={'Host'}/>
         </div>
       </section>
 
+      {/* scheduling features */}
       <section className="pageBottom">
-        <Calendar
-          onChange={setSelectedDate}
-          value={selectedDate}
-        />
+        <h1>test</h1>
+        <MonthlyCalendar stationId={stationData.id}/>
       </section>
 
     </div>
