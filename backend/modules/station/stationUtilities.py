@@ -56,6 +56,9 @@ def checkUpdate(station):
     return changed
 
 def updateLiveStatus(app):
+
+    print("Running updateLiveStatus...")
+    
     with app.app_context():
         Session = sessionmaker(bind=database.engine)
         session = Session()

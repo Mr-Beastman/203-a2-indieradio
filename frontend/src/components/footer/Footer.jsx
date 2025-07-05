@@ -5,10 +5,11 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthenticationContext';
 
 import './Footer.css'
+import { captializeWord } from '../../utilities/utilities';
 
 export default function Footer() {
 
-  const { logOut, isLoggedIn } = useAuth();
+  const { logOut, isLoggedIn, username } = useAuth();
   const navigate = useNavigate();
 
   const loginClicked = () => {
@@ -25,9 +26,9 @@ export default function Footer() {
     <div className="footer">
         &copy; 2025 Indie Radio;
         {isLoggedIn ? (
-          <p onClick={logoutClicked} >logout tester</p>
+          <p onClick={logoutClicked} >logout {captializeWord(username)}</p>
         ) : (
-          <p onClick={loginClicked}>login tester</p>
+          <p onClick={loginClicked}>login</p>
           )
         }
     </div>

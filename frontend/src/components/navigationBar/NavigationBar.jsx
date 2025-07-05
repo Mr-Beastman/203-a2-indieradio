@@ -50,9 +50,11 @@ export default function NavigationBar() {
 
       <div className={navView ? "mobileMenu active" : "mobileMenu"}>
         <ul className="mobileNav" onClick={showMenu}>
-          <li><NavLink to="/liveNow" activeclassname="active">Live Now</NavLink></li>
-          <li><NavLink to="/showBrowser" activeclassname="active">Show Browser</NavLink></li> 
-          <li><NavLink to="/localspotlight" activeclassname="active">Local Spotlight</NavLink></li>
+          {isLoggedIn && (
+            <NavLink to={userType === 'station' ? "/stationDashboard" : "/userDashboard"} activeclassname="active">Dashboard</NavLink>
+          )}
+          <li><NavLink to="/stationBrowser" activeclassname="active">Station Browser</NavLink></li> 
+          <li><NavLink to="/artistSpotlight" activeclassname="active">Artist Spotlight</NavLink></li>
         </ul>
         <div className="mobileMenuBot">
           <div className="mobileNavIcons" onClick={showMenu}>

@@ -70,7 +70,6 @@ export default function StationDashboard() {
 
       {/* scheduling features */}
       <section className="pageBottom">
-        <h1>test</h1>
         <MonthlyCalendar stationId={stationData.id}/>
       </section>
 

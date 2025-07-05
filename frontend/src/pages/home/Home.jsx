@@ -1,4 +1,4 @@
-import { React, useEffect, useState }  from 'react'
+import { React, useMemo, useEffect, useState }  from 'react'
 import { NavLink } from 'react-router-dom';
 
 
@@ -14,28 +14,32 @@ import { useAuth } from '../../contexts/AuthenticationContext';
 
 export default function Home() {
   
-  // pulling live stations from database
-  const[liveStations, setLiveStations] = useState([])
-
-
   // varibales for text elemenets
+  // allow for quick text modification on page
   const welcomeTitle = 'Welcome to Indie Radio'
   const welcomeIntro = 'Your gateway to underground sound. Discover, listen, and support independent radio stations from around the world.'
   const homePlayer = 'Hot right now'
   const homeCarousel = 'Stations Currently Live'
 
-  //logged in status
+  // getting log in status to show/hide menus/tools
   const { isLoggedIn } = useAuth();
+
+  // pulling live stations from database
+  const[liveStations, setLiveStations] = useState([])
 
   useEffect(() => {
      fetch('http://localhost:5001/station/getLiveStations')
     .then(response => response.json())
     .then(data => setLiveStations(data))
-    .catch(err => console.error("Issue fetching stations", err));
+    .catch(err => console.error("Issue fetching stations :", err));
   }, []);
 
   //set random station from live list
-  const toPlay = liveStations[Math.floor(Math.random() * liveStations.length)];
+  // using memo to avoid changing on every render (strict mode causing missmacthed data)
+  const toPlay = useMemo(() => {
+    return liveStations[Math.floor(Math.random() * liveStations.length)];
+  }, [liveStations]);
+
 
   // visual elements
   return (
@@ -59,9 +63,11 @@ export default function Home() {
         </div>
         <div className="rightColumn">
           <h1>{homePlayer}</h1>
-          <AudioPlayer 
-            stationId={toPlay?.id}
-          />
+          {toPlay ? (
+            <AudioPlayer stationId={toPlay?.id}/>
+          ) : (
+            <h3>No station currently live! Please Check back later</h3>
+          )}
         </div>
       </div>
 

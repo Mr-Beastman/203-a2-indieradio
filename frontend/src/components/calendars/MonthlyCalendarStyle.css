@@ -1,0 +1,111 @@
+
+/* react calendar specific */
+.react-calendar {
+    margin-top: 1rem;
+    width: 100% !important;
+    max-width: 100% !important;
+    background-color: #111111ab;
+    border: none;
+    font-family: inherit;
+    font-size: 1.5rem;
+    border-radius: 25px;
+    overflow: hidden;
+    padding: 1rem;
+    font-weight: bold;
+}
+
+.react-calendar__tile:hover,
+.react-calendar__tile:focus {
+    background-color: #ff0000 !important;
+    color: white !important;
+    border-radius: 0.5rem;
+}
+
+.react-calendar__tile--active {
+    background: #111111ab !important;
+    color: red !important;
+    border-radius: 0.5rem;
+}
+
+.react-calendar__tile--now {
+    background: #111111ab !important;
+    color: #ff0000;
+    border-radius: 0.5rem;
+}
+
+.react-calendar__navigation button {
+    background-color: #111111ab;;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    box-shadow: none;
+    transition: box-shadow 0.2s ease;
+    font-size: 1.5rem;
+}
+
+.react-calendar__navigation button:hover,
+.react-calendar__navigation button:focus {
+    background-color: #ff0000 !important;
+    outline: none;
+    color: white;
+    cursor: pointer;
+}
+
+
+.calendarDot {
+    width: 0.5rem;
+    height: 0.5rem;
+    background-color: rgba(255, 0, 0, 0.7);
+    border-radius: 50%;
+    margin: 4px auto 0;
+}
+
+.calendarShows {
+    margin-top: 2rem;
+}
+
+
+.noShows {
+    color: #6B7280;
+    font-size: 0.95rem;
+}
+
+.calendarShowList {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.calendarShowCard {
+    background-color: #111111ab;
+    padding: 1rem;
+    border-radius: 0.75rem;
+}
+
+/* mobile */
+@media (max-width: 768px) {
+  .react-calendar {
+    font-size: 0.9rem;
+    padding: 0.75rem;
+    border-radius: 15px;
+  }
+
+  .react-calendar__navigation button {
+    font-size: 1rem;
+    padding: 0.4rem 0.75rem;
+  }
+
+  .calendarShowCard {
+    padding: 0.75rem;
+  }
+
+  .showTitle {
+    font-size: 1rem;
+  }
+
+  .showInfo,
+  .showDescription {
+    font-size: 0.85rem;
+  }
+}
