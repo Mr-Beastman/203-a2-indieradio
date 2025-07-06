@@ -6,7 +6,7 @@ import io from 'socket.io-client';
 import { captializeWord } from '../../utilities/utilities';
 
 // style sheet
-// import './ChatWindowStyle.css';
+import './ChatWindowStyle.css';
 
 // constants
 const socket = io('http://localhost:5001');
@@ -76,7 +76,7 @@ export default function ChatWindow({ stationId, username }) {
   return (
     <div className="chatWindow">
       <h2>Live Chat</h2>
-      <form onSubmit={sendMessage} className="display">
+      <div className="chatBody">
         <div className="chatMessages">
           {!chatLoaded ? (
             <p>Loading chat...</p>
@@ -90,20 +90,19 @@ export default function ChatWindow({ stationId, username }) {
             ))
           )}
         </div>
-
-        <div className="inputSection">
-            <input
+        <form onSubmit={sendMessage} className="inputSection">
+          <input
             type="text"
             value={message}
             onChange={onInputUpdate}
             placeholder="Type a message..."
             disabled={chatError}
-            />
-            <button type="submit" disabled={chatError || !message.trim()}>
+          />
+          <button type="submit" disabled={chatError || !message.trim()}>
             Send
-            </button>
-        </div>
-      </form>
+          </button>
+        </form>
+      </div>
     </div>
-  );
+  )
 }

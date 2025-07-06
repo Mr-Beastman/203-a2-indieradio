@@ -21,7 +21,7 @@ export default function Home() {
   const homePlayer = 'Hot right now'
   const homeCarousel = 'Stations Currently Live'
 
-  // getting log in status to show/hide menus/tools
+  // getting auth context
   const { isLoggedIn } = useAuth();
 
   // pulling live stations from database
@@ -44,34 +44,38 @@ export default function Home() {
   // visual elements
   return (
     <div className="homePage">
-      <div className="twoColumnSection">
-        <div className="leftColumn">
-          <div className="tagline">
-            <h1>{welcomeTitle}</h1>
-            <h3>{welcomeIntro}</h3>
-          </div>
-          { !isLoggedIn && (
-            <div className="getStarted">
-              <NavLink to="/login">
-                <button> Sign In </button>
-              </NavLink>
-              <NavLink to='/register'>
-                <button>Register</button>
-              </NavLink>
+        <div className="twoColumnSection">
+          <div className="leftColumn">
+            <div className="section">
+              <div className="tagline">
+                <h1>{welcomeTitle}</h1>
+                <h3>{welcomeIntro}</h3>
+              </div>
+              { !isLoggedIn && (
+                <div className="getStarted">
+                  <NavLink to="/login">
+                    <button> Sign In </button>
+                  </NavLink>
+                  <NavLink to='/register'>
+                    <button>Register</button>
+                  </NavLink>
+                </div>
+              )}
             </div>
-          )}
+          </div>
+          <div className="rightColumn">
+            <div className="section">
+              <h1>{homePlayer}</h1>
+              {toPlay ? (
+                <AudioPlayer stationId={toPlay?.id}/>
+              ) : (
+                <h3>No station currently live! Please Check back later</h3>
+              )}
+            </div>
+          </div>
         </div>
-        <div className="rightColumn">
-          <h1>{homePlayer}</h1>
-          {toPlay ? (
-            <AudioPlayer stationId={toPlay?.id}/>
-          ) : (
-            <h3>No station currently live! Please Check back later</h3>
-          )}
-        </div>
-      </div>
 
-      <div className="stationDisplay">
+      <div className="section">
         <StationCarousel displayName={homeCarousel} stationList={liveStations}/>
       </div>
       

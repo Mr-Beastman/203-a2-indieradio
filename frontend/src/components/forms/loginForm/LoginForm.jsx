@@ -1,6 +1,8 @@
 // react
 import React, { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
+
+//import contexts
 import { useAuth } from '../../../contexts/AuthenticationContext';
 
 // style sheet
@@ -11,7 +13,8 @@ import * as utilities from '../../../utilities/utilities';
 
 export default function LoginForm() {
   const navigate = useNavigate();
-  const { logIn } = useAuth();
+  const { logIn, userType } = useAuth();
+
 
   // state to store inputs and keep code/ui synced
   const [formInputs, setFormInputs] = useState({username:'',password:''});
@@ -47,11 +50,7 @@ export default function LoginForm() {
         //storing user token and update state
         logIn(result.authToken)
 
-        const loggedIn = utilities.getCurrentUser()
-
-        console.log(loggedIn.userType)
-
-        if(loggedIn.userType === "station"){
+        if(userType === "station"){
           navigate('/stationDashboard')
         } else {
           navigate('/userDashboard')

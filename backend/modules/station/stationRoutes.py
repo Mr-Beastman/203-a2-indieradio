@@ -1,10 +1,28 @@
-from flask import Blueprint, jsonify, current_app
-from database.models import Station
+from flask import Blueprint, jsonify, current_app, request
+from database.models import Station, database
 
 from .stationUtilities import buildList
 
 # create BP
 stationBP = Blueprint('station', __name__)
+
+# changing live status manually
+@stationBP.route('/station/setLive', methods=['POST'])
+def setLive():
+
+    data = request.get_json()
+    stationId = data.get('id')
+
+    station = Station.query.get(stationId)
+
+    if not station:
+        return jsonify({"error": "Can't find station"})
+    
+    station.live = 0 if station.live == 1 else 1
+    database.session.commit()
+    return jsonify({"message": f"Station {station.channelName} toggled to {station.live}"})
+    
+
 
 # query all stations
 @stationBP.route('/station/getStations', methods=['GET'])

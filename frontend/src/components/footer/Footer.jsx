@@ -4,17 +4,13 @@ import { useNavigate } from 'react-router-dom';
 
 import { useAuth } from '../../contexts/AuthenticationContext';
 
-import './Footer.css'
+import './FooterStyle.css'
 import { captializeWord } from '../../utilities/utilities';
 
 export default function Footer() {
 
   const { logOut, isLoggedIn, username } = useAuth();
   const navigate = useNavigate();
-
-  const loginClicked = () => {
-    navigate('/login');
-  }
 
   const logoutClicked = () => {
     logOut();
@@ -24,13 +20,11 @@ export default function Footer() {
 
   return (
     <div className="footer">
-        &copy; 2025 Indie Radio;
-        {isLoggedIn ? (
-          <p onClick={logoutClicked} >logout {captializeWord(username)}</p>
-        ) : (
-          <p onClick={loginClicked}>login</p>
-          )
-        }
+
+        {isLoggedIn && (
+          <h2 className='logout' onClick={logoutClicked} >logout {captializeWord(username)}</h2>
+        )}
+      &copy; 2025 Indie Radio;
     </div>
   )
 }

@@ -1,35 +1,78 @@
 import { React, useEffect, useState } from 'react'
-import './StationDashboardStyle.css';
 
+//import contexts
+import { useAuth } from '../../../contexts/AuthenticationContext';
 
 // components
 import AudioPlayer from '../../../components/media/audioPlayer/AudioPlayer';
 import ChatWindow from '../../../components/chatWindow/ChatWindow';
-import MonthlyCalendar from '../../../components/calendars/MonthlyCalendar';
+import MonthlyCalendar from '../../../components/calendars/monthlyCalendar/MonthlyCalendar';
 
 // style
+import './StationDashboardStyle.css'
 
-// import ultilities
-import * as utilities from '../../../utilities/utilities';
 
 
 
 export default function StationDashboard() {
 
+  //retrieve context
+  const { username } = useAuth();
+
   // pulling userdata from stored token
-  const currentUser = utilities.getCurrentUser();
   const[stationData, setStationData] = useState({});
 
   useEffect(() => {
-    fetch(`http://localhost:5001/station/${currentUser.username}`)
+    fetch(`http://localhost:5001/station/${username}`)
     .then(response => response.json())
     .then(data => setStationData(data))
-    .catch(err => console.error("Couldn't fetch lsitener data", err))
-  }, [currentUser.username]);
-  
+    .catch(err => console.error("Couldn't fetch data", err))
+  }, [username]);
 
+  // set current show
+  const [currentShow, setCurrentShow] = useState(null);
+
+    useEffect(() => {
+    if (!stationData.id) return;
+
+    fetch(`http://localhost:5001/shows/current?stationId=${stationData.id}`)
+      .then(res => res.json())
+      .then(data => setCurrentShow(data || null))
+      .catch(err => console.error('Current show fetch error:', err));
+  }, [stationData.id]);
+
+  // set next show
+  const [nextShow, setNextShow] = useState(null);
+
+  useEffect(() => {
+    if (!stationData.id) return;
+
+    fetch(`http://localhost:5001/shows/next?stationId=${stationData.id}`)
+      .then(res => res.json())
+      .then(data => setNextShow(data || null))
+      .catch(error => console.error('Next show fetch error:', error));
+  }, [stationData.id]);
+
+  const toggleLiveStatus = () => {
+  fetch('http://localhost:5001/station/setLive', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ id: stationData.id }),
+  })
+  .then(res => res.json())
+  .then(data => {
+    console.log(data.message);
+    setStationData(prev => ({ ...prev, live: prev.live === 1 ? 0 : 1 }));
+  })
+  .catch(error => console.error("Failed to toggle live status", error));
+  };
+
+  // visual elements
   return (
     <div className="stationDashboard">
+      
 
       <section className="pageTop">
 
@@ -38,26 +81,60 @@ export default function StationDashboard() {
           {/* on air status */}
           <div className="statusTools">
             <h2>On-Air Controls</h2>
-            <button className="onAirButton">Live</button>
-            <button className="onAirButton">Offline</button>
-            <div className="status">
-              <strong>Status: </strong>
-              <span className="statusLive">LIVE</span>
-            </div>
+            
+            {stationData.live ? 
+              <button className="onAirButton" onClick={toggleLiveStatus}>End Stream</button>
+              :
+              <button className="onAirButton" onClick={toggleLiveStatus}>Start Stream</button>
+            }
+
+
           </div>
 
-          {/* scheduling tools */}
-          <div className="schedulingTools">
-            <h2>Scheduling</h2>
-            <button className="button">Add / Edit Shows</button>
+          {/* session details */}
+          <div className="stationDetails">
+            <h2>Station Details</h2>
+            <div className="showLive">
+              <strong>Stream Status: </strong>
+              <span className="statusLive">
+                {stationData.live ? (
+                  'LIVE'
+                ):(
+                  'OFFLINE'
+                )}
+                </span>
+            </div>
+
+            <div className="currentShow">
+              <strong>Current Show: </strong>
+              {currentShow?.title ? (
+                <span>{currentShow.title}</span>
+              ) : (
+                <span>No Current Show</span>
+              )}
+            </div>
+            
             <div className="nextShow">
               <strong>Next Show: </strong>
-              Place Holder Show 3:00pm
-            </div>    
+              {nextShow?.title ? (
+                <strong>{nextShow.title}</strong>
+              ) : (
+                <strong>No Show Scheduled</strong>
+              )}
+            </div>
+
+
           </div>
-          {/* session details */}
-          <h2>Station Details</h2>
-          < AudioPlayer stationId={stationData.id} showLogo={false} showName={false} showTag={false}/>
+          
+          <div className="audio">
+            < AudioPlayer
+              stationId={stationData.id} 
+              showLogo={false} 
+              showName={false} 
+              showTag={false}
+              showPlayer ={false}/>
+          </div>
+
         </div>
 
         {/* right side */}

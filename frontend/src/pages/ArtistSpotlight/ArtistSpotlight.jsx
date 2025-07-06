@@ -6,8 +6,8 @@ import DjGrid from '../../components/browsers/artist/artistGrid/ArtistGrid';
 export default function ArtistSpotlight() {
   
   // text variables
-  const pageIntro = 'Amazing artists from the stations you love!'
-  const displayTitle = 'All Artists'
+  const pageIntro = `Show casing Aotearoa's hottest talent`
+  const displayTitle = ''
 
 
   // pulling current artsits from database

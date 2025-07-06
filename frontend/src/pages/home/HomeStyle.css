@@ -4,7 +4,6 @@
   display: flex;
   flex-direction: column;
   padding-top: 4rem;
-  box-sizing: border-box;
   min-height: 100vh;
   align-items: center;
   gap: 3rem
@@ -13,35 +12,32 @@
 /* top column layout */
 .twoColumnSection {
   display: flex;
+  flex-direction: row;
+  gap: 1rem;
   width: 85%;
-  justify-content: space-between;
-  gap: 2rem;
-  flex-wrap: wrap;
+}
+
+.twoColumnSection .section{
+  width:100%;
 }
 
 .leftColumn,
 .rightColumn {
-  flex: 1 1 45%;
-  box-sizing: border-box;
-  background-color: #111111ab;
-  border-radius: 25px;
-}
-.leftColumn {
-  max-width: 40%;
-  padding: 2rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
-.rightColumn h1 {
-  padding-left: 2rem;
-  padding-top: 1rem;
-  font-size: 3rem;
-}
+.tagline .h3 {
+  margin-top: 2rem;
+} 
 
-.stationDisplay {
-  background-color: #111111ab;
-  border-radius: 25px;
-  padding: 2rem;
+.homePage .section {
   margin-bottom: 2rem;
+}
+
+bottom {
+  width:100%;
 }
 
 /* website tagline */

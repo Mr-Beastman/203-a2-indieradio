@@ -2,20 +2,23 @@ import { React, useEffect, useState }  from 'react';
 import useGetCurrentSong from '../../../hooks/useGetCurrentSong';
 import './AudioPlayerStyle.css';
 
-// 
-export default function AudioPlayer({stationId, showLogo = true, showName = true, showTag = true, showPlayer =true, showBio = false}) {
+
+export default function AudioPlayer({stationId, showLogo = true, showName = true, showTag = true, showPlayer =true, showSong = true, showBio = false}) {
+  // retrieve station data
   const [stationData, setStationData] = useState({});
+  useEffect(() => {
+    if (stationId) {
+      fetch(`http://localhost:5001/station/${stationId}`)
+        .then(response => response.json())
+        .then(data => setStationData(data))
+        .catch(err => console.error("Couldn't fetch station data", err));
+    }
+  }, [stationId]);
+
+  // set current song if applicable
   const nowPlaying = useGetCurrentSong(stationData.streamUrl)
 
-    useEffect(() => {
-      if (stationId) {
-        fetch(`http://localhost:5001/station/${stationId}`)
-          .then(response => response.json())
-          .then(data => setStationData(data))
-          .catch(err => console.error("Couldn't fetch station data", err));
-      }
-    }, [stationId]);
-
+  // visual elements
   return (
     <div className="audioPlayer">
       <div className="topContent">
@@ -32,17 +35,14 @@ export default function AudioPlayer({stationId, showLogo = true, showName = true
             {showTag && <p>{stationData.tag}</p> }
           </div>
 
+          {/* display only if showPlayer true */}
           {showPlayer && (
             stationData.live ? (
               stationData.streamUrl ? (
                 <>
-                  <audio controls preload='auto'>
+                  <audio controls preload='auto' className='audioControls'>
                     <source src={stationData.streamUrl} type="audio/mpeg" />
                   </audio>
-                  <div className="playingInfo">
-                    <h3>Now Playing</h3>
-                    <p>{nowPlaying ? nowPlaying : "No song info provided"}</p>
-                  </div>
                 </>
               ) : (
                 <p>Loading Stream</p>
@@ -53,6 +53,14 @@ export default function AudioPlayer({stationId, showLogo = true, showName = true
               </div>
             )
           )}
+          {/* display only if showSong true */}
+          {showSong && (
+            <div className="playingInfo">
+              <h3>Now Playing</h3>
+              <p>{nowPlaying ? nowPlaying : "No song info provided"}</p>
+            </div>
+          )}
+        
         </div>
       </div>
       

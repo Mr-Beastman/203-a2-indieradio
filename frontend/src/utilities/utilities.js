@@ -1,8 +1,6 @@
 
 import { jwtDecode } from 'jwt-decode';
 
-
-
 //checks if parts of form have not been filled out correctly
 export function CheckEmpty(formData, type) {
   let requiredFields =[]
@@ -41,10 +39,12 @@ export function CheckEmpty(formData, type) {
   return null;
 }
 
+// clear out authtoken on logout
 export function LogOut() {
   localStorage.removeItem('authToken');
 }
 
+// check if authtoken exists
 export function checkToken() {
   const token = localStorage.getItem('authToken');
   if(token){
@@ -58,15 +58,6 @@ export function checkToken() {
 export function captializeWord(word) {
   if (!word) return "";
   return word.charAt(0).toUpperCase() + word.slice(1);
-}
-
-export function getCurrentUser() {
-  const authToken = localStorage.getItem('authToken');
-  // do nothing if no valid token
-  if(!authToken)
-    return
-  //return token
-  return jwtDecode(authToken);
 }
 
 // send form data to backend for processing

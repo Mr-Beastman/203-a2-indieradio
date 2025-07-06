@@ -1,4 +1,5 @@
 from datetime import datetime
+from sqlalchemy.orm import relationship
 from database.database import database
 
 class Station(database.Model):
@@ -58,3 +59,4 @@ class Show(database.Model):
     description = database.Column(database.Text)
     startTime = database.Column(database.DateTime, nullable=False)
     endTime = database.Column(database.DateTime, nullable=True)
+    station = relationship('Station', backref='shows')

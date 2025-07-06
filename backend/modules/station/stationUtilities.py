@@ -22,7 +22,6 @@ def buildList(stations):
 
     return jsonify(stationList)
 
-
 ###################### Background Tasks ######################
 
 stop_event = threading.Event()

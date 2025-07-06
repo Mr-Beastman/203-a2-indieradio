@@ -1,6 +1,8 @@
 import { React, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
+//import contexts
 import { useAuth } from '../../contexts/AuthenticationContext';
 
 // importing style sheet
@@ -10,17 +12,22 @@ import './StationPageStyle.css'
 import AudioPlayer from '../../components/media/audioPlayer/AudioPlayer'
 import Subscribe from '../../components/subscribe/Subscribe';
 import ChatWindow from '../../components/chatWindow/ChatWindow'
+import WeeklyCalender from '../../components/calendars/weeklyCalendar/WeeklyCalendar'
 
-//import
-import { getCurrentUser } from '../../utilities/utilities';
 
 export default function StationPage() {
+  //set up navigate
+  const navigate = useNavigate();
+
   // grab id from url
   const { id } = useParams();
-  const[stationData, setStationData] = useState({})
 
+  // getting site context
   const { isLoggedIn, username, userType } = useAuth();
 
+  // retrieve and set station data
+  const[stationData, setStationData] = useState({})
+  
   useEffect(() => {
     fetch(`http://localhost:5001/station/${id}`)
     .then(response => response.json())
@@ -28,33 +35,49 @@ export default function StationPage() {
     .catch(err => console.error("Couldn't fetch station data", err))
   }, [id])
 
+  //retrieve and set weeks shows
+  const [weeklyShows, setWeeklyShows] = useState([]);
 
+  useEffect(() => {
+    const today = new Date();
+    const day = today.getDate();
+    const month = today.getMonth() + 1;
+    const year = today.getFullYear();
+
+    fetch(`http://localhost:5001/shows/weekly?stationId=${id}&day=${day}&month=${month}&year=${year}`)
+      .then(response => response.json())
+      .then(data => setWeeklyShows(data))
+      .catch(err => console.error("Couldn't fetch weekly shows", err));
+  }, [id]);
+
+  // visual elements
   return (
     <div className="StationPage">
-
-      <div className="stationDetials">
+      <div className="stationDetails">
         <h1>{stationData.channelName}</h1>
-        <p>{stationData.tag}</p>
+        <h2>{stationData.tag}</h2>
       </div>
-
       
-      <div className="stationMedia">
+      <div className="twoColumnSection">
         <div className="leftContent">
-          <AudioPlayer 
-            stationId={id}
-            showName = {false}
-            showTag = {false}
-            showBio = {true}
-          />
-          {/* show listner subscribe if logged in */}
-          { isLoggedIn && userType === 'listener' && ( <Subscribe stationId={id}/>)}
+          <div className="section">
+            <AudioPlayer 
+              stationId={id}
+              showName = {false}
+              showTag = {false}
+              showBio = {true}
+            />
+            {/* show listner subscribe option if logged in */}
+            { isLoggedIn && userType === 'listener' && ( <Subscribe stationId={id}/>)}
+          </div>
+
         </div>
         <div className="rightContent">
-          <div className="chatWindow">
+          <div className="section">
             { !isLoggedIn ? (
               <div className="loginOverlay">
                 <p>Sign in to join the discussion!</p>
-                <button onClick = {()=>alert("Will redirect to sign in")}> Sign in </button>
+                <button onClick={() => navigate('/login')}> Sign in </button>
               </div>
             ) : (
               <ChatWindow stationId={id} username={username}/>
@@ -62,26 +85,12 @@ export default function StationPage() {
           </div>
         </div>
       </div>
-      
-      {/* hardcoded for display, will populate when atrits tools built */}
-      <section className="section" id="schedule">
-        <h3>Weekly Schedule</h3>
-        <div className="cardGrid">
-          <div className="card">
-            <h4>Monday: Indie Vibes</h4>
-            <p>DJ Kora - 4PM to 6PM</p>
-          </div>
-          <div className="card">
-            <h4>Wednesday: Lo-Fi Break</h4>
-            <p>DJ Chill - 6PM to 8PM</p>
-          </div>
-          <div className="card">
-            <h4>Friday: Live Sets</h4>
-            <p>DJ Aura - 9PM to Midnight</p>
-          </div>
-        </div>
+    <div className="bottom">
+      <section className="section">
+        <WeeklyCalender shows = {weeklyShows}/>
       </section>
-      
     </div>
-  );
+
+  </div>
+);
 }

@@ -10,8 +10,6 @@ import * as utilities from '../../../utilities/utilities';
 
 export default function ArtistRegistrationForm() {
   const [formInputs, setFormInputs] = useState({
-    // firstName: '',
-    // lastName: '',
     username: '',
     channelName: '',
     streamUrl: '',

@@ -1,13 +1,18 @@
 import { React, useState } from 'react'
 
+// style
+import "./addShowFormStyle.css"
+
 export default function AddShowForm({ stationId, onShowAdded }) {
 const [title, setTitle] = useState('');
+  // setting form inputs
   const [artistUsername, setArtistUsername] = useState('');
   const [description, setDescription] = useState('');
   const [startTime, setStartTime] = useState('');
   const [endTime, setEndTime] = useState('');
 
-  const handleSubmit = async (input) => {
+  // submit form function
+  const submitForm = async (input) => {
     input.preventDefault();
 
     const newShow = {
@@ -42,41 +47,44 @@ const [title, setTitle] = useState('');
     }
   };
 
+  // visual elements
   return (
-    <form onSubmit={handleSubmit} className="addShowForm">
-      <h3>Add a New Show</h3>
-      <input
-        type="text"
-        placeholder="Show Title"
-        value={title}
-        onChange={(input) => setTitle(input.target.value)}
-        required
-      />
-      <input
-        type="text"
-        placeholder="Artist Username"
-        value={artistUsername}
-        onChange={(input) => setArtistUsername(input.target.value)}
-        required
-      />
-      <textarea
-        placeholder="Show Description"
-        value={description}
-        onChange={(input) => setDescription(input.target.value)}
-      />
-      <input
-        type="datetime-local"
-        value={startTime}
-        onChange={(input) => setStartTime(input.target.value)}
-        required
-      />
-      <input
-        type="datetime-local"
-        value={endTime}
-        onChange={(input) => setEndTime(input.target.value)}
-        required
-      />
-      <button type="submit">Create Show</button>
-    </form>
+    <div className="formContent">
+      <form onSubmit={submitForm} className="addShowForm">
+        <h3>Add a New Show</h3>
+        <input
+          type="text"
+          placeholder="Show Title"
+          value={title}
+          onChange={(input) => setTitle(input.target.value)}
+          required
+        />
+        <input
+          type="text"
+          placeholder="Host"
+          value={artistUsername}
+          onChange={(input) => setArtistUsername(input.target.value)}
+          required
+        />
+        <textarea
+          placeholder="Show Description (Optional)"
+          value={description}
+          onChange={(input) => setDescription(input.target.value)}
+        />
+        <input
+          type="datetime-local"
+          value={startTime}
+          onChange={(input) => setStartTime(input.target.value)}
+          required
+        />
+        <input
+          type="datetime-local"
+          value={endTime}
+          onChange={(input) => setEndTime(input.target.value)}
+          required
+        />
+        <button type="submit">Create Show</button>
+      </form>
+    </div>
   );
 }

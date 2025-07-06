@@ -10,7 +10,7 @@
     justify-content: space-between;
     background-color: #100E0E;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-  }
+}
   
 .logo .logoLink {
   color: #FBFDF7;
@@ -52,7 +52,20 @@ li a.active {
   
 .icon:hover {
     color: #d60132;
-  }
+}
+
+.navMenu a {
+  color: #FBFDF7;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.navMenu a:hover,
+.navMenu a.active {
+  color: #d60132;
+  text-decoration: none;
+}
 
 .navLinkButton {
   background: none;
@@ -77,7 +90,18 @@ li a.active {
 /* mobile screens */
 @media screen and (max-width: 940px) {
   
+.mobileNav a {
+  color: #FBFDF7;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.3s;
+}
 
+.mobileNav a:hover,
+.mobileNav a.active {
+  color: #d60132;
+  text-decoration: underline;
+}
 
   /* Dropdown menu */
   .mobileMenu {

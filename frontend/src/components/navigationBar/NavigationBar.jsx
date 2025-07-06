@@ -40,7 +40,13 @@ export default function NavigationBar() {
       </nav>
 
       <div className="navIcons">
-        <NavLink to="/login"> <MdAccountCircle className="icon" /> </NavLink>
+        <NavLink to={
+          isLoggedIn 
+            ? (userType === 'station' ? '/stationDashboard' : '/userDashboard') 
+            : '/login'
+        }>
+          <MdAccountCircle className="icon" />
+        </NavLink>
       </div>
 
       {/* menu for mobile view */}
@@ -57,9 +63,15 @@ export default function NavigationBar() {
           <li><NavLink to="/artistSpotlight" activeclassname="active">Artist Spotlight</NavLink></li>
         </ul>
         <div className="mobileMenuBot">
-          <div className="mobileNavIcons" onClick={showMenu}>
-            <NavLink to="/login"> <MdAccountCircle className="icon" /> </NavLink>
-          </div>          
+        <div className="mobileNavIcons">
+          <NavLink to={
+            isLoggedIn 
+              ? (userType === 'station' ? '/stationDashboard' : '/userDashboard') 
+              : '/login'
+          }>
+            <MdAccountCircle className="icon" />
+          </NavLink>
+        </div>         
         </div>
       </div>
     </header>

@@ -15,9 +15,7 @@ export default function ShowBrowser() {
 
   // pulling live stations from database
   const[liveStations, setLiveStations] = useState([])
-  const[allStations, setAllStations] = useState([])
 
-  //populating live staitons
   useEffect(() => {
      fetch('http://localhost:5001/station/getLiveStations')
     .then(response => response.json())
@@ -26,20 +24,23 @@ export default function ShowBrowser() {
   }, []);
 
   //populating all stations
-    useEffect(() => {
+  const[allStations, setAllStations] = useState([])
+
+  useEffect(() => {
      fetch('http://localhost:5001/station/getStations')
     .then(response => response.json())
     .then(data => setAllStations(data))
     .catch(err => console.error("Issue fetching stations", err));
   }, []);
 
+  // visual elements
   return (
       <div className="pageContent">
-        <div className="liveDisplay">
+        <div className="section">
           <StationCarousel displayName={liveTitle} stationList={liveStations}/>
         </div>
 
-       <div className="allDisplay">
+       <div className="section">
         <StationGrid displayName={allTitle} stationList={allStations}/>
       </div>
              

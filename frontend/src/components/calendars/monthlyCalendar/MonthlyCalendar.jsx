@@ -6,8 +6,7 @@ import 'react-calendar/dist/Calendar.css';
 import dayjs from 'dayjs';
 
 // import componets
-import AddShowFormOverlay from '../forms/overlays/addShowFormOverlay/AddShowFormOverlay';
-
+import AddShowFormOverlay from '../../forms/overlays/addShowFormOverlay/AddShowFormOverlay';
 
 // import style
 import './MonthlyCalendarStyle.css'
@@ -56,12 +55,15 @@ export default function MonthlyCalendar( {stationId} ) {
       }
     } catch (err) {
       console.error('Error deleting show:', err);
-  }
-};
+    }
+  };
+
+
 
   return (
     <div className='calendarContent'>
-      <h2 >Schedule</h2>
+      <h1>Show Schedule</h1>
+      
       <button onClick={() => setIsAdding(true)} className="addShowBtn">Add New Show</button>
 
       {isAdding && (
@@ -91,21 +93,28 @@ export default function MonthlyCalendar( {stationId} ) {
           <p className="noShows">No shows scheduled for this day.</p>
         ) : (
           <div className="calendarShowList">
-            {selectedShows.map(show => (
-              <div key={show.id} className="calendarShowCard">
-                <div className="leftSide">
-                  <h2 className="showTitle">{show.title}</h2>
-                  <h3 className="showInfo">
-                    {dayjs(show.startTime).format('HH:mm')} — by {show.artistUsername}
-                  </h3>
-                  {show.description && <h3 className="showDescription">{show.description}</h3>}                  
-                </div>
-                <div className="rightSide">
-                  <button onClick={() => deleteShow(show.id)}>Delete Show</button>                  
-                </div>
+            {selectedShows.map(show => {
+                const showEnded = dayjs(show.endTime).isBefore(dayjs());
 
-              </div>
-            ))}
+                return (
+                  <div key={show.id} className="calendarShowCard">
+                    <div className="leftSide">
+                      <h2 className="showTitle">{show.title}</h2>
+                      <h3 className="showInfo">
+                        {dayjs(show.startTime).format('HH:mm')} — {dayjs(show.endTime).format('HH:mm')} by {show.artistUsername}
+                      </h3>
+                      {show.description && <h3 className="showDescription">{show.description}</h3>}
+                    </div>
+                    <div className="rightSide">
+                      {!showEnded ? (
+                        <button onClick={() => deleteShow(show.id)}>Delete Show</button>
+                      ) : (
+                        <h2>Show has aired</h2>
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
           </div>
         )}
       </div>

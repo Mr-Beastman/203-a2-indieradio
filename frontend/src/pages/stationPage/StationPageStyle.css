@@ -1,43 +1,38 @@
 /* main page */
 .StationPage {
-  padding: 40px 20px;
-  background: linear-gradient(to bottom, #0d0d0d, #1a1a1a);
-  color: #f5f5f5;
-  font-family: 'Segoe UI', Roboto, sans-serif;
+  display: flex;
+  flex-direction: column;
+  padding-top: 4rem;
   min-height: 100vh;
+  align-items: center;
+  gap: 3rem
 }
 
 /* station details */
-.stationDetials {
-  margin-bottom: 30px;
+.stationDetails {
   text-align: center;
+  width: 85%;
 }
 
-.stationDetials h1 {
+.stationDetails h1 {
   font-size: 2.8rem;
   margin-bottom: 10px;
   letter-spacing: 1px;
   text-transform: uppercase;
 }
 
-.stationDetials p {
-  font-size: 1.25rem;
-  color: #ccc;
-}
-
 /* station media */
 .stationMedia {
   display: flex;
   gap: 20px;
-  margin-bottom: 40px;
+
   height: 350px;
 }
 
 .leftContent,
 .rightContent {
-  background-color: #1e1e1e;
+  background-color: transparent;
   border-radius: 12px;
-  box-shadow: 0 0 10px #FF005026;
   padding: 15px;
   display: flex;
   align-items: center;
@@ -53,10 +48,7 @@
 }
 
 
-
-
-
-/* Sign-in content */
+/* sign-in */
 .chatWindow .loginOverlay {
   position: relative;
   z-index: 2;
@@ -85,52 +77,12 @@
   background: #ff3366;
 }
 
-/* sections */
-.section {
-  padding: 60px 20px;
-  text-align: center;
-  border-bottom: 1px solid #333;
-}
 
-.section h3 {
-  font-size: 2.2rem;
-  margin-bottom: 30px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-}
-
-/* card grid */
-.cardGrid {
+.bottom{
   display: flex;
   justify-content: center;
-  gap: 5rem;
-}
-
-
-.link-button {
-  background: #ff0050;
-  border: none;
-  color: #fff;
-  padding: 8px 16px;
-  border-radius: 6px;
-  font-size: 0.95rem;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.link-button:hover {
-  background: #ff3366;
-}
-
-/* links */
-a {
-  color: #4db8ff;
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-  color: #80d4ff;
+  margin-bottom: 2rem;
+  width: 100%;
 }
 
 /* --- responsivce behaviour --- */

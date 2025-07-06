@@ -5,6 +5,7 @@
   height: 100%;
   width: 100%;
   box-sizing: border-box;
+  margin:auto;
 }
 
 .audioPlayer p {
@@ -13,7 +14,23 @@
 
 .topContent {
   display: flex;
-  flex-direction: row;
+  gap: 1.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.leftColumn {
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.rightColumn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .audioPlayer h2 {
@@ -25,6 +42,11 @@
 .audioPlayer .rightColumn {
   background-color: transparent;
 }
+
+.audioControls {
+  width: 100%;
+}
+
 
 .audioPlayer .rightColumn {
   display: flex;
@@ -45,25 +67,32 @@
 }
 
 .stationLogo {
-  max-width: 100%;
-  height: auto;
-  border-radius: 25px;
+    width: 200px;
+  height: 200px;
+  object-fit: contain;
+  border-radius: 12px;
+}
+
+.botContent {
+  margin-top: 2rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #333;
 }
 
 @media (max-width: 768px) {
   .topContent {
     flex-direction: column;
-    align-items: center;
     text-align: center;
   }
 
-  .stationLogo {
-    max-width: 125px;
-    max-height: 125px;
-  }
 
   .audioPlayer h2 {
     font-size: 1.25rem;
+  }
+
+  .playingInfo h3 {
+    font-size: 1.1rem;
   }
 
   .botContent {

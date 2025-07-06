@@ -52,16 +52,26 @@ export default function StationCarousel({displayName = "stations", stationList =
     return (
     <div className="carouselComponent">
         <h1 className="carouselDisplay">{displayName}</h1>
-        <Slider {...sliderSettings}>
-            {stationList.map((station) => (
-            <div key={station.id} className="card" onClick={() => navigateToStation(station.id)}>
-                <img src={station.logoUrl} alt={station.name} />
+
+        {stationList.length === 1 ? (
+            <div className="singleCard" onClick={() => navigateToStation(stationList[0].id)}>
+                <img src={stationList[0].logoUrl} alt={stationList[0].name} />
                 <div className="carouselCardContents">
-                <h3>{station.name}</h3>
+                    <h3>{stationList[0].name}</h3>
                 </div>
             </div>
-            ))}
-        </Slider>
+        ) : (        
+            <Slider {...sliderSettings}>
+                {stationList.map((station) => (
+                <div key={station.id} className="card" onClick={() => navigateToStation(station.id)}>
+                    <img src={station.logoUrl} alt={station.name} />
+                    <div className="carouselCardContents">
+                    <h3>{station.name}</h3>
+                    </div>
+                </div>
+                ))}
+            </Slider>
+            )}
         </div>
     );
 }
